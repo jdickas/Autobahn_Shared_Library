@@ -30,15 +30,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5ca6ab9dc30d86502c03deee05013195</sys_id>
-        <sys_mod_count>34</sys_mod_count>
+        <sys_mod_count>0</sys_mod_count>
         <sys_name>Update RITM</sys_name>
         <sys_overrides/>
         <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
         <sys_update_name>sys_hub_action_type_definition_5ca6ab9dc30d86502c03deee05013195</sys_update_name>
-        <sys_updated_by>J100246</sys_updated_by>
-        <sys_updated_on>2025-01-31 07:39:59</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-01-31 14:11:25</sys_updated_on>
         <system_level>false</system_level>
         <type/>
     </sys_hub_action_type_definition>
@@ -158,30 +158,6 @@
     </sys_variable_value>
     <sys_element_mapping action="delete_multiple" query="id=e0e7e715c34d86502c03deee050131b5"/>
     <sys_element_mapping action="INSERT_OR_UPDATE">
-        <field>application</field>
-        <id>e0e7e715c34d86502c03deee050131b5</id>
-        <sys_created_by>J100246</sys_created_by>
-        <sys_created_on>2024-03-19 11:35:59</sys_created_on>
-        <sys_id>68e7e715c34d86502c03deee050131c3</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>J100246</sys_updated_by>
-        <sys_updated_on>2024-03-19 11:35:59</sys_updated_on>
-        <table>var__m_sys_flow_step_definition_input_106afb6647032200b4fad7527c9a71e7</table>
-        <value/>
-    </sys_element_mapping>
-    <sys_element_mapping action="INSERT_OR_UPDATE">
-        <field>script</field>
-        <id>e0e7e715c34d86502c03deee050131b5</id>
-        <sys_created_by>J100246</sys_created_by>
-        <sys_created_on>2024-03-19 11:35:59</sys_created_on>
-        <sys_id>20e7e715c34d86502c03deee050131c4</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>J100246</sys_updated_by>
-        <sys_updated_on>2024-03-19 11:35:59</sys_updated_on>
-        <table>var__m_sys_flow_step_definition_input_106afb6647032200b4fad7527c9a71e7</table>
-        <value/>
-    </sys_element_mapping>
-    <sys_element_mapping action="INSERT_OR_UPDATE">
         <field>sc_task</field>
         <id>e0e7e715c34d86502c03deee050131b5</id>
         <sys_created_by>J100246</sys_created_by>
@@ -281,7 +257,6 @@
     </sys_hub_step_ext_input>
     <sys_hub_step_ext_output action="delete_multiple" query="model=e0e7e715c34d86502c03deee050131b5"/>
     <sys_hub_input_scripts action="delete_multiple" query="instance=e0e7e715c34d86502c03deee050131b5"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_step_ext_output_e0e7e715c34d86502c03deee050131b5"/>
     <sys_hub_action_input action="delete_multiple" query="model=5ca6ab9dc30d86502c03deee05013195^sys_idNOT IN20e7af91c34d86502c03deee0501316a"/>
     <sys_hub_action_input action="INSERT_OR_UPDATE">
         <active>true</active>
@@ -554,7 +529,6 @@
         <sys_updated_on>2024-03-19 11:35:59</sys_updated_on>
     </sys_hub_action_status_metadata>
     <sys_hub_status_condition action="delete_multiple" query="action_status_metadata_id=2ce7e715c34d86502c03deee050131d5"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_input_5ca6ab9dc30d86502c03deee05013195^sys_idNOT IN6ce7e715c34d86502c03deee050131b2"/>
     <sys_documentation action="INSERT_OR_UPDATE">
         <element>sc_task</element>
         <help/>
@@ -568,18 +542,17 @@
         <sys_created_on>2024-03-19 11:35:59</sys_created_on>
         <sys_id>6ce7e715c34d86502c03deee050131b2</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name/>
+        <sys_name>SC_Task</sys_name>
         <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
-        <sys_update_name/>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_input_5ca6ab9dc30d86502c03deee05013195_sc_task_en</sys_update_name>
         <sys_updated_by>J100246</sys_updated_by>
         <sys_updated_on>2024-03-19 11:35:59</sys_updated_on>
         <url/>
         <url_target/>
     </sys_documentation>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_input_5ca6ab9dc30d86502c03deee05013195"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_output_5ca6ab9dc30d86502c03deee05013195^sys_idNOT IN17e72b15c34d86502c03deee050131b3,57e72b15c34d86502c03deee050131ad"/>
     <sys_documentation action="INSERT_OR_UPDATE">
         <element>__dont_treat_as_error__</element>
         <help/>
@@ -593,11 +566,11 @@
         <sys_created_on>2024-03-19 11:36:11</sys_created_on>
         <sys_id>17e72b15c34d86502c03deee050131b3</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name/>
+        <sys_name>Don't Treat as Error</sys_name>
         <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
-        <sys_update_name/>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_5ca6ab9dc30d86502c03deee05013195___dont_treat_as_error___en</sys_update_name>
         <sys_updated_by>J100246</sys_updated_by>
         <sys_updated_on>2024-03-19 11:36:11</sys_updated_on>
         <url/>
@@ -616,11 +589,11 @@
         <sys_created_on>2024-03-19 11:36:11</sys_created_on>
         <sys_id>57e72b15c34d86502c03deee050131ad</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name/>
+        <sys_name>Action Status</sys_name>
         <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
-        <sys_update_name/>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_5ca6ab9dc30d86502c03deee05013195___action_status___en</sys_update_name>
         <sys_updated_by>J100246</sys_updated_by>
         <sys_updated_on>2024-03-19 11:36:11</sys_updated_on>
         <url/>
@@ -798,30 +771,6 @@
     </sys_variable_value>
     <sys_element_mapping action="delete_multiple" query="id=6fe76b15c34d86502c03deee05013102"/>
     <sys_element_mapping action="INSERT_OR_UPDATE">
-        <field>application</field>
-        <id>6fe76b15c34d86502c03deee05013102</id>
-        <sys_created_by>J100246</sys_created_by>
-        <sys_created_on>2024-03-19 11:36:11</sys_created_on>
-        <sys_id>e3e76b15c34d86502c03deee0501310d</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>J100246</sys_updated_by>
-        <sys_updated_on>2024-03-19 11:36:11</sys_updated_on>
-        <table>var__m_sys_flow_step_definition_input_106afb6647032200b4fad7527c9a71e7</table>
-        <value/>
-    </sys_element_mapping>
-    <sys_element_mapping action="INSERT_OR_UPDATE">
-        <field>script</field>
-        <id>6fe76b15c34d86502c03deee05013102</id>
-        <sys_created_by>J100246</sys_created_by>
-        <sys_created_on>2024-03-19 11:36:11</sys_created_on>
-        <sys_id>a7e76b15c34d86502c03deee0501310d</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_updated_by>J100246</sys_updated_by>
-        <sys_updated_on>2024-03-19 11:36:11</sys_updated_on>
-        <table>var__m_sys_flow_step_definition_input_106afb6647032200b4fad7527c9a71e7</table>
-        <value/>
-    </sys_element_mapping>
-    <sys_element_mapping action="INSERT_OR_UPDATE">
         <field>sc_task</field>
         <id>6fe76b15c34d86502c03deee05013102</id>
         <sys_created_by>J100246</sys_created_by>
@@ -921,7 +870,6 @@
     </sys_hub_step_ext_input>
     <sys_hub_step_ext_output action="delete_multiple" query="model=6fe76b15c34d86502c03deee05013102"/>
     <sys_hub_input_scripts action="delete_multiple" query="instance=6fe76b15c34d86502c03deee05013102"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_step_ext_output_6fe76b15c34d86502c03deee05013102"/>
     <sys_hub_action_input action="delete_multiple" query="model=a7e72b15c34d86502c03deee050131f8^sys_idNOT INa3e72b15c34d86502c03deee050131fc"/>
     <sys_hub_action_input action="INSERT_OR_UPDATE">
         <active>true</active>
@@ -1194,7 +1142,6 @@
         <sys_updated_on>2024-03-19 11:36:12</sys_updated_on>
     </sys_hub_action_status_metadata>
     <sys_hub_status_condition action="delete_multiple" query="action_status_metadata_id=2fe76b15c34d86502c03deee0501311e"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_input_a7e72b15c34d86502c03deee050131f8^sys_idNOT INabe76b15c34d86502c03deee05013100"/>
     <sys_documentation action="INSERT_OR_UPDATE">
         <element>sc_task</element>
         <help/>
@@ -1208,18 +1155,17 @@
         <sys_created_on>2024-03-19 11:36:11</sys_created_on>
         <sys_id>abe76b15c34d86502c03deee05013100</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name/>
+        <sys_name>SC_Task</sys_name>
         <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
-        <sys_update_name/>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_input_a7e72b15c34d86502c03deee050131f8_sc_task_en</sys_update_name>
         <sys_updated_by>J100246</sys_updated_by>
         <sys_updated_on>2024-03-19 11:36:11</sys_updated_on>
         <url/>
         <url_target/>
     </sys_documentation>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_input_a7e72b15c34d86502c03deee050131f8"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_output_a7e72b15c34d86502c03deee050131f8^sys_idNOT IN23e76b15c34d86502c03deee0501311a,a7e76b15c34d86502c03deee05013114"/>
     <sys_documentation action="INSERT_OR_UPDATE">
         <element>__dont_treat_as_error__</element>
         <help/>
@@ -1233,11 +1179,11 @@
         <sys_created_on>2024-03-19 11:36:12</sys_created_on>
         <sys_id>23e76b15c34d86502c03deee0501311a</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name/>
+        <sys_name>Don't Treat as Error</sys_name>
         <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
-        <sys_update_name/>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_a7e72b15c34d86502c03deee050131f8___dont_treat_as_error___en</sys_update_name>
         <sys_updated_by>J100246</sys_updated_by>
         <sys_updated_on>2024-03-19 11:36:12</sys_updated_on>
         <url/>
@@ -1256,11 +1202,11 @@
         <sys_created_on>2024-03-19 11:36:12</sys_created_on>
         <sys_id>a7e76b15c34d86502c03deee05013114</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name/>
+        <sys_name>Action Status</sys_name>
         <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
-        <sys_update_name/>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_a7e72b15c34d86502c03deee050131f8___action_status___en</sys_update_name>
         <sys_updated_by>J100246</sys_updated_by>
         <sys_updated_on>2024-03-19 11:36:12</sys_updated_on>
         <url/>
@@ -1270,6 +1216,6 @@
     <sys_hub_action_type_definition action="UPDATE">
         <sys_id>5ca6ab9dc30d86502c03deee05013195</sys_id>
         <latest_snapshot>a7e72b15c34d86502c03deee050131f8</latest_snapshot>
-        <compiler_build>glide-xanadu-07-02-2024__patch4-11-22-2024_12-02-2024_1408.zip</compiler_build>
+        <compiler_build>glide-xanadu-07-02-2024__patch3-hotfix1-11-13-2024_11-19-2024_1208.zip</compiler_build>
     </sys_hub_action_type_definition>
 </record_update>
