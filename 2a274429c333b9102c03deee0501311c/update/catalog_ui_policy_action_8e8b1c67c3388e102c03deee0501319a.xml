@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="INSERT_OR_UPDATE">
+        <catalog_item/>
+        <catalog_variable>IO:e70b30ffc3bb31504de0d0cf050131b5</catalog_variable>
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field/>
+        <field_message/>
+        <field_message_type>none</field_message_type>
+        <mandatory>true</mandatory>
+        <order>100</order>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-13 10:13:47</sys_created_on>
+        <sys_id>8e8b1c67c3388e102c03deee0501319a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>leistungsart</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_8e8b1c67c3388e102c03deee0501319a</sys_update_name>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-03-13 10:13:47</sys_updated_on>
+        <table/>
+        <ui_policy display_value="SAP-Controlling-CATS">8a8b1c67c3388e102c03deee05013178</ui_policy>
+        <value/>
+        <value_action>ignore</value_action>
+        <variable>leistungsart</variable>
+        <variable_set/>
+        <visible>true</visible>
+    </catalog_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=8e8b1c67c3388e102c03deee0501319a"/>
+</record_update>

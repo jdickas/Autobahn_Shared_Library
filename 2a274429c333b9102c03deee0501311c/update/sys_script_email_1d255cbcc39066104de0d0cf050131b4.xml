@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>notify.item.ritmInfo</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+    // Add your code here
+	template.print('<table style="font-family: Source Sans Pro, sans-serif; font-size: 16px; border="0" width="100%" cellspacing="0" cellpadding="0" align="center">');
+
+    var tbl_obj = new GlideRecord('sc_req_item');
+    tbl_obj.get('sys_id', current.sysapproval);
+    for (var key in tbl_obj.variables) {
+        //template.print('<tr style="height: 22.4px;">');
+		template.print('<tr>');
+        if (tbl_obj.variables[key]) {
+            var catItem = tbl_obj.cat_item;
+            gs.info('current catI is: ' + catItem);
+            if (MsgUtil.getShowVar(key, catItem)) {
+                template.print('<td style="width: 33.6375%; font-weight: bold;">' + tbl_obj.variables[key].getQuestion().getLabel() + '</td>\r\n');                
+				template.print('<td style="width: 66.3193%;">'+ tbl_obj.variables[key].getDisplayValue() + '</td>\r\n');				
+            }
+            template.print('</tr>');
+        }
+    }    
+
+
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2025-03-12 16:38:04</sys_created_on>
+        <sys_id>1d255cbcc39066104de0d0cf050131b4</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>notify.item.ritmInfo</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_1d255cbcc39066104de0d0cf050131b4</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2025-03-14 10:24:25</sys_updated_on>
+    </sys_script_email>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>1d255cbcc39066104de0d0cf050131b4</id>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2025-03-12 16:38:04</sys_created_on>
+        <sys_id>40365cbcc39066104de0d0cf050131bb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2025-03-12 16:38:04</sys_updated_on>
+        <table>sys_script_email</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

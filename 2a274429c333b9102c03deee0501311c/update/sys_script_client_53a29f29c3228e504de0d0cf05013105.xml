@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>u_service_offering</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Sync IMS fields for ServiceOffering </name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+   var cmdbsysID = newValue;
+    var ga = new GlideAjax('CiServiceUtil');
+    ga.addParam('sysparm_name', "getParent");
+    ga.addParam('sysparm_cmdbName', cmdbsysID);
+    ga.getXML(myAnswer);
+
+    function myAnswer(response) {
+        var answer = response.responseXML.documentElement.getAttribute('answer');
+        if (answer) {
+            var theParents = JSON.parse(answer);
+            if (g_form.getValue("u_it_servicecluster") != theParents[2]) {
+                g_form.setValue("u_it_servicecluster", theParents[2]);
+            }
+            if (g_form.getValue("u_it_servicegroup") != theParents[1]) {
+                g_form.setValue("u_it_servicegroup", theParents[1]);
+            }
+            if (g_form.getValue("u_business_service") != theParents[0]) {
+                g_form.setValue("u_business_service", theParents[0]);
+            }
+        } else {
+            //nothing
+        }
+
+    }
+
+   //Type appropriate comment here, and begin script below
+   
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-06-02 18:16:00</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>53a29f29c3228e504de0d0cf05013105</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Sync IMS fields for ServiceOffering </sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_client_53a29f29c3228e504de0d0cf05013105</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-06-03 08:37:08</sys_updated_on>
+        <table>interaction</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

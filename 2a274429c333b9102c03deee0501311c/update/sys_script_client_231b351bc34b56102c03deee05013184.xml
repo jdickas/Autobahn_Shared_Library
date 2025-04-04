@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>true</applies_extended>
+        <condition/>
+        <description/>
+        <field>cmdb_ci</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>AssignmentRule-ConfigurationItem</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue==='' ) {
+      return;
+   }
+   
+ 	g_form.clearValue("assignment_group");
+  	setTimeout(function() {
+	var ready =0;	
+    var number = g_form.getValue("number");
+    var incPattern = /INC/;
+    var chgPattern = /CHG/;
+    var prbPattern = /PRB/;
+	var tableName;
+	var callerId=" ";
+	var channel = g_form.getValue("contact_type");
+    var serviceOffering = g_form.getValue("service_offering");
+    var configurationItem = g_form.getValue("cmdb_ci");
+   
+	if (incPattern.test(number))
+	{tableName = "incident";
+	 callerId= g_form.getValue("caller_id");
+	 if(callerId!=""&&channel!="" )
+	 ready=1;
+	}
+	else if(chgPattern.test(number))
+	{tableName="change_request";
+	ready=1;
+	}
+	else if(prbPattern.test(number))
+	{tableName="problem";
+	ready=1;
+	}
+   
+  
+  
+
+   // g_form.addErrorMessage("category is being changed" +category);
+   if(ready==1)
+   {
+
+	var ga = new GlideAjax('AssignmentUtils');
+	ga.addParam('sysparm_name', "getGroupInfo");
+	ga.addParam('sysparm_tableName',tableName);
+	ga.addParam('sysparm_channel',channel);
+	ga.addParam('sysparm_serviceOffering', serviceOffering);
+    ga.addParam('sysparm_configurationItem', configurationItem);
+	ga.addParam('sysparm_callerID',callerId);
+	ga.getXML(myAnswer);
+   }
+    }, 300);
+   
+
+function myAnswer(response) {
+	var uniqueAnswer = response.responseXML.documentElement.getAttribute('answer');
+	
+	g_form.setValue("assignment_group", uniqueAnswer);
+
+}
+
+
+   //Type appropriate comment here, and begin script below
+   
+}
+   
+   
+   
+]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2025-01-17 15:05:22</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>231b351bc34b56102c03deee05013184</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>AssignmentRule-ConfigurationItem</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_client_231b351bc34b56102c03deee05013184</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2025-01-17 15:09:12</sys_updated_on>
+        <table>task</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>19474cf80b70000001</claim_timestamp>
+        <metadata_update_name>sys_script_client_231b351bc34b56102c03deee05013184</metadata_update_name>
+        <previous_claim_app_version>1.11.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2025-01-17 15:09:03</sys_created_on>
+        <sys_id>29fb351bc34b56102c03deee0501319f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2025-01-17 15:09:03</sys_updated_on>
+    </sys_claim>
+</record_update>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.GroupUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Utilities for Groups</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GroupUtil</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var GroupUtil = (function() {
+
+    /**SNDOC
+	@name userIsInGroupOfType
+	@description Check the membership of user in a group with the given type
+	@param {string} [user] - current user
+	@param {string} [groupType] - Id of group type	
+	@returns {Boolean} true if a groupmembership is found
+	*/
+    function userIsInGroupOfType(user, groupType) {
+        var myLog = new Logger(Logger.DEF, 'GroupUtil', 'userIsInGroupOfType');
+        var groups = [];
+        var searchType = groupType;
+        var query = global.QueryBuilder.findGroupByGroupTyp(user, groupType);
+        myLog.debug('built query: ' + JSON.stringify(query));
+        var grGrpMember = new GlideRecord('sys_user_grmember');
+        grGrpMember.addEncodedQuery(query);
+        grGrpMember.query();
+        if (grGrpMember.next()) {
+            groups.push(grGrpMember.getValue('group'));
+            return true;
+        } else {
+            //myLog.debug('no membership found for groupType: ' + searchType);
+            return false;
+        }
+    }
+
+    function getLoggedInUsersGroups() {
+		var usersGroups = [];
+        var loggedInUser = gs.getUserID();
+        var groupsGR = new GlideRecord('sys_user_grmember');
+        groupsGR.addEncodedQuery('user=' + loggedInUser);
+        groupsGR.query();
+
+        while (groupsGR.next()) {
+            usersGroups.push(groupsGR.group);
+        }
+		return usersGroups;
+    }
+
+
+    function getLoggedInUsersGroupsNow() {
+		var usersGroups = [];
+        var loggedInUser = gs.getUserID();
+        var groupsGR = new GlideRecord('sys_user_grmember');
+        groupsGR.addEncodedQuery('user=' + loggedInUser);
+        groupsGR.query();
+
+        while (groupsGR.next()) {
+            usersGroups.push(groupsGR.getValue('group'));
+        }
+		return usersGroups;
+    }	
+
+    function getChoice(elt, language, typ, tableName) {
+        var myLog = new Logger(Logger.DEF, 'GroupUtil', 'getChoice');
+        myLog.debug('gChoice called!');
+        var optionObj = {
+            element: elt,
+            value: '',
+            label: ''
+        };
+        var query = global.QueryBuilder.findChoiceByElement(elt, language, typ, tableName);
+        myLog.debug('looking query in getchoic: ' + JSON.stringify(query));
+        var record = new GlideRecord('sys_choice');
+        record.addEncodedQuery(query);
+        record.query();
+        while (record.next()) {
+            var chValue = record.value.toString();
+            optionObj['value'] = chValue;
+            var chLabel = record.label.toString();
+            optionObj['label'] = chLabel;
+        }
+        myLog.debug('optionobj in getchoic: ' + JSON.stringify(optionObj));
+        return optionObj;
+    }
+    /** SNDOC
+     * @name getMessageValue
+     * @description Search for entry in the Messages table
+     * @@param {String} [msgKey] - key of the entry to look for
+     * @param {String} [language] - language specification of the entry
+     * @return {String} - returns the message from the corresponding entry
+     */
+    function getMessageValue(msgKey, language) {
+        var msgRecord = new GlideRecord("sys_ui_message");
+        msgRecord.addQuery('key', msgKey);
+        msgRecord.addQuery('language', language);
+        msgRecord.query();
+        if (msgRecord.next()) {
+            return msgRecord.getValue('message');
+        }
+    }
+
+    function workingDayDuration(schedSysID, start, end) {
+
+
+        var tomorrow = new GlideDateTime();
+        tomorrow.addDays(1);
+        var yesterday = new GlideDateTime();
+        yesterday.addDays(-1);
+        var startDate = new GlideDateTime(start);
+        var endDate = new GlideDateTime(end);
+        var schedule = new GlideSchedule(schedSysID);
+        var duration = schedule.duration(startDate, endDate).getDayPart();
+        if (startDate <= yesterday) {
+            return duration;
+        } else if ((startDate >= yesterday) && (endDate >= tomorrow)) {
+            return duration + 1;
+        } else {
+            return 0;
+        }
+
+    }
+
+    function businessPlannedEndDate(schedSysID, workingDays) {
+
+        // gibt Datum zurück, das workingDays in der Zukunft liegt
+
+        var myLog = new Logger(Logger.DEF, 'GroupUtil', 'businessPlannedEndDate');
+        myLog.debug('Start: ' + workingDays);
+
+        var startDate = new GlideDateTime();
+        var plannedBusinessEndDate = new GlideDateTime();
+        if (workingDays < 1) {
+            return plannedBusinessEndDate;
+        }
+        var maxDays = 100;
+
+        var sched = new GlideSchedule(schedSysID);
+        var workDayCount = 0;
+
+        for (i = 1; i < maxDays; i++) {
+
+            plannedBusinessEndDate.addDays(1);
+
+            myLog.debug('Schleifennummer: ' + i + ' End Date: ' + plannedBusinessEndDate);
+
+            if (sched.isInSchedule(plannedBusinessEndDate)) {
+                myLog.debug('Inside Schedule');
+                workDayCount++;
+            } else {
+                myLog.debug('Outside Schedule');
+            }
+
+            if (workDayCount == workingDays) {
+                //myLog.debug('!!!! Business Date End Date ' + plannedBusinessEndDate);
+                return plannedBusinessEndDate;
+            }
+
+        }
+
+        return plannedBusinessEndDate;
+    }
+
+    function businessPlannedStartDate(schedSysID, workingDays) {
+
+        // gibt Datum zurück, das workingDays in der Vergangenheit liegt
+        // benutzt in 'Autoclosure incident ..'
+
+        var myLog = new Logger(Logger.DEF, 'GroupUtil', 'businessPlannedStartDate');
+        myLog.debug('Start: ' + workingDays);
+
+        var startDate = new GlideDateTime();
+        var plannedBusinessStartDate = new GlideDateTime();
+        if (workingDays < 1) {
+            return plannedBusinessStartDate;
+        }
+        var maxDays = 100;
+
+        var sched = new GlideSchedule(schedSysID);
+        var workDayCount = 0;
+
+        for (i = 1; i < maxDays; i++) {
+
+            plannedBusinessStartDate.addDays(-1);
+
+            myLog.debug('Schleifennummer: ' + i + ' End Date: ' + plannedBusinessStartDate);
+
+            if (sched.isInSchedule(plannedBusinessStartDate)) {
+                myLog.debug('Inside Schedule');
+                workDayCount++;
+            } else {
+                myLog.debug('Outside Schedule');
+            }
+
+            if (workDayCount == workingDays) {
+                //myLog.debug('!!!! Business Date End Date ' + plannedBusinessStartDate);
+                return plannedBusinessStartDate;
+            }
+
+        }
+
+        return plannedBusinessStartDate;
+    }
+
+    return {
+        'userIsInGroupOfType': userIsInGroupOfType,
+		'getLoggedInUsersGroups': getLoggedInUsersGroups,
+		'getLoggedInUsersGroupsNow': getLoggedInUsersGroupsNow,
+        'getChoice': getChoice,
+        'getMessageValue': getMessageValue,
+        'workingDayDuration': workingDayDuration,
+        'businessPlannedEndDate': businessPlannedEndDate,
+        'businessPlannedStartDate': businessPlannedStartDate,
+    };
+})();]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-18 06:46:56</sys_created_on>
+        <sys_id>40ac1cf5c3bb39104de0d0cf0501315a</sys_id>
+        <sys_mod_count>53</sys_mod_count>
+        <sys_name>GroupUtil</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_40ac1cf5c3bb39104de0d0cf0501315a</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2024-04-22 13:40:07</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>notify.global.BodyMessages</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+    var notificationName = email_action.name;
+    //template.print(notificationName);
+
+
+    var notificationId = email_action.sys_id;
+    var strTable = current.sys_class_name;
+    var recordsysid = current.sys_id;
+    var latestComment = MsgUtil.getLatestComment(strTable, recordsysid);
+	var latestWorknote= MsgUtil.getLatestWorknote(strTable, recordsysid);
+    var pendingTimerValue = MsgUtil.getPendingTimer(strTable, recordsysid);
+    var space = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+    var rejectionComment = MsgUtil.getElementForRequest(recordsysid);
+    var rejectionKBComment = MsgUtil.getElementForKnowledge(recordsysid);
+    var InstanceName = MsgUtil.getInstanceName();
+    var sendemailaddress = "mailto:" + InstanceName + "@service-now.com?subject=";
+    var emailsubject = "bitte nochmal " + current.number + " wiederöffnen";
+    var EmailLink = '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' + sendemailaddress + emailsubject + '&amp;body=' + email.watermark + '">' + current.number + "</a>";
+    var QAlink = "<a href='https://autobahnqa.service-now.com/'>QA</a> ";
+    var arrMsg = [];
+    var arrMsgExternal = [];
+	var arrMsgExternalSCTask=[];
+    var arraystrikeMsg = [];
+    var arrayMsgChangeApproval = [];
+    var arrayMsgKnowledgeApproval = [];
+    var attachLink;
+
+    var changerecordlink = '<a href="' + gs.getProperty("glide.servlet.uri") + gs.generateURL("change_request", current.document_id) + '">' + current.document_id.number + '</a>';
+    arrayMsgChangeApproval.push(changerecordlink);
+    var kmrecordlink = '<a href="' + gs.getProperty("glide.servlet.uri") + gs.generateURL("kb_knowledge", current.document_id) + '">' + current.document_id.number + '</a>';
+    arrayMsgKnowledgeApproval.push(kmrecordlink);
+    var attachPortalLink = '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' + gs.getProperty("glide.servlet.uri") + 'esc?id=ticket&table=' + strTable + '&sys_id=' + current.sys_id + '">' + current.number + '</a>';
+
+    attachLink = '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' + gs.getProperty("glide.servlet.uri") + gs.generateURL(strTable, current.sys_id) + '">' + current.number + '</a>';
+
+    arrMsg.push(attachLink);
+    arrMsgExternal.push(attachPortalLink);
+    //arrMsg.push(attachportallink);
+    var attachStoryLink = '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' + gs.getProperty("glide.servlet.uri") + gs.generateURL(strTable, current.sys_id) + '">' + current.number + '</a>';
+    if (strTable == "incident") {
+        if (notificationId == global.NotificationConst.NOTI_INCIDENT_CREATED()) {
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Created.ToCaller', [attachPortalLink]));
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_COMMENTEDTOGROUPASSIGNEE()) {
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+			latestComment = '<br/>' + latestComment.replace(/\n/g, '<br/>');
+            arrMsg.push(latestComment);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Commented.ToGroup&Assignee', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_COMMENTEDTOCALLER()) {
+
+            arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</b>");
+			latestComment = '<br/>' + latestComment.replace(/\n/g, '<br/>');
+            arrMsgExternal.push(latestComment);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Commented.ToCaller', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_ASSIGNEDTOGROUP()) {
+            arrMsg.push(current.priority);
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+            arrMsg.push(current.sys_updated_on);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Assigned.ToGroup', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_PENDINGTIMEREXPIRETOGROUPASSIGNEE()) {
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+            arrMsg.push(pendingTimerValue);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.PendingTimerExpire.ToGroup&Assignee', arrMsg));
+
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_REOPENEDTOCALLER()) {
+            arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</b>");
+
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Reopened.ToCaller', arrMsgExternal));
+
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_REOPENEDTOGROUP()) {
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+            arrMsg.push(current.sys_updated_on);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Reopened.ToGroup', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_RESOLVEDTOCALLER()) {
+            arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</br>");
+            arrMsgExternal.push("</b>" + current.close_notes + "<br></br>");
+            arrMsgExternal.push("<br></br>");
+            arrMsgExternal.push("<br></br>");
+            arrMsgExternal.push("<br></br>");
+            arrMsgExternal.push(EmailLink);
+            arrMsgExternal.push("<br></br>");
+            arrMsgExternal.push("<br></br>");
+            arrMsgExternal.push("<br></br>");
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Resolved.ToCaller', arrMsgExternal));
+
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_UPDATETOWATCHLIST()) {
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+            arrMsg.push(current.sys_updated_on);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.Update.ToWatchlist', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_3_STRIKE_1TOCALLER()) {
+            arraystrikeMsg.push("<br>");
+            arraystrikeMsg.push("<br><br><b>");
+            arraystrikeMsg.push("</b>");
+			latestComment = '<br/>' + latestComment.replace(/\n/g, '<br/>');
+            arraystrikeMsg.push(latestComment);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.3-Strike-1.ToCaller', arraystrikeMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_3_STRIKE_2TOCALLER()) {
+            arraystrikeMsg.push("<br>");
+            arraystrikeMsg.push("<br><br><b>");
+            arraystrikeMsg.push("</b>");
+			latestComment = '<br/>' + latestComment.replace(/\n/g, '<br/>');
+            arraystrikeMsg.push(latestComment);
+            template.print(gs.getMessage('notify.bodyMsg.Incident.3-Strike-2.ToCaller', arraystrikeMsg));
+        }else if (notificationId == global.NotificationConst.NOTI_INCIDENT_ASSIGNED_TOASSIGNEE()){
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");           
+            template.print(gs.getMessage('notify.bodyMsg.Assigned.ToAssigneeSAPERP', arrMsg));
+        }else if (notificationId == global.NotificationConst.NOTI_INCIDENT_UPDATED_TOASSIGNEE()){
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");           
+            template.print(gs.getMessage('notify.bodyMsg.Updated.ToAssigneeSAPERP', arrMsg));
+        }
+
+    } else if (strTable == "rm_story") {
+        if (notificationId == global.NotificationConst.NOTI_STORY_ASSIGNEDTOGROUP()) {
+            template.print(gs.getMessage('notify.bodyMsg.Story.Assigned.ToGroup', arrMsg));
+            //template.print(" I am creating the body message");
+        } else if (notificationId == global.NotificationConst.NOTI_STORY_ASSIGNEDTOTESTER()) {
+            arrMsg.push(QAlink);
+            template.print(gs.getMessage('notify.bodyMsg.Story.Assigned.ToTester', arrMsg));
+            //template.print(" I am creating the body message");
+        }
+    } else if (strTable == "problem") {
+        // configuration for Problem begins here
+        var arrayPrbMsg = [];		
+        if (notificationId == global.NotificationConst.NOTI_PROBLEM_ASSIGNEDTOGROUP()) {
+            arrMsg.push(current.priority.getDisplayValue());
+            template.print(gs.getMessage('notify.bodyMsg.Problem.Assigned.ToGroup', arrMsg));
+        }
+        if (notificationId == global.NotificationConst.NOTI_PROBLEM_UPDATEDTOWATCHLIST()) {
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+            arrMsg.push(current.sys_updated_on);
+            template.print(gs.getMessage('notify.bodyMsg.Problem.Updated.ToWatchlist', arrMsg));
+        }
+		if (notificationId == global.NotificationConst.NOTI_PROBLEM_UPDATEDTOREVIEWERGROUP()) {
+            arrayPrbMsg.push(current.number);
+            arrayPrbMsg.push(current.state.getDisplayValue());
+            template.print(gs.getMessage('notify.bodyMsg.Problem.Updated.ToReviewerGroup', arrMsg));
+        }
+        if (notificationId == global.NotificationConst.NOTI_PROBLEM_CREATEDTOPRBCANDIDATECALLER()) {
+            var probId = current.sys_id;
+            var relIncNb = '';
+            var relInc = MsgUtil.getProblemCandidate(probId);
+            if (relInc) {
+                relIncNb = relInc.number;
+            }
+            arrayPrbMsg.push(attachLink); // current.number
+            
+            arrayPrbMsg.push(relIncNb);
+            template.print(gs.getMessage('notify.bodyMsg.Problem.Created.ToPrbCandidateCaller', arrayPrbMsg));
+        }
+        if (notificationId == global.NotificationConst.NOTI_PROBLEM_CREATEDTOGROUPS()) {
+            arrMsg.push(current.priority.getDisplayValue());
+            template.print(gs.getMessage('notify.bodyMsg.Problem.Created.OutsideIncident', arrMsg));
+        }
+        if (notificationId == global.NotificationConst.NOTI_PROBLEM_STATEUPDATEDTOREVIEWERGROUP()) {
+            arrayPrbMsg.push(attachLink);
+            arrayPrbMsg.push(current.state.getDisplayValue());		
+            template.print(gs.getMessage('notify.bodyMsg.Problem.StateUpdated.ToReviewerGroup', arrayPrbMsg));
+        }
+        if (notificationId == global.NotificationConst.NOTI_PROBLEM_RESOLVEDTOPRBCANDIDATECALLER()) {
+            arrayPrbMsg.push(attachLink);
+            arrayPrbMsg.push("<br><br><b>");
+            arrayPrbMsg.push("</br>");
+            arrayPrbMsg.push("</b>" + current.fix_notes + "<br></br>");
+            template.print(gs.getMessage('notify.bodyMsg.Problem.Resolved.ToPrbCandidateCaller', arrayPrbMsg));
+        }
+        if (notificationId == global.NotificationConst.NOTI_PROBLEM_CLOSEDTOREVIEWERGROUP()) {
+            arrayPrbMsg.push(attachLink);
+            template.print(gs.getMessage('notify.bodyMsg.Problem.Closed.ToReviewerGroup', arrayPrbMsg));
+        }
+		if (notificationId == global.NotificationConst.NOTI_PROBLEM_ASSIGNED_TOASSIGNEE()){
+            arrayPrbMsg.push(attachLink);                       
+            template.print(gs.getMessage('notify.bodyMsg.Assigned.ToAssigneeSAPERP', arrayPrbMsg));
+        }
+		if (notificationId == global.NotificationConst.NOTI_PROBLEM_UPDATED_TOASSIGNEE()){
+			arrayPrbMsg.push(attachLink);           
+            template.print(gs.getMessage('notify.bodyMsg.Updated.ToAssigneeSAPERP', arrayPrbMsg));
+        }
+    }// configuration for Problem ends here
+	// configuration for Problem_Task begins here
+	else if (strTable == "problem_task") {
+		var arrayPrbTsk = [];
+		if (notificationId == global.NotificationConst.NOTI_PRBTASK_ASSIGNED_TOASSIGNEE()){
+           arrayPrbTsk.push(attachLink);
+                      
+            template.print(gs.getMessage('notify.bodyMsg.Assigned.ToAssigneeSAPERP', arrayPrbTsk));
+        }
+		if (notificationId == global.NotificationConst.NOTI_PRBTASK_UPDATED_TOASSIGNEE()){
+            arrayPrbTsk.push(attachLink);
+                       
+            template.print(gs.getMessage('notify.bodyMsg.Updated.ToAssigneeSAPERP', arrayPrbTsk));
+        }
+	// configuration for Problem_Task ends here
+	}
+    // configuration for Problem ends here
+
+    // configuration for Change begins here
+    else if (strTable == "change_request") {
+        if (notificationId == global.NotificationConst.NOTI_CHANGE_CREATED_NOTIFYREQUESTOR()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.Created.NotifyRequestor', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_APPROVALCREATED_APPROVER()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.ApprovalCreated.Approver', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_ASSIGNED_TOASSIGNMENTGRP()) {
+            arrMsg.push(current.priority);
+            template.print(gs.getMessage('notify.bodyMsg.Change.Assigned.ToAssignmentGrp', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_APPROVED_TOASSIGNMENTGRP()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.Approved.ToAssignmentGrp', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_CANCELLED_TOREQUESTER()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.Cancelled.ToRequester', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_COMPLETE_TOREQUESTER()) {
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+            arrMsg.push(current.close_notes);
+            template.print(gs.getMessage('notify.bodyMsg.Change.Complete.ToRequester', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_REJECTED_TOASSIGNEDTO()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.Rejected.ToAssignedto', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_UPDATE_TOWATCHLIST()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.Update.ToWatchlist', arrMsg));
+
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_END_AUTOCLOSE()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.End.Autoclose', arrMsg));
+		} else if (notificationId == global.NotificationConst.NOTI_CHANGE_END_REACHED()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.End.Reached', arrMsg));
+		} else if (notificationId == global.NotificationConst.NOTI_CHANGE_ASSIGNED_TOASSIGNEE()){           
+            template.print(gs.getMessage('notify.bodyMsg.Assigned.ToAssigneeSAPERP', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHANGE_UPDATED_TOASSIGNEE()){          
+            template.print(gs.getMessage('notify.bodyMsg.Updated.ToAssigneeSAPERP', arrMsg));
+        }
+
+
+    } else if (strTable == "change_task") {
+        if (notificationId == global.NotificationConst.NOTI_CHGTASK_ASSIGNED_TOASSIGNMNTGRP()) {
+			arrMsg.push(current.assignment_group.getDisplayValue());
+            template.print(gs.getMessage('notify.bodyMsg.ChgTask.Assigned.ToAssignmntGrp', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_ASSIGNED_TOASSIGNEDTO()) {
+            template.print(gs.getMessage('notify.bodyMsg.ChgTask.Assigned.ToAssignedto', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_READY_TOASSIGNMNTGRP()) {
+            template.print(gs.getMessage('notify.bodyMsg.ChgTask.Ready.ToAssignmntGrp', arrMsg));
+
+        }else if (notificationId == global.NotificationConst.NOTI_CHGTASK_ASSIGNED_TOASSIGNEE()){           
+            template.print(gs.getMessage('notify.bodyMsg.Assigned.ToAssigneeSAPERP', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_UPDATED_TOASSIGNEE()){          
+            template.print(gs.getMessage('notify.bodyMsg.Updated.ToAssigneeSAPERP', arrMsg));
+        }
+
+    } else if (current.source_table == "change_request") {
+        if (notificationId == global.NotificationConst.NOTI_CHANGE_APPROVALCREATED_APPROVER()) {
+            template.print(gs.getMessage('notify.bodyMsg.Change.ApprovalCreated.Approver', arrayMsgChangeApproval));
+        }
+        // Configuration for SRM bodies begins here
+    } else if (strTable == "sc_req_item") {
+        if (notificationId == global.NotificationConst.NOTI_SRITEM_COMPLETED_TOOPENEDBY()) {
+            arrMsgExternal.push(current.state.getDisplayValue());
+			arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</br>");
+            arrMsgExternal.push("</b>" + current.close_notes + "<br></br>");
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Completed', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_COMPLETED_TOREQUESTEDFOR()) {
+			arrMsgExternal.push(current.state.getDisplayValue());
+            arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</br>");
+            arrMsgExternal.push("</b>" + current.close_notes + "<br></br>");
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Completed', arrMsgExternal));
+
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_APPROVED_TOOPENEDBY()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Approved', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_APPROVED_TOREQUESTEDFOR()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Approved', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_AUTOREJECTED_TOREQUESTEDFOR()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.AutoRejected.ToRequestedFor', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_CREATED_TOOPENEDBY()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Created.ToOpenedBy', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_CREATED_TOREQUESTEDFOR()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Created.ToRequestedFor', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_REJECTED_TOOPENEDBY()) {
+            arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</b>");
+            arrMsgExternal.push(space);
+            arrMsgExternal.push(rejectionComment);
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Rejected', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_REJECTED_TOREQUESTEDFOR()) {
+            arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</b>");
+            arrMsgExternal.push(space);
+            arrMsgExternal.push(rejectionComment);
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Rejected', arrMsgExternal));
+        } else if (notificationId == global.NotificationConst.NOTI_SRITEM_COMMENTED_TOREQUESTEDFOR()) {
+            arrMsgExternal.push("<br><br><b>");
+            arrMsgExternal.push("</b>");
+			latestComment = '<br/>' + latestComment.replace(/\n/g, '<br/>');
+            arrMsgExternal.push(latestComment);
+            template.print(gs.getMessage('notify.bodyMsg.SRItem.Commented.ToRequestedFor', arrMsgExternal));
+        }
+    } else if (strTable == "sc_task") {
+        /*
+        var arrMsgRemindTask = [];
+        var taskPortalLink = '<a href="' + gs.getProperty("glide.servlet.uri") + 'sp?id=ticket&table='+ strTable + '&sys_id=' + current.sys_id + '">'+ current.request_item.getDisplayValue() + '</a>';
+        arrMsgRemindTask.push(taskPortalLink);
+        */
+        if (notificationId == global.NotificationConst.NOTI_SRTASK_ASSIGNED_TOASSIGNMENTGRP()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRTask.Assigned.ToAssignmentGrp', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_SRTASK_REMINDER_TOASSIGNEE()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRTask.Reminder', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_SRTASK_REMINDER_TOASSIGNMENTGRP()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRTask.Reminder', arrMsg));
+
+        }else if (notificationId == global.NotificationConst.NOTI_SRTASK_ASSIGNED_TOASSIGNEE()){           
+            template.print(gs.getMessage('notify.bodyMsg.Assigned.ToAssigneeSAPERP', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_SRTASK_UPDATED_TOASSIGNEE()){          
+            template.print(gs.getMessage('notify.bodyMsg.Updated.ToAssigneeSAPERP', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_SRTASK_COMMENTED_TOREQUESTEDFOR()) {
+            arrMsgExternalSCTask.push("<br>");
+			arrMsgExternalSCTask.push("<br><br><b>");
+			//arrMsgExternalSCTask.push("<b>");
+            arrMsgExternalSCTask.push("</b>");
+			latestComment = '<br/>' + latestComment.replace(/\n/g, '<br/>');
+            arrMsgExternalSCTask.push(latestComment);
+            template.print(gs.getMessage('notify.bodyMsg.SRTask.Commented.ToRequestedFor', arrMsgExternalSCTask));
+        }else if(notificationId==global.NotificationConst.NOTI_SRTASK_ONHOLD_AWAITINGCALLER_TOREQUESTEDFOR())
+		{		arrMsgExternalSCTask.push("<br>");
+			arrMsgExternalSCTask.push("<br><br><b>");
+			arrMsgExternalSCTask.push("</b>");
+            arrMsgExternalSCTask.push(latestWorknote);	
+			template.print(gs.getMessage('notify.bodyMsg.SCTask.OnHold.AwaitingCaller.ToRequestedFor',arrMsgExternalSCTask));
+		}
+
+
+    } else if (current.source_table == "sc_req_item") {
+        var arrMsgReqApprov = [];
+        //var reqApprovLink = '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' + gs.getProperty("glide.servlet.uri") + gs.generateURL(current.source_table, current.document_id) + '">' + current.sysapproval.getDisplayValue() + '</a>';
+        //arrMsgReqApprov.push(reqApprovLink);
+		//var ritmPortalLink = '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' + gs.getProperty("glide.servlet.uri") + 'esc?id=ticket&table=' + current.source_table + '&sys_id=' + current.document_id + '">' + current.sysapproval.getDisplayValue() + '</a>';
+		//arrMsgReqApprov.push(ritmPortalLink);
+		var approvPortalLink =  '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' +gs.getProperty("glide.servlet.uri") + 'esc?id=hrm_todos_page&table=' + current.getTableName() + '&sys_id=' + current.sys_id + '">'+ current.sysapproval.getDisplayValue() + '</a>';
+				
+		arrMsgReqApprov.push(approvPortalLink);
+        if (notificationId == global.NotificationConst.NOTI_SRAPPROVAL_REQUESTED_TOAPPROVER()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRApproval.Requested.ToApprover', arrMsgReqApprov));
+        } else if (notificationId == global.NotificationConst.NOTI_SRAPPROVAL_REMINDER_TOAPPROVER()) {
+            template.print(gs.getMessage('notify.bodyMsg.SRApproval.Reminder.ToApprover', arrMsgReqApprov));
+        }
+        // Configuration for SRM bodies ends here
+    }
+
+    // Configuration for Knowledge begins here
+    else if (strTable == "kb_knowledge") {
+        var arrayKbMsg = [];
+        // Push KB number and link to message
+        var kmrecordapproved = '<a style="color: #0057b8; font-weight: bold; text-decoration: none;" href="' + gs.getProperty("glide.servlet.uri") + gs.generateURL("kb_knowledge", current.sys_id) + '">' + current.number.getDisplayValue() + '</a>';
+        arrayKbMsg.push(kmrecordapproved);
+
+        if (notificationId == global.NotificationConst.NOTI_KB_REJECTED_FOR_PUBLISH()) {
+            var grkb = new GlideRecord("sysapproval_approver");
+            grkb.addQuery("document_id", current.sys_id);
+            grkb.addQuery("state", "rejected");
+            grkb.query();
+            if (grkb.next()) {
+                var kbanswer = grkb.approver.getDisplayValue();
+            }
+            arrMsg.push(kbanswer);
+            arrMsg.push("<br><br><b>");
+            arrMsg.push("</b>");
+            arrMsg.push(space);
+            arrMsg.push(rejectionKBComment);
+            template.print(gs.getMessage('notify.bodyMsg.KM.Rejected', arrMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_KB_APPROVED_FOR_PUBLISH()) {
+            template.print(gs.getMessage('notify.bodyMsg.KM.Approved', arrayKbMsg));
+        } else if (notificationId == global.NotificationConst.NOTI_KB_ARTICLE_EXPIRY_WARNING()) {
+            arrMsg.push(current.valid_to);
+            template.print(gs.getMessage('notify.bodyMsg.KM.ExpiryWarning', arrMsg));
+        }
+
+    } else if (current.source_table == "kb_knowledge") {
+        if (notificationId == global.NotificationConst.NOTI_KB_APPROVAL_REQUESTED_TOAPPROVER()) {
+            template.print(gs.getMessage('notify.bodyMsg.KMApproval.Requested.ToApprover', arrayMsgKnowledgeApproval));
+        }
+
+    }
+    // Configuration for Knowledge ends here
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-01-31 08:32:26</sys_created_on>
+        <sys_id>ff31bb35c38c0e502c03deee050131ac</sys_id>
+        <sys_mod_count>287</sys_mod_count>
+        <sys_name>notify.global.BodyMessages</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_ff31bb35c38c0e502c03deee050131ac</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2025-03-03 16:46:46</sys_updated_on>
+    </sys_script_email>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ff31bb35c38c0e502c03deee050131ac</id>
+        <sys_created_by>J100246</sys_created_by>
+        <sys_created_on>2025-02-25 15:25:12</sys_created_on>
+        <sys_id>e2a53e3bc33fd2104de0d0cf0501312f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2025-02-25 15:25:12</sys_updated_on>
+        <table>sys_script_email</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

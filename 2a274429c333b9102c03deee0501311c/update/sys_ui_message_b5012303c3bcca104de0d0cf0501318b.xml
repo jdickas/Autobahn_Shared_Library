@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>Why should we reopen this Incident?</key>
+        <language>de</language>
+        <message>Wir bitten Sie, uns den Grund für die Wiedereröffnung zu nennen (z.B:" Fehlermeldung tritt erneut auf").</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-12 11:22:00</sys_created_on>
+        <sys_id>b5012303c3bcca104de0d0cf0501318b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Why should we reopen this Incident?</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_b5012303c3bcca104de0d0cf0501318b</sys_update_name>
+        <sys_updated_by>C100207</sys_updated_by>
+        <sys_updated_on>2024-08-07 11:30:36</sys_updated_on>
+    </sys_ui_message>
+</record_update>

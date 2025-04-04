@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="u_customer_reference" label="Kundenreferenz" language="de" table="task">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>u_customer_reference</element>
+            <help/>
+            <hint/>
+            <label>Kundenreferenz</label>
+            <language>de</language>
+            <name>task</name>
+            <plural>Kundenreferenzen</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>C100185</sys_created_by>
+            <sys_created_on>2024-06-19 10:54:55</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Kundenreferenz</sys_name>
+            <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+            <sys_update_name>sys_documentation_task_u_customer_reference_de</sys_update_name>
+            <sys_updated_by>C100185</sys_updated_by>
+            <sys_updated_on>2024-06-19 10:54:55</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

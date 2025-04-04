@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <max_drift/>
+        <name>Incident review check</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as/>
+        <run_as_tz>Europe/Berlin</run_as_tz>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2024-02-22 07:27:14</run_start>
+        <run_time>1969-12-31 23:00:00</run_time>
+        <run_type>on_demand</run_type>
+        <script><![CDATA[var strquery = 'sysapprovalSTARTSWITHRITM^state=requested^approver=9ee1b13dc6112271007f9d0efdb69cd0';   
+    gs.info('strQuery is : ' + strquery);
+    var grApprov = new GlideRecord('sysapproval_approver');
+    grApprov.addEncodedQuery(strquery);
+    grApprov.query();
+    while(grApprov.next()){
+		var userID = ""+grApprov.approver;
+		var userMail = ""+grApprov.approver.email;
+		var grUser = new GlideRecord("sys_user");
+		if (!grUser.get(userID)) {
+			gs.warn("Approval reminder: Could not send approval reminder to unknown user: "+userID);
+		} else {			
+			gs.info("Approval reminder: Sending approval reminder to '"+grUser.getDisplayValue()+"' for "+ grApprov.sysapproval.getDisplayValue() +" waiting approvals");
+			gs.eventQueue('approval.awaitingApprover', grApprov ,grUser.email.toString(), grUser.sys_id.toString());
+		}
+	}
+
+
+
+
+/**
+var strquery = 'active=true^caller_id.nameSTARTSWITHNatasha^state=2';
+var grInRec = new GlideRecord('incident');
+grInRec.addEncodedQuery(strquery);
+grInRec.query();
+while(grInRec.next()){
+ gs.eventQueue('approval.awaitingApprover', grInRec, grInRec.caller_id.email.toString(), grInRec.assigned_to.toString());
+}
+*/
+
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-02-22 07:38:12</sys_created_on>
+        <sys_id>5b95f045c3248a502c03deee050131d9</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Incident review check</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysauto_script_5b95f045c3248a502c03deee050131d9</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-02-26 08:29:40</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

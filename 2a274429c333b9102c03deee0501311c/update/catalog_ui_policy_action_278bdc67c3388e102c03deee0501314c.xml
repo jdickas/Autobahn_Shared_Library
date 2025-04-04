@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="INSERT_OR_UPDATE">
+        <catalog_item/>
+        <catalog_variable>IO:772098f3c3f731504de0d0cf050131f6</catalog_variable>
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field/>
+        <field_message/>
+        <field_message_type>none</field_message_type>
+        <mandatory>ignore</mandatory>
+        <order>100</order>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-13 10:13:54</sys_created_on>
+        <sys_id>278bdc67c3388e102c03deee0501314c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>itwo_baseline_variables</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_278bdc67c3388e102c03deee0501314c</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2024-07-11 04:23:40</sys_updated_on>
+        <table/>
+        <ui_policy display_value="Clear Values of Variables">678bdc67c3388e102c03deee05013139</ui_policy>
+        <value/>
+        <value_action>clear_value</value_action>
+        <variable>itwo_baseline_variables</variable>
+        <variable_set/>
+        <visible>ignore</visible>
+    </catalog_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=278bdc67c3388e102c03deee0501314c"/>
+</record_update>

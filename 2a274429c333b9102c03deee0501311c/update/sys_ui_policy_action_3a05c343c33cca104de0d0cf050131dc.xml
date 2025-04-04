@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>u_it_servicegroup</field>
+        <field_message/>
+        <field_message_type>none</field_message_type>
+        <mandatory>true</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-12 09:17:41</sys_created_on>
+        <sys_id>3a05c343c33cca104de0d0cf050131dc</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>u_it_servicegroup</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_policy_action_3a05c343c33cca104de0d0cf050131dc</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-07-15 09:23:47</sys_updated_on>
+        <table>task</table>
+        <ui_policy display_value="IT-Servicecluster - IT-Servicegruppe">4e83078fc3f8ca104de0d0cf050131b5</ui_policy>
+        <value/>
+        <value_action>ignore</value_action>
+        <visible>ignore</visible>
+    </sys_ui_policy_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=3a05c343c33cca104de0d0cf050131dc"/>
+</record_update>

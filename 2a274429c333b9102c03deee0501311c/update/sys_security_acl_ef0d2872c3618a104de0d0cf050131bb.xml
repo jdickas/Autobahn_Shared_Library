@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <applies_to/>
+        <condition/>
+        <controlled_by_refs/>
+        <decision_type>allow</decision_type>
+        <description/>
+        <local_or_existing>Local</local_or_existing>
+        <name>AssignmentUtils</name>
+        <operation display_value="execute">execute</operation>
+        <script/>
+        <security_attribute/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-04-17 10:22:00</sys_created_on>
+        <sys_id>ef0d2872c3618a104de0d0cf050131bb</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>AssignmentUtils</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_security_acl_ef0d2872c3618a104de0d0cf050131bb</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-04-18 16:01:35</sys_updated_on>
+        <type display_value="client_callable_script_include">client_callable_script_include</type>
+    </sys_security_acl>
+</record_update>

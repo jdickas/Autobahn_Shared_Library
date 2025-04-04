@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>notify.global.footer2of2</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+
+	var strTable = current.sys_class_name;
+	var noarray = [];
+    var linearray = [];
+    linearray.push("<br>");
+    var util = new I18nUtils();
+    util.setLanguage('de');
+    var EndingSalutation = '';
+	if ((strTable == "incident") || (strTable == "sc_req_item") || (strTable == "change_task") || (strTable == "sc_task") ) {
+		EndingSalutation = gs.getMessage('notify.Incident.footer2of2', noarray);
+	}else if(strTable == "problem") {
+		EndingSalutation = gs.getMessage('notify.Incident.footer2of2', linearray);
+	}else if(strTable == "change_request") {
+		EndingSalutation = gs.getMessage('notify.Incident.footer2of2', linearray);
+	}
+	// This last else state is the table sysapprover_approval table
+	else 
+	{EndingSalutation = gs.getMessage('notify.Incident.footer', linearray);
+	} 
+	
+	template.print(EndingSalutation);
+	
+
+    // Add your code here
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-06-19 07:48:44</sys_created_on>
+        <sys_id>242620c7c3f2ce104de0d0cf05013164</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>notify.global.footer2of2</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_242620c7c3f2ce104de0d0cf05013164</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2024-10-17 09:23:45</sys_updated_on>
+    </sys_script_email>
+</record_update>

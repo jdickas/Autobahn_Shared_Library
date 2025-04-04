@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.AssignmentUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Created to fetch the assignment group from Autobahn Assignment Table and update Assignment group field of </description>
+        <mobile_callable>false</mobile_callable>
+        <name>AssignmentUtils</name>
+        <sandbox_callable>true</sandbox_callable>
+        <script><![CDATA[var AssignmentUtils = Class.create();
+AssignmentUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    getGroupInfo: function() {
+        var recordSysId;
+        var tableName = this.getParameter('sysparm_tableName');
+        var channel = this.getParameter('sysparm_channel');
+        var serviceOffering = this.getParameter('sysparm_serviceOffering');
+        var configurationItem = this.getParameter('sysparm_configurationItem');
+		var callerId=this.getParameter('sysparm_callerID');
+		var locationParent= this._getLocation(callerId);
+        var assignmentGroup;
+        var sum = 0;
+		var count=0;
+		var rowCount;
+		var myLog = new Logger(Logger.DEF, 'AssignmentUtils', 'getGroupInfo');
+		
+		var grAssignmentRule = new GlideRecord("u_autobahn_assignment_table");
+        //grAssignmentRule.addActiveQuery();
+		grAssignmentRule.addQuery("active","true");
+        grAssignmentRule.addQuery("u_service_offering",serviceOffering);
+		grAssignmentRule.orderByDesc("order");
+        grAssignmentRule.query();
+		rowCount= grAssignmentRule.getRowCount();
+		//myLog.debug(" rowCount in the begining is"+rowCount);
+		//myLog.debug("serviceOffering is"+serviceOffering);
+		//myLog.debug("Active status is ")
+		if(rowCount==1)
+		 {	if(grAssignmentRule.next())
+			{ recordSysId = grAssignmentRule.sys_id;
+			assignmentGroup = this._getTaskAssignmentGroup(recordSysId,tableName);
+			//myLog.debug("Entered rowCount "+rowCount+"assignment Group"+grAssignmentRule.u_incident_assignment_group.getDisplayValue());
+			//myLog.debug("Active status is "+grAssignmentRule.active);
+			return assignmentGroup;
+			}
+		 }
+		else if(rowCount>1)
+			{
+        	 while (grAssignmentRule.next()) {
+			
+				
+             count = 0;
+				if(tableName=="incident"){
+            		if (grAssignmentRule.u_channel == channel || grAssignmentRule.u_channel=="")
+               			{ count++;
+						}
+					if(grAssignmentRule.u_configuration_item == configurationItem)
+						{count++;
+						}
+					if(grAssignmentRule.u_location_parent==locationParent &&(locationParent!="") )
+						{count=count+5;
+						}
+						else if(grAssignmentRule.u_location_parent=="")
+						{count++;
+						}
+					              
+                    }
+				else if(tableName=="change_request" || tableName =="problem")
+				{
+					if((grAssignmentRule.u_configuration_item == configurationItem) &&(configurationItem!=""))
+					count++;
+				}
+			 
+				if(count>sum) {
+                sum = count;
+                recordSysId = grAssignmentRule.sys_id;
+                assignmentGroup = this._getTaskAssignmentGroup(recordSysId,tableName);
+				
+            	}
+				else if(sum==0)
+				{  recordSysId = grAssignmentRule.sys_id;
+					assignmentGroup = this._getTaskAssignmentGroup(recordSysId,tableName);
+				}
+				else if(count==sum)
+				{recordSysId = grAssignmentRule.sys_id;
+					assignmentGroup = this._getTaskAssignmentGroup(recordSysId,tableName);
+				}
+				
+			}
+			
+			return assignmentGroup;
+		}
+	},
+
+                
+            
+			
+			
+			
+                             
+
+    _getTaskAssignmentGroup: function(sysId,tableNameTask) {
+        var grAssignmentTable = new GlideRecord("u_autobahn_assignment_table");
+        var answer;
+        grAssignmentTable.addQuery("sys_id", sysId);
+        grAssignmentTable.query();
+
+        if (grAssignmentTable.next()) {
+            if (tableNameTask =="incident") {
+                answer = grAssignmentTable.u_incident_assignment_group;
+                var myLog = new Logger(Logger.DEF, 'AssignmentUtils', 'getAssignmentGroup');
+                myLog.debug("answer is " + answer.getDisplayValue() +"sys id of the record is "+sysId);
+            }
+			else if (tableNameTask =="problem") {
+                answer = grAssignmentTable.u_problem_assignment_group;
+                var myLog = new Logger(Logger.DEF, 'AssignmentUtils', 'getAssignmentGroup');
+                myLog.debug("answer is " + answer.getDisplayValue() +"sys id of the record is "+sysId);
+            }
+			else if (tableNameTask =="change_request") {
+                answer = grAssignmentTable.u_change_assignment_group;
+                var myLog = new Logger(Logger.DEF, 'AssignmentUtils', 'getAssignmentGroup');
+                myLog.debug("answer is " + answer.getDisplayValue() +"sys id of the record is "+sysId);
+            }
+        }
+		myLog.debug("Active status is "+grAssignmentTable.active);
+        return answer;
+    },
+	
+	_getLocation:function(callerId){
+	
+	grUser=new GlideRecord("sys_user");
+	grUser.get(callerId);
+	var location=grUser.location.parent.getDisplayValue();
+
+	return location;
+	},
+
+
+    type: 'AssignmentUtils'
+});
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2025-01-14 17:57:46</sys_created_on>
+        <sys_id>33c507dac38352102c03deee05013151</sys_id>
+        <sys_mod_count>37</sys_mod_count>
+        <sys_name>AssignmentUtils</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_33c507dac38352102c03deee05013151</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2025-01-22 08:31:20</sys_updated_on>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>19469a2e9340000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_33c507dac38352102c03deee05013151</metadata_update_name>
+        <previous_claim_app_version>1.11.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2025-01-15 11:04:31</sys_created_on>
+        <sys_id>c4d036e6c30f12504de0d0cf05013195</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2025-01-15 11:04:31</sys_updated_on>
+    </sys_claim>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>33c507dac38352102c03deee05013151</id>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2025-01-14 18:05:34</sys_created_on>
+        <sys_id>0a978316c3c352102c03deee05013180</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2025-01-14 18:05:34</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

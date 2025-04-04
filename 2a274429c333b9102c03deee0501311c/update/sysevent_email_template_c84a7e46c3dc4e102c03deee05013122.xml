@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_email_template">
+    <sysevent_email_template action="INSERT_OR_UPDATE">
+        <collection/>
+        <email_layout display_value="Global.Layout">45e5c7e9c388ca502c03deee050131c6</email_layout>
+        <message/>
+        <message_html><![CDATA[<p><em>${mail_script:mailScriptDelegateChange}</em></p>
+<p>${mail_script:notify.global.subject}</p>
+<table style="border-collapse: collapse; width: 100%; border-style: none; height: 455.891px;" border="1">
+<tbody>
+<tr style="height: 90.1719px;">
+<td style="width: 99.9521%; height: 90.1719px;" colspan="2">
+<p>${mail_script:notify.global.salutation}</p>
+<p>${mail_script:notify.global.BodyMessages}</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr style="height: 112.688px;">
+<td style="width: 99.9521%; height: 112.688px;" colspan="2">
+<table style="border-collapse: collapse; width: 100.177%; height: 61.5624px; border-style: none;" border="1">
+<tbody>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Aktueller Status:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${mail_script:notify.global.taskState}</td>
+</tr>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Kurzbeschreibung:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none; vertical-align: top;">${short_description}</td>
+</tr>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Beschreibung:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${description}</td>
+</tr>
+<tr>
+<td style="width: 13.8219%; border-style: none;"><strong>Configuration Item:</strong></td>
+<td style="width: 86.1722%; border-style: none;">${cmdb_ci}</td>
+</tr>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Ge&ouml;ffnet am:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${opened_at}</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="height: 91.9531px;">
+<td style="width: 99.9521%; height: 91.9531px;" colspan="2">
+<table style="border-collapse: collapse; width: 100.078%; border-style: none;" border="1">
+<tbody>
+<tr>
+<td style="width: 98.585%; border-style: none;">
+<p>${mail_script:notify.incident.hint}</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="height: 84.5156px;">
+<td style="width: 99.9521%; height: 84.5156px;" colspan="2">
+<table style="border-collapse: collapse; width: 100.172%; border-style: none; height: 40.7812px;" border="1">
+<tbody>
+<tr style="height: 15.3906px;">
+<td style="width: 99.997%; border-style: none; height: 15.3906px;">${mail_script:notify.global.contact}</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="height: 76.5625px;">
+<td style="width: 99.9521%; height: 76.5625px;" colspan="2">${mail_script:notify.global.footer}</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Change.External.Old</name>
+        <sms_alternate/>
+        <subject/>
+        <sys_class_name>sysevent_email_template</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-02-13 09:24:57</sys_created_on>
+        <sys_id>c84a7e46c3dc4e102c03deee05013122</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Change.External.Old</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_email_template_c84a7e46c3dc4e102c03deee05013122</sys_update_name>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-07-22 08:19:21</sys_updated_on>
+        <sys_version>2</sys_version>
+    </sysevent_email_template>
+</record_update>

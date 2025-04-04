@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <annotation/>
+        <attributes>browserActivatedIn=edge,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=198272000,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version/>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <display_name_after_preview/>
+        <flow_priority/>
+        <generation_source/>
+        <internal_name>autobahn_knowledge_retire</internal_name>
+        <label_cache>[]</label_cache>
+        <master_snapshot>a8aae823c38ac2104de0d0cf05013120</master_snapshot>
+        <master_snapshot_digest/>
+        <name>Autobahn Knowledge- Retire (Prequel)</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <remote_trigger_id>3caae823c38ac2104de0d0cf05013152</remote_trigger_id>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>published</status>
+        <substatus/>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 11:24:42</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>095eb753c386c2104de0d0cf0501310f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Autobahn Knowledge- Retire (Prequel)</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_hub_flow_095eb753c386c2104de0d0cf0501310f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-04 08:13:25</sys_updated_on>
+        <type>flow</type>
+        <version>1</version>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_variable_value action="delete_multiple" query="document_key=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_flow_timer_trigger action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <day_of_month>1</day_of_month>
+        <day_of_week/>
+        <name/>
+        <published_version/>
+        <run_period/>
+        <run_start>2024-05-14 14:38:16</run_start>
+        <sys_class_name>sys_flow_timer_trigger</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>3caae823c38ac2104de0d0cf05013152</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <time>1970-01-01 13:00:00</time>
+        <timer_type>11</timer_type>
+        <trigger_definition/>
+    </sys_flow_timer_trigger>
+    <sys_flow_trigger_auto_script action="delete_multiple" query="name=Trigger:3caae823c38ac2104de0d0cf05013152^sys_idNOT INf0aae823c38ac2104de0d0cf05013153"/>
+    <sys_flow_trigger_auto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time/>
+        <max_drift/>
+        <name>Trigger:3caae823c38ac2104de0d0cf05013152</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="Amruta Rajarama (Admin)">9d8a8de4c35a1210d511bd73e4013132</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek/>
+        <run_period/>
+        <run_start>2024-05-14 14:38:16</run_start>
+        <run_time>1970-01-01 13:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[sn_flow_trigger.FlowTriggerAPI.fireTimerTrigger('3caae823c38ac2104de0d0cf05013152');]]></script>
+        <sys_class_name>sys_flow_trigger_auto_script</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>f0aae823c38ac2104de0d0cf05013153</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <time_zone/>
+        <trigger display_value="">3caae823c38ac2104de0d0cf05013152</trigger>
+        <upgrade_safe>true</upgrade_safe>
+    </sys_flow_trigger_auto_script>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=095eb753c386c2104de0d0cf0501310f^sys_idNOT IN055eb753c386c2104de0d0cf05013110"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>095eb753c386c2104de0d0cf0501310f</id>
+        <name>Autobahn Knowledge- Retire</name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 11:24:42</sys_created_on>
+        <sys_id>055eb753c386c2104de0d0cf05013110</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-14 11:24:42</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=055eb753c386c2104de0d0cf05013110"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_trigger_instance action="delete_multiple" query="flow=095eb753c386c2104de0d0cf0501310f^sys_idNOT IN2fe100a7c386c2104de0d0cf0501314f"/>
+    <sys_hub_trigger_instance action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="Autobahn Knowledge- Retire (Prequel)">095eb753c386c2104de0d0cf0501310f</flow>
+        <name>Daily</name>
+        <remote_sys_id/>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 11:40:25</sys_created_on>
+        <sys_id>2fe100a7c386c2104de0d0cf0501314f</sys_id>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <trigger_definition display_value="Daily">89142dc0c32222002841b63b12d3ae8a</trigger_definition>
+        <trigger_inputs/>
+        <trigger_outputs/>
+        <trigger_type>daily</trigger_type>
+    </sys_hub_trigger_instance>
+    <sys_variable_value action="delete_multiple" query="document_key=2fe100a7c386c2104de0d0cf0501314f"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_trigger_instance</document>
+        <document_key>2fe100a7c386c2104de0d0cf0501314f</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 11:40:25</sys_created_on>
+        <sys_id>67e100a7c386c2104de0d0cf05013151</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:11</sys_updated_on>
+        <value>1970-01-01 14:00:00</value>
+        <variable display_value="Time">3ad4edc0c32222002841b63b12d3aee5</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_trigger_input_89142dc0c32222002841b63b12d3ae8a^id=2fe100a7c386c2104de0d0cf0501314f"/>
+    <sys_hub_action_instance action="delete_multiple" query="flow=095eb753c386c2104de0d0cf0501310f^sys_idNOT INcff704afc386c2104de0d0cf050131f0"/>
+    <sys_hub_action_instance action="INSERT_OR_UPDATE">
+        <action_inputs/>
+        <action_type display_value="Update Multiple Records">9daf2a72c75100105312134c95c26073</action_type>
+        <action_type_parent display_value="Update Multiple Records">c40e2632c75100105312134c95c260f6</action_type_parent>
+        <attributes/>
+        <comment/>
+        <display_text/>
+        <flow display_value="Autobahn Knowledge- Retire (Prequel)">095eb753c386c2104de0d0cf0501310f</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 12:06:53</sys_created_on>
+        <sys_id>cff704afc386c2104de0d0cf050131f0</sys_id>
+        <sys_mod_count>102</sys_mod_count>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-03-08 13:00:02</sys_updated_on>
+        <ui_id>b942ad19-bc9a-4c0e-86df-989a37909839</ui_id>
+    </sys_hub_action_instance>
+    <sys_variable_value action="delete_multiple" query="document_key=cff704afc386c2104de0d0cf050131f0"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_action_instance</document>
+        <document_key>cff704afc386c2104de0d0cf050131f0</document_key>
+        <order>2</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 12:06:53</sys_created_on>
+        <sys_id>07f704afc386c2104de0d0cf050131f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-14 12:06:53</sys_updated_on>
+        <value>published&lt;javascript:gs.beginningOfLast12Months()^workflow_state=published</value>
+        <variable display_value="Conditions">d9af2a72c75100105312134c95c2607a</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_action_instance</document>
+        <document_key>cff704afc386c2104de0d0cf050131f0</document_key>
+        <order>3</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 12:06:53</sys_created_on>
+        <sys_id>8ff704afc386c2104de0d0cf050131f4</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 12:43:00</sys_updated_on>
+        <value>workflow_state=review</value>
+        <variable display_value="Fields">99af2a72c75100105312134c95c26082</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_action_instance</document>
+        <document_key>cff704afc386c2104de0d0cf050131f0</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 12:06:53</sys_created_on>
+        <sys_id>cbf704afc386c2104de0d0cf050131f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-14 12:06:53</sys_updated_on>
+        <value>kb_knowledge</value>
+        <variable display_value="Table">5daf2a72c75100105312134c95c26074</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_action_input_9daf2a72c75100105312134c95c26073^id=cff704afc386c2104de0d0cf050131f0"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=cff704afc386c2104de0d0cf050131f0"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=cff704afc386c2104de0d0cf050131f0"/>
+    <sys_hub_flow_logic action="delete_multiple" query="flow=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_sub_flow_instance action="delete_multiple" query="flow=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=095eb753c386c2104de0d0cf0501310f"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_095eb753c386c2104de0d0cf0501310f"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_095eb753c386c2104de0d0cf0501310f"/>
+    <sys_hub_flow_snapshot action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <annotation/>
+        <attributes>browserActivatedIn=edge,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version/>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <flow_priority/>
+        <internal_name>autobahn_knowledge_retire_prequel</internal_name>
+        <label_cache>[]</label_cache>
+        <master>true</master>
+        <name>Autobahn Knowledge- Retire (Prequel)</name>
+        <natlang/>
+        <outputs/>
+        <parent_flow display_value="Autobahn Knowledge- Retire (Prequel)">095eb753c386c2104de0d0cf0501310f</parent_flow>
+        <remote_trigger_id/>
+        <run_as>system</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <status>published</status>
+        <sys_class_name>sys_hub_flow_snapshot</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>a8aae823c38ac2104de0d0cf05013120</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <type>flow</type>
+        <version>1</version>
+    </sys_hub_flow_snapshot>
+    <sys_translated_text action="delete_multiple" query="documentkey=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_variable_value action="delete_multiple" query="document_key=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=a8aae823c38ac2104de0d0cf05013120^sys_idNOT IN28aae823c38ac2104de0d0cf05013121"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>a8aae823c38ac2104de0d0cf05013120</id>
+        <name>Autobahn Knowledge- Retire (Prequel)</name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>28aae823c38ac2104de0d0cf05013121</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-14 14:38:16</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=28aae823c38ac2104de0d0cf05013121"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_trigger_instance action="delete_multiple" query="flow=a8aae823c38ac2104de0d0cf05013120^sys_idNOT IN20aae823c38ac2104de0d0cf0501312f"/>
+    <sys_hub_trigger_instance action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="Autobahn Knowledge- Retire (Prequel)">a8aae823c38ac2104de0d0cf05013120</flow>
+        <name>Daily</name>
+        <remote_sys_id/>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>20aae823c38ac2104de0d0cf0501312f</sys_id>
+        <sys_mod_count>35</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <trigger_definition display_value="Daily">89142dc0c32222002841b63b12d3ae8a</trigger_definition>
+        <trigger_inputs/>
+        <trigger_outputs/>
+        <trigger_type>daily</trigger_type>
+    </sys_hub_trigger_instance>
+    <sys_variable_value action="delete_multiple" query="document_key=20aae823c38ac2104de0d0cf0501312f"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_trigger_instance</document>
+        <document_key>20aae823c38ac2104de0d0cf0501312f</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>acaae823c38ac2104de0d0cf0501312f</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <value>1970-01-01 14:00:00</value>
+        <variable display_value="Time">3ad4edc0c32222002841b63b12d3aee5</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_trigger_input_89142dc0c32222002841b63b12d3ae8a^id=20aae823c38ac2104de0d0cf0501312f"/>
+    <sys_hub_action_instance action="delete_multiple" query="flow=a8aae823c38ac2104de0d0cf05013120^sys_idNOT IN64aae823c38ac2104de0d0cf0501312b"/>
+    <sys_hub_action_instance action="INSERT_OR_UPDATE">
+        <action_inputs/>
+        <action_type display_value="Update Multiple Records">9daf2a72c75100105312134c95c26073</action_type>
+        <action_type_parent display_value="Update Multiple Records">c40e2632c75100105312134c95c260f6</action_type_parent>
+        <attributes/>
+        <comment/>
+        <display_text/>
+        <flow display_value="Autobahn Knowledge- Retire (Prequel)">a8aae823c38ac2104de0d0cf05013120</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>64aae823c38ac2104de0d0cf0501312b</sys_id>
+        <sys_mod_count>46</sys_mod_count>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <ui_id>b942ad19-bc9a-4c0e-86df-989a37909839</ui_id>
+    </sys_hub_action_instance>
+    <sys_variable_value action="delete_multiple" query="document_key=64aae823c38ac2104de0d0cf0501312b"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_action_instance</document>
+        <document_key>64aae823c38ac2104de0d0cf0501312b</document_key>
+        <order>2</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>20aae823c38ac2104de0d0cf0501312e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-14 14:38:16</sys_updated_on>
+        <value>published&lt;javascript:gs.beginningOfLast12Months()^workflow_state=published</value>
+        <variable display_value="Conditions">d9af2a72c75100105312134c95c2607a</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_action_instance</document>
+        <document_key>64aae823c38ac2104de0d0cf0501312b</document_key>
+        <order>3</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>a8aae823c38ac2104de0d0cf0501312e</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <value>workflow_state=review</value>
+        <variable display_value="Fields">99af2a72c75100105312134c95c26082</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_hub_action_instance</document>
+        <document_key>64aae823c38ac2104de0d0cf0501312b</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_id>e4aae823c38ac2104de0d0cf0501312e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-14 14:38:16</sys_updated_on>
+        <value>kb_knowledge</value>
+        <variable display_value="Table">5daf2a72c75100105312134c95c26074</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="table=var__m_sys_hub_action_input_9daf2a72c75100105312134c95c26073^id=64aae823c38ac2104de0d0cf0501312b"/>
+    <sys_hub_input_scripts action="delete_multiple" query="instance=64aae823c38ac2104de0d0cf0501312b"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=64aae823c38ac2104de0d0cf0501312b"/>
+    <sys_hub_flow_logic action="delete_multiple" query="flow=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_sub_flow_instance action="delete_multiple" query="flow=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_a8aae823c38ac2104de0d0cf05013120"/>
+    <sys_hub_flow action="UPDATE">
+        <sys_id>095eb753c386c2104de0d0cf0501310f</sys_id>
+        <latest_snapshot>a8aae823c38ac2104de0d0cf05013120</latest_snapshot>
+        <compiler_build>glide-xanadu-07-02-2024__patch4b-01-15-2025_02-11-2025_1733.zip</compiler_build>
+    </sys_hub_flow>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=095eb753c386c2104de0d0cf0501310f^sys_idNOT IN30aae823c38ac2104de0d0cf05013155"/>
+    <sys_flow_trigger_plan action="INSERT_OR_UPDATE">
+        <binding_strategy>com.snc.process_flow.engine.binding.RunAlways</binding_strategy>
+        <plan>{"type":"PlanProxy","persistor":{"@class":".ChunkingPlanPersistor","table":"sys_flow_trigger_plan","id":"30aae823c38ac2104de0d0cf05013155","name":"plan","plan_signature":null}}</plan>
+        <plan_id>095eb753c386c2104de0d0cf0501310f</plan_id>
+        <snapshot>32ed32dfc3c022105798087dc0013153</snapshot>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-14 14:38:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>30aae823c38ac2104de0d0cf05013155</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 18:29:15</sys_updated_on>
+        <trigger display_value="">3caae823c38ac2104de0d0cf05013152</trigger>
+    </sys_flow_trigger_plan>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=095eb753c386c2104de0d0cf0501310f"/>
+</record_update>

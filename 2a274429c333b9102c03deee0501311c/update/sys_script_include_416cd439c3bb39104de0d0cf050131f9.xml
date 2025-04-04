@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.GroupConst</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Constants for Group Handling</description>
+        <mobile_callable>false</mobile_callable>
+        <name>GroupConst</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var GroupConst = (function() {
+
+    var _SERVICE_DESK = '30e9963bc327f1102c03deee050131f5';
+	var _INCIDENT_MANAGEMENT = 'd6eee2b3c3a7f1102c03deee0501317d';
+	var _SECURITY_MANAGEMENT   = 'a300f6b3c3a7f1102c03deee050131a2';
+	var _MONITORING_TOOL = 'b3364e78c33775104de0d0cf050131db';
+
+    return {
+        SERVICE_DESK: function() {return _SERVICE_DESK;},
+		INCIDENT_MANAGEMENT: function() {return _INCIDENT_MANAGEMENT;},
+		SECURITY_MANAGEMENT: function() {return _SECURITY_MANAGEMENT;},
+		MONITORING_TOOL: function() {return _MONITORING_TOOL;},
+
+    };
+  })();]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-18 06:46:10</sys_created_on>
+        <sys_id>416cd439c3bb39104de0d0cf050131f9</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>GroupConst</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_416cd439c3bb39104de0d0cf050131f9</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-01-19 07:58:36</sys_updated_on>
+    </sys_script_include>
+</record_update>

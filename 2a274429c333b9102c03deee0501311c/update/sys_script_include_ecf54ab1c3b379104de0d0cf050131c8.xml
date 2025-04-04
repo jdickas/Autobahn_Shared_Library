@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.HistoryUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>https://www.servicenow.com/community/developer-articles/scripts-gliderecord-sys-history-set-sys-history-line-sys-audit/ta-p/2307652</description>
+        <mobile_callable>false</mobile_callable>
+        <name>HistoryUtil</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[/*
+  HistoryUtil: Utility functions related to Agile Core -rm_story.
+*/
+
+var HistoryUtil = (function () {
+
+    // Function to get assignment information for a specific status.
+    function getAssignInfoForStatus(taskObject, state) {
+        // Logger instance for debugging.
+        var myLog = new Logger(Logger.DEF, 'HistoryUtil', 'getAssignInfoForStatus');	
+        
+        // Default assignment information.
+        var assignInfo = {
+            "assignment_group": "",
+            "assigned_to": ""
+        };
+
+        // Get the lowest checkpoint of field change.
+        var checkpoint = _getLowestCheckpointOfFieldChange(taskObject, 'state', state);
+        myLog.debug('checkpoint=' + checkpoint);
+
+        // If checkpoint is found, retrieve assignment information.
+        if (checkpoint > 0) {
+            assignInfo.assignment_group = _getFieldValueOfCheckpoint(taskObject, 'assignment_group', checkpoint);
+            if (JSUtil.notNil(assignInfo.assignment_group))
+                assignInfo.assigned_to = _getFieldValueOfCheckpoint(taskObject, 'assigned_to', checkpoint);
+        }
+        myLog.debug('assignInfo=' + JSON.stringify(assignInfo));
+
+        return assignInfo;
+    }
+
+    // Internal function to get the lowest checkpoint of field change.
+    function _getLowestCheckpointOfFieldChange(taskObject, field, fieldValue) {
+        var myLog = new Logger(Logger.DEF, 'HistoryUtil', '_getLowestCheckpointOfFieldChange');	
+        var oldValue = new GlideRecord('sys_audit');
+        oldValue.addQuery('documentkey', taskObject.sys_id); 
+        oldValue.addQuery('fieldname', field); 
+        oldValue.addQuery('newvalue', fieldValue);
+        oldValue.orderBy('sys_created_on');
+        oldValue.setLimit(1);
+        oldValue.query();
+        myLog.debugQuery(oldValue);
+
+        if (oldValue.next())
+            return oldValue.record_checkpoint;
+        else
+            return 0;
+    }
+
+    // Internal function to get the field value of a specific checkpoint.
+    function _getFieldValueOfCheckpoint(taskObject, field, checkpoint) {
+        var myLog = new Logger(Logger.DEF, 'HistoryUtil', '_getFieldValueOfCheckpoint');	
+
+        var neededValue = new GlideRecord('sys_audit');
+
+        neededValue.addQuery('documentkey', taskObject.sys_id); 
+        neededValue.addQuery('record_checkpoint', '<=', checkpoint);
+        neededValue.addQuery('newvalue', '!=', null);
+        neededValue.addQuery('fieldname', field);
+        neededValue.orderByDesc('sys_created_on');
+        neededValue.setLimit(1);
+        neededValue.query();
+        myLog.debugQuery(neededValue);
+
+        if (neededValue.next()) 
+            return neededValue.newvalue;
+        else
+            return '';
+    }
+
+    // Function to get the sprint of a requestor.
+    function getRequestorSprint() {
+        var grsprint = new GlideRecord("rm_sprint");
+        grsprint.addQuery('short_description', "CONTAINS", "Autobahn Review");
+        grsprint.query();
+        if (grsprint.next()) {
+            var sprintsysvalue = grsprint.sys_id;
+            return sprintsysvalue ;
+        }
+    }
+/* Function not needed anymore
+    // Function to get assignment group information for work in progress status.
+    function getAssignmentGroupInfoWIP(storyData, fieldValue, checkpoint) {
+		var myLogA = new Logger(Logger.DEF, 'HistoryUtil', 'getAssignmentGroupInfoWIP');
+        var rec = new GlideRecord('sys_audit');
+        rec.addQuery('tablename', 'rm_story');
+        rec.addQuery('fieldname', fieldValue);
+        rec.addQuery('documentkey', storyData.sys_id);
+        rec.addQuery('record_checkpoint', checkpoint);
+        rec.orderByDesc('sys_created_on');
+        rec.query();
+        if (rec.next()) {
+            var latestComment = rec.newvalue;
+			myLogA.debug("Value of the AssignmentGroup w.r.t Checkpoint is"  +latestComment.getDisplayValue());
+
+            return latestComment;     
+        } 
+		else
+		return '';
+    }
+
+    // Function to get assigned to information for work in progress status.
+    function getAssignedToInfoWIP(storyData, fieldValue, checkpoint) {
+		var myLogB = new Logger(Logger.DEF, 'HistoryUtil', 'getAssignedToInfoWIP');
+        var rec = new GlideRecord('sys_audit');
+        rec.addQuery('tablename', 'rm_story');
+        rec.addQuery('fieldname', fieldValue);
+        rec.addQuery('documentkey', storyData.sys_id);
+        rec.addQuery('record_checkpoint', checkpoint);
+        rec.orderByDesc('sys_created_on');
+        rec.query();
+        if (rec.next()) {
+            var latestComment = rec.newvalue;
+			myLogB.debug(" Value of the Assigned to is" +latestComment.getDisplayValue());
+            return latestComment;     
+        } 
+		else
+			return '';
+    }
+*/
+    // Function to get the test group of a theme.
+    function getTestgroup(theme) {
+        var rec = new GlideRecord('scrum_theme');
+        rec.addQuery('sys_id', theme);
+        rec.query();
+        if (rec.next()) {
+            var recordgroupsysid = rec.u_test_group;
+            return recordgroupsysid;     
+        } 
+		else
+			return '';
+    }
+/*Function not needed anymore
+    // Function to get the reference point of state change to WIP  for a story.
+    function getChangeReferencePoint(storysysid) {
+        var oldValue = new GlideRecord('sys_audit');
+        oldValue.addQuery('documentkey', storysysid); 
+        oldValue.addQuery('fieldname', "state"); 
+        oldValue.addQuery('newvalue', "2"); // WIP
+        oldValue.orderBy('sys_created_on');
+        oldValue.setLimit(1);
+        oldValue.query();
+
+        if (oldValue.next()) { 
+            var checkpoint = oldValue.record_checkpoint;
+            return checkpoint;
+        } else {
+            return '';
+        }
+    }	
+
+    // Function to get assignment information for work in progress status.
+    function getAssignmentInformationWIP(storyData) {
+        var assignmentInformation = {
+            "assignment_group": "",
+            "assigned_to": ""
+        };
+
+        // Get the WIP State change reference point.
+        var checkpoint = getChangeReferencePoint(storyData.sys_id);
+		var count = checkpoint;
+		var myLog = new Logger(Logger.DEF, 'HistoryUtil', 'getChangeReferencePoint');
+		myLog.debug("Value of Checkpoint DISCOVERED FIRST "+checkpoint);
+        // Retrieve assignment group and assigned to information.
+        assignmentInformation.assignment_group = getAssignmentGroupInfoWIP(storyData, 'assignment_group', checkpoint);
+		assignmentInformation.assigned_to = getAssignedToInfoWIP(storyData, 'assigned_to', checkpoint);
+		myLog.debug("Assignmentgroup before entering the loop "+assignmentInformation.assignment_group);
+		while(JSUtil.nil(assignmentInformation.assignment_group) && (count>1))
+		{
+			count = count-1;
+			assignmentInformation.assignment_group = getAssignmentGroupInfoWIP(storyData, 'assignment_group', count);
+			myLog.debug("Value of Checkpoint " +count +"corresponding assignment group is" +assignmentInformation.assignment_group);
+		}
+
+       count = checkpoint;
+		while(JSUtil.nil(assignmentInformation.assigned_to) && (count>1))
+		{
+			count=count-1;
+			
+			assignmentInformation.assigned_to = getAssignedToInfoWIP(storyData, 'assignment_group', count);
+			myLog.debug("Value Checkpoint is "+count+" corresponding Assigned to is " +assignmentInformation.assigned_to);
+		}
+        
+        if (JSUtil.notNil(assignmentInformation.assignment_group)) {
+            return assignmentInformation;
+        } else {
+            return '';
+        }
+    }
+*/
+/*
+	// Function to get the Sprint from the theme
+    function getCurrentSprint(currentStry){
+		var myLog = new Logger(Logger.DEF, 'HistoryUtil', 'getCurrentSprint');	
+        var assGrp = HistoryUtil.getTestgroup(currentStry.theme);
+		myLog.debug('assigned group: ' + assGrp);
+        if(assGrp){			
+			var msgNoCurrentSprintInGrp = 'No clear Sprint could be determined for the Assignment group!';
+            var noCurrent = true;
+            var sprintRec = new GlideRecord('rm_sprint');
+            sprintRec.addQuery('state', '2');
+            sprintRec.query();
+            while(sprintRec.next()){
+				myLog.debug('found group: ' + sprintRec.assignment_group);
+				if(sprintRec.assignment_group == assGrp){
+					var sprntId = sprintRec.sys_id;
+					noCurrent = false; 
+					return sprntId;
+                }			
+            }
+			if(noCurrent){
+				gs.addErrorMessage(msgNoCurrentSprintInGrp);
+				currentStry.setAbortAction(true);
+				return;				
+			}
+        }
+    }
+	*/
+
+    // Expose public functions.
+    return {
+        'getAssignInfoForStatus': getAssignInfoForStatus,
+        'getRequestorSprint': getRequestorSprint,
+      //  'getAssignmentGroupInfoWIP': getAssignmentGroupInfoWIP,
+      //  'getAssignedToInfoWIP': getAssignedToInfoWIP,
+        'getTestgroup': getTestgroup,
+       // 'getAssignmentInformationWIP': getAssignmentInformationWIP,
+	  	//'getCurrentSprint': getCurrentSprint,
+    };
+
+})();
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-18 14:26:44</sys_created_on>
+        <sys_id>ecf54ab1c3b379104de0d0cf050131c8</sys_id>
+        <sys_mod_count>94</sys_mod_count>
+        <sys_name>HistoryUtil</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_ecf54ab1c3b379104de0d0cf050131c8</sys_update_name>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-04-18 09:54:58</sys_updated_on>
+    </sys_script_include>
+</record_update>

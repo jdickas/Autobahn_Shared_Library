@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true" db_object_id="5d4155fe0da112104f349799ccc973e5" extends="sys_metadata" label="Catalog Variable Set" max_length="40" name="io_set_item" type="collection">
+        <element attributes="edge_encryption_enabled=true" default="true" label="Visible on Notification" max_length="40" name="u_visible_on_notification" type="boolean"/>
+    </element>
+</database>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <format>png</format>
+        <height>37</height>
+        <image>67ceb3e8c3881a104de0d0cf05013119</image>
+        <name>ab_notifications/button_sp_right.png</name>
+        <size_bytes>1018</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:27:44</sys_created_on>
+        <sys_id>dc7ebf68c3881a104de0d0cf0501316a</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>ab_notifications/button_sp_right.png</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>db_image_dc7ebf68c3881a104de0d0cf0501316a</sys_update_name>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-13 08:29:09</sys_updated_on>
+        <thumbnail/>
+        <width>6</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#57b8</average_image_color>
+        <chunk_size_bytes>700000</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>image</file_name>
+        <hash>c20c9c2826d45319289dd571c50397b5243622932cbccd81a5d4e22246e14b48</hash>
+        <image_height>37</image_height>
+        <image_width>6</image_width>
+        <size_bytes>1018</size_bytes>
+        <size_compressed>688</size_compressed>
+        <state>available</state>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:29:04</sys_created_on>
+        <sys_id>67ceb3e8c3881a104de0d0cf05013119</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-13 08:29:04</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>dc7ebf68c3881a104de0d0cf0501316a</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAA/w==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="67ceb3e8c3881a104de0d0cf05013119">67ceb3e8c3881a104de0d0cf05013119</sys_attachment>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:29:04</sys_created_on>
+        <sys_id>a7ceb3e8c3881a104de0d0cf05013119</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>fVNNaxNBGN7SWGKxUKWH1tO4/aCi2a900+zSWOtuYoJuCOlCc3SyO2nWdnfW3anZFkHTm3gRvCgW9BcIPStavIggKIgXEaT9AyJ419m0iSJtB3Zn3pfneeeZd565XylfHRo8O8gwzFCpqFfpPEC/yWT8h78ef6LTGMnXyCJukBYMELNg4zoCJRcuoyqC9vqt92iOYfqnHLNGasZ11cIuB2MMF7k+E4+5+ciH1goioI6WHS/H/nj5hgWOnWOXZEMwfA01neJGgBY3yqa1sWIpNjt/CcxFKi3gIgJB5K56oRrl2E5dla7jNM+CDoSs5Nh9UTWjAjQcIKBwYsoSBAnMKhzMwExayWThRSAJ0gwvpHkhkxJFVZZUQQYHg6UbBnZDreqFg+1olGObhPgqz7daLa6V5nCwzIuKovCCxEtSiiJS4bpHYJTywvFuBR2FVuD4xMEeiGNYx2skx7LdU7h+r6wXHnSK9oyPoM+LnMD/AzSM46Gu20OHpIoax6NDc91HfBWFeC2w6N01xmOyr2oBggQHJsar3UZWmpjgsIl9IMmcAqaXHM/GrfB8h2AYaskLCfQsVNJzLM1wjmOrhUxW0cV8diY9q4livpCV5XxW14RsWiuIBUnocnVsrbnII12u/ZerHMmN7bDPRoFzG9mFALugc2bVOVyLLGiydrSWfa59uJaYqx/J5akY/r+b7qaofeJlz7o06JkfedTxAbU2V956R5/FzZK+YEZf63by+89n7fZu/zBm9t7+vvBtYXVgaiA5zOwlwOuPo9ufmYmd5Jf2qcvqyJNRoa/Yms+cHE7uTJ67d20TmnWzXine2Znc7nuamL47IsHTJIFmpybaJ55vJUZeMWeYpMA8YMfIo4eVD/FrLOXL+osrNzb/AKFTJa76AwAA</data>
+        <length>904</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="67ceb3e8c3881a104de0d0cf05013119">67ceb3e8c3881a104de0d0cf05013119</sys_attachment>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:29:04</sys_created_on>
+        <sys_id>2bceb3e8c3881a104de0d0cf05013119</sys_id>
+    </sys_attachment_doc>
+</record_update>

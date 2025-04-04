@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true,verify_parent_scope=false" db_object_id="a86055ba0da112104f349799ccc97361" extends="question" label="Variable" max_length="40" name="item_option_new" type="collection">
+        <element attributes="edge_encryption_enabled=true" default="true" label="Visible on Notification" max_length="40" name="u_visible_on_notification" type="boolean"/>
+    </element>
+</database>

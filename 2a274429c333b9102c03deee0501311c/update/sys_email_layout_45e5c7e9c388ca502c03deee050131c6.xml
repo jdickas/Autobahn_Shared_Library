@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_email_layout">
+    <sys_email_layout action="INSERT_OR_UPDATE">
+        <advanced>false</advanced>
+        <advanced_layout/>
+        <description/>
+        <layout><![CDATA[<style>
+      body {
+          font-family: 'Palatino Linotype', sans-serif; /* Ändern Sie 'Arial' zu Ihrer gewünschten Schriftart */
+          color: #333; /* Ändern Sie '#333' zu Ihrer gewünschten Textfarbe */
+      }
+
+      h1 {
+          color: #007BFF; /* Ändern Sie '#007BFF' zu Ihrer gewünschten Farbe für Überschriften */
+      }
+
+      p {
+          font-size: 16px; /* Ändern Sie die Schriftgröße nach Bedarf */
+      }
+  </style>
+<p>${notification:body}</p>
+<p></p>]]></layout>
+        <name>Global.Layout</name>
+        <sys_class_name>sys_email_layout</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-01-30 10:43:11</sys_created_on>
+        <sys_id>45e5c7e9c388ca502c03deee050131c6</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Global.Layout</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_email_layout_45e5c7e9c388ca502c03deee050131c6</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-06-19 12:53:25</sys_updated_on>
+    </sys_email_layout>
+</record_update>

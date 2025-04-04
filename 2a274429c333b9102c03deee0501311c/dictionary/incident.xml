@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="email_client=true,hasWorkflow=true,live_feed=true,all_tables.query_hints=true" audit="true" db_object_id="6aa0113e0da112104f349799ccc97355" extends="task" label="Incident" max_length="40" name="incident" text_index="true" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Occured" max_length="40" name="u_occured" type="glide_date_time"/>
+        <element label="Phone number" max_length="40" name="u_phone_number" type="string"/>
+    </element>
+</database>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>notify.bodyMsg.Incident.Commented.ToGroup&amp;Assignee</key>
+        <language>de</language>
+        <message>dem Incident-Ticket {0}, für das Sie als Bearbeiter zugewiesen sind, wurde ein neuer Kommentar hinzugefügt. Bitte prüfen Sie die Informationen und leiten Sie ggf. die nächsten Schritte ein.{1} Neuer Kommentar: {2}{3}</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-01-31 18:07:00</sys_created_on>
+        <sys_id>1c15fd82c3084e502c03deee050131e4</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>notify.bodyMsg.Incident.Commented.ToGroup&amp;Assignee</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_1c15fd82c3084e502c03deee050131e4</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-02-01 14:08:25</sys_updated_on>
+    </sys_ui_message>
+</record_update>

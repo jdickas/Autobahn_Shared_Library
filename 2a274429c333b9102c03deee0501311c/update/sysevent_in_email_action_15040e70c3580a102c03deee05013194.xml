@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_in_email_action">
+    <sysevent_in_email_action action="INSERT_OR_UPDATE">
+        <action>record_action</action>
+        <active>false</active>
+        <assignment_operator/>
+        <condition_script/>
+        <description/>
+        <event_name>email.read</event_name>
+        <filter_condition table="sys_email">subjectLIKEINC^ORsubjectLIKEwiedereröffnen^EQ<item endquery="false" field="subject" goto="false" newquery="false" operator="LIKE" or="false" value="INC"/>
+            <item endquery="false" field="subject" goto="false" newquery="false" operator="LIKE" or="true" value="wiedereröffnen"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <from/>
+        <name>UpdateIncident-STRY0010138</name>
+        <order>50</order>
+        <reply_email/>
+        <required_roles/>
+        <script><![CDATA[(function runAction(/*GlideRecord*/ current, /*GlideRecord*/ event, /*EmailWrapper*/ email, /*ScopedEmailLogger*/ logger, /*EmailClassifier*/ classifier) {
+
+	// Implement email action here
+	var EmailSubject= email.subject;
+
+var regex = /INC\d+/; // Matches "INC" followed by one or more digits
+
+var match = EmailSubject.match(regex);
+
+if (match) {
+    var incidentNumber = match;   
+} 
+
+
+	
+	if (EmailSubject.indexOf('INC') !== -1)
+	{
+		var inc = new GlideRecord("incident");
+		inc.addQuery('number',incidentNumber);
+		inc.query();
+		while(inc.next())
+		{
+			//inc.description = email.body_text;
+			inc.comments= email.body_text;
+			inc.incident_state= "2";
+			inc.update();
+
+		}
+
+
+
+	}
+
+	
+
+})(current, event, email, logger, classifier);]]></script>
+        <stop_processing>false</stop_processing>
+        <sys_class_name>sysevent_in_email_action</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-02-09 08:30:05</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>15040e70c3580a102c03deee05013194</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>UpdateIncident-STRY0010138</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_in_email_action_15040e70c3580a102c03deee05013194</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-02-09 16:23:53</sys_updated_on>
+        <table>incident</table>
+        <template>incident_state=2^EQ</template>
+        <type>new</type>
+    </sysevent_in_email_action>
+</record_update>

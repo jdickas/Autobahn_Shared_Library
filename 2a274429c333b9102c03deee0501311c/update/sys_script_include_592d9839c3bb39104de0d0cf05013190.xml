@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.SampleIncident_v1</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Sample Class Object v1&#13;
+myObj = new SampleIncident_v1().createCMDBIncident</description>
+        <mobile_callable>false</mobile_callable>
+        <name>SampleIncident_v1</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var SampleIncident_v1 = Class.create();
+SampleIncident_v1.prototype = {
+    initialize: function() {
+    },
+
+    /**SNDOC
+	@name createCMDBIncident
+	@description create an incident concerning CMDB
+	@param {string} [source] - source of the incident (e.g. GLPI or Observer)
+	@param {string} [item] - item name (e.g. asset number)
+	@param {string} [message] - Error message
+	@returns {string} incident number or empty, if incident creation failed
+	*/
+    createCMDBIncident: function(source, item, message) {
+        var incident = new GlideRecord('incident');
+        incident.initialize();
+        incident.short_description = 'CMDB Problem for ' + source + ' with item ' + item;
+        incident.description = message;
+        incident.assignment_group = '';
+        incident.caller_id = new autobahnUtils().getUserIdByMail(gs.getProperty('autobahn.cmdb.incident_user'));
+        incident.u_autobahn_incident_type = gs.getProperty('autobahn.cmdb.incident_type');
+        incident.u_autobahn_level_1 = gs.getProperty('autobahn.cmdb.incident_category');
+        incident.u_autobahn_level_2 = '';
+        incident.contact_type = 'scheduled_incident';
+        return incident.insert();
+    },
+
+    type: 'SampleIncident_v1'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-18 06:51:50</sys_created_on>
+        <sys_id>592d9839c3bb39104de0d0cf05013190</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>SampleIncident_v1</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_592d9839c3bb39104de0d0cf05013190</sys_update_name>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-01-18 07:15:06</sys_updated_on>
+    </sys_script_include>
+</record_update>

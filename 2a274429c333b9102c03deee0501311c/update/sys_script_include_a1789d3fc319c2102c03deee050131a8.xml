@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.AutobahnUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Utilities</description>
+        <mobile_callable>false</mobile_callable>
+        <name>AutobahnUtil</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AutobahnUtil = Class.create();
+
+AutobahnUtil.prototype = {
+    initialize: function() {},
+
+    getInstance: function() {
+        switch (gs.getProperty('instance_name')) {
+            case 'autobahndev':
+                return AutobahnConst.DEV();
+            case 'autobahnqa':
+                return AutobahnConst.QA();
+            case 'autobahn':
+                return AutobahnConst.PROD();
+            default:
+                return '';
+        }
+    },
+
+    //////////////////////////////////////////////////////////
+    // first function for Utils
+    //////////////////////////////////////////////////////////
+    getDelegates: function(user) {
+        //gs.info('User: ' + user);
+        var delegates = new GlideRecord('sys_user_delegate');
+        //delegates.addQuery('user', user)
+        //delegates.addQuery('user.active', true)
+        delegates.addEncodedQuery('user=' + user + '^user.active=true^starts<=javascript:gs.endOfToday()^ends>javascript:gs.endOfToday()');
+        delegates.query();
+
+        var answer = [];
+
+        while (delegates.next()) {
+            //gs.info('Delegate: ' + delegates.delegate.last_name);
+            // answer.push(delegates.delegate.last_name);
+            var query = 'sys_id=' + delegates.delegate + '^active=true';
+            var isActiveGR = new GlideRecord('sys_user');
+            isActiveGR.addEncodedQuery(query);
+            //gs.info('Delegate 1: ' + query);
+            //sys_id=79f0e1d4c3e2c6504de0d0cf0501310f^active=true
+            isActiveGR.query();
+
+            if (isActiveGR.next()) {
+
+                answer.push(delegates.delegate.email);
+            }
+        }
+
+        return answer;
+    },
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+    //////////////////////////////////////////////////////////
+    // second function for Utils
+    //////////////////////////////////////////////////////////
+
+    getGroupMembers: function(group) {
+        var answer = [];
+        var members = new GlideRecord('sys_user_grmember');
+        members.addQuery('group', group);
+        members.query()
+
+        while (members.next()) {
+            //gs.info('groupmem: ' + members.user.last_name)
+            var query = 'sys_id=' + members.user + '^active=true';
+            var isActiveGR = new GlideRecord('sys_user');
+            isActiveGR.addEncodedQuery(query);
+            //gs.info('Delegate 2: ' + query);
+            //sys_id=79f0e1d4c3e2c6504de0d0cf0501310f^active=true
+            isActiveGR.query();
+
+            if (isActiveGR.next()) {
+                answer.push(members.user.toString());
+            }
+        }
+        return answer;
+
+    },
+
+
+    type: 'AutobahnUtils'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-04-08 05:49:52</sys_created_on>
+        <sys_id>a1789d3fc319c2102c03deee050131a8</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name>AutobahnUtil</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_a1789d3fc319c2102c03deee050131a8</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2024-10-14 14:24:09</sys_updated_on>
+    </sys_script_include>
+</record_update>

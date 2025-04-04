@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>notify.knowledge.ApprovalRecord</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+
+    /* 
+     * UTF-8 rightwards arrow is &rarr; = →
+     * This Email Script will display an UTF-8 rightwards arrow
+     * This will open a related record approval page by clicking the arrow
+     */
+
+    var baseURL = '';
+    var InstanceName = MsgUtil.getInstanceName();
+    baseURL = "https://" + InstanceName + ".service-now.com/sysapproval_approver.do?sys_id=" + current.sys_id;
+    template.print('<a style="color: #000; text-decoration: none;" href=' + baseURL + '>&rarr;</a>');
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-07 11:46:10</sys_created_on>
+        <sys_id>e062fdb6c3bb02104de0d0cf050131d0</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>notify.knowledge.ApprovalRecord</sys_name>
+        <sys_package display_value="">4d424477c3f275102c03deee050131d7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_e062fdb6c3bb02104de0d0cf050131d0</sys_update_name>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-16 06:45:16</sys_updated_on>
+    </sys_script_email>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>19135d8e0880000001</claim_timestamp>
+        <metadata_update_name>sys_script_email_e062fdb6c3bb02104de0d0cf050131d0</metadata_update_name>
+        <previous_claim_app_version>1.11.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-09 06:34:51</sys_created_on>
+        <sys_id>ab4eb253c3778a102c03deee05013127</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-09 06:34:51</sys_updated_on>
+    </sys_claim>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>19135d8e0810000001</claim_timestamp>
+        <metadata_update_name>sys_script_email_e062fdb6c3bb02104de0d0cf050131d0</metadata_update_name>
+        <previous_claim_app_version>1.12.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Core</previous_claim_name>
+        <previous_claim_scope>4d424477c3f275102c03deee050131d7</previous_claim_scope>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-09 06:34:51</sys_created_on>
+        <sys_id>234e7293c3778a102c03deee050131f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-09 06:34:51</sys_updated_on>
+    </sys_claim>
+</record_update>

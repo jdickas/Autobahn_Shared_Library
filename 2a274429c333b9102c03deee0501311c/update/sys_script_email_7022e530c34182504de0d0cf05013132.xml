@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>notify.storycore.acceptanceCriteria</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+    var text = current.acceptance_criteria.getDisplayValue();
+	gs.info('Web-desc: '+ text);
+    var regX1 = /<p\s\/>/ig;
+    var text2 = text.replace(regX1, "");
+    var regX2 = /(<([^>]+)>)/ig;
+    var text3 = text2.replace(regX2, "");
+    var regX3 = /<br\s\/>/ig;
+    var text4 = text3.split(/\s+/).join(" "); 
+	gs.info('Web-desc_text4: '+ text4);
+    var emailAcceptCrit = text4.replace(regX3, "");
+	gs.info('Web-desc_emailAcceptCrit: '+ emailAcceptCrit);
+    var maxCharactersPerLine = 100;    
+    var charactersCount = 0;
+    var outputhtml = "";
+
+    for (var i = 0; i < emailAcceptCrit.length; i++) {
+        outputhtml += emailAcceptCrit[i];
+        charactersCount++;
+
+        if (charactersCount >= maxCharactersPerLine && emailAcceptCrit[i] === ' ') {
+		    //outputhtml += '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			outputhtml += '<br>';
+            charactersCount = 0;
+        }
+    }
+
+    template.print(outputhtml);
+
+
+    // Add your code here
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-03-17 12:34:41</sys_created_on>
+        <sys_id>7022e530c34182504de0d0cf05013132</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>notify.storycore.acceptanceCriteria</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_7022e530c34182504de0d0cf05013132</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-03-18 07:40:14</sys_updated_on>
+    </sys_script_email>
+</record_update>

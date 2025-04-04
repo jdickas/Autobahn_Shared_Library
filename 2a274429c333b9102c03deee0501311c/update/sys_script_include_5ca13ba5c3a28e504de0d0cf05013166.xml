@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.TaskCiServiceFilter</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>TaskCiServiceFilter</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var TaskCiServiceFilter = Class.create();
+TaskCiServiceFilter.prototype = {
+    initialize: function() {},
+
+    getOffering: function(current) {
+        var serOffArray = [];
+        var sOffer = current.business_service.getValue();
+        //return nothing if the business_service value is empty
+        if (JSUtil.nil(sOffer)) {
+            if (JSUtil.nil(current.u_it_servicecluster.getValue())) {
+                return;
+            }
+        } else {
+            var query = 'install_status!=100^operational_status=1^parent=' + current.business_service.getValue();
+            var selectSOffer = new GlideRecord('service_offering');
+            selectSOffer.addEncodedQuery(query);
+            selectSOffer.query();
+            if (selectSOffer.hasNext()) {
+                while (selectSOffer.next()) {
+                    serOffArray.push(selectSOffer.getUniqueValue());
+                }
+            }
+        }
+        // return offering where srvice is the parent we use IN for lists        
+        return 'sys_idIN' + serOffArray.join(',');
+    },
+
+    getSOwithoutCat: function(current) {
+		var serCluster = global.MigrationConst.ATOS_KATEGORIEN();
+        var serOffArrayX = [];
+        var sOffer = current.business_service.getValue();
+        if (JSUtil.nil(sOffer)) {
+            if (JSUtil.nil(current.u_it_servicecluster.getValue())) {
+                //var queryx = 'install_status!=100^used_for!=Catalog Only';
+				//var queryx = 'install_status!=100^used_for!=Catalog Only^parent.parent.parent.operational_status=1^parent.parent.parent.name!=Atos Kategorien';
+				var queryx = 'install_status!=100^used_for!=Catalog Only^operational_status=1^parent.parent.parent.operational_status=1^parent.parent.parent.name!=Atos Kategorien';
+                var selectSOfferx = new GlideRecord('service_offering');
+                selectSOfferx.addEncodedQuery(queryx);
+                selectSOfferx.query();	
+                if (selectSOfferx.hasNext()) {
+                    while (selectSOfferx.next()) {
+                        serOffArrayX.push(selectSOfferx.getUniqueValue());
+                    }
+                }
+            }
+            return 'sys_idIN' + serOffArrayX.join(',');
+
+        } else {
+            var serOffArray = [];
+            var query = 'install_status!=100^used_for!=Catalog Only^operational_status=1^parent=' + current.business_service.getValue();
+            var selectSOffer = new GlideRecord('service_offering');
+            selectSOffer.addEncodedQuery(query);
+            selectSOffer.query();
+            if (selectSOffer.hasNext()) {
+                while (selectSOffer.next()) {
+                    serOffArray.push(selectSOffer.getUniqueValue());
+                }
+            }
+        }
+        // return offering where srvice is the parent we use IN for lists        
+        return 'sys_idIN' + serOffArray.join(',');
+    },
+
+
+    getBusinessService: function(current) {
+        var serArray = [];
+        var sgp = current.u_it_servicegroup.getValue();
+        //return nothing if the u_it_servicegroup value is empty
+        if (JSUtil.nil(sgp)) {
+            //bypass
+        } else {
+            var query = 'install_status!=100^operational_status=1^parent=' + current.u_it_servicegroup.getValue(); //service_classification=IT-Service is not matching!
+            var selectSer = new GlideRecord('cmdb_ci_service');
+            selectSer.addEncodedQuery(query);
+            selectSer.query();
+            if (selectSer.hasNext()) {
+                while (selectSer.next()) {
+                    serArray.push(selectSer.getUniqueValue());
+                }
+            }
+        }
+        // return services where servicegroup is the parent we use IN for lists
+        return 'sys_idIN' + serArray.join(',');
+    },
+
+	getServiceClusterToptoBottom:function()
+	{
+		var cluster=new GlideRecord("cmdb_ci_service");
+		var selecatableCluster=[];
+		var serviceGroup=[];
+		var individualService=[];
+		var service=[];
+		var individualServiceOffering=[];
+		var serviceOffering=[];
+		var finalCluster=[];
+		cluster.addEncodedQuery("parentISEMPTY^service_classification=IT-Servicecluster^operational_status=1^name!=atos kategorien");
+		cluster.query();
+		while(cluster.next())
+		{
+			 serviceGroup= this.getChildren(cluster.sys_id,"IT-Servicegroup");
+			for(i=0;i<serviceGroup.length;i++)
+			{
+			 individualService=this.getChildren(serviceGroup[i],"IT-Service");
+			 service.push(individualService);
+			}
+			
+
+			for(j=0;j<service.length;j++)
+			{
+				individualServiceOffering= this.getChildren(service[j],"Business Service");
+				serviceOffering.push(individualServiceOffering);
+			}
+			
+		
+		if (serviceOffering.length>0 && (!finalCluster.includes(cluster.getUniqueValue())))
+			{
+				finalCluster.push(cluster.getUniqueValue());
+			}
+		}
+			return  'sys_idIN' + finalCluster;
+
+	},
+	getServiceGroupToptoBottom:function(cluster)
+	{	var individualService=[];
+		var individualServiceOffering=[];
+		var finalServiceGroup=[];
+		var serviceGroup=new GlideRecord("cmdb_ci_service");
+		serviceGroup.addQuery("parent",cluster);
+		serviceGroup.addQuery("operational_status","1");
+		serviceGroup.addQuery("service_classification","IT-Servicegroup");
+		serviceGroup.query();
+		while(serviceGroup.next())
+		{
+			individualService=this.getChildren(serviceGroup.sys_id,"IT-Service");
+			for(i=0;i<individualService.length;i++)
+			{
+				individualServiceOffering=this.getChildren(individualService[i],"Business Service");
+				if ((individualServiceOffering.length>0) && (!finalServiceGroup.includes(serviceGroup.sys_id.toString())))
+				{
+					finalServiceGroup.push(serviceGroup.sys_id.toString());
+				}
+			}
+		}
+		return 'sys_idIN' + finalServiceGroup;
+
+	},
+	getServiceToptoBottom:function(serviceGroup)
+	{	
+		var individualServiceOffering=[];
+		var finalService=[];
+		var service=new GlideRecord("cmdb_ci_service");
+		service.addQuery("parent",serviceGroup);
+		service.addQuery("operational_status","1");
+		service.addQuery("service_classification","IT-Service");
+		service.query();
+		while(service.next())
+		{	individualServiceOffering=this.getChildren(service.sys_id,"Business Service");
+				if ((individualServiceOffering.length>0) && (!finalService.includes(serviceGroup.sys_id.toString())))
+				{
+					finalService.push(service.sys_id.toString());
+				}
+		}
+		return 'sys_idIN' + finalService;
+	},
+
+	getChildren:function(serviceOffering,classification)
+	{	if(classification!="Business Service")
+		{	
+		var group=new GlideRecord("cmdb_ci_service");
+		var serviceArray=[];
+		group.addQuery("parent",serviceOffering);
+		group.addQuery("service_classification",classification);
+		group.addQuery("operational_status","1");
+		//group.addQuery("life_cycle_stage_status","In Use");
+		group.query();
+		while(group.next())
+		{
+				serviceArray.push(group.sys_id.toString());
+		}
+		return serviceArray;
+		}
+		else if(classification=="Business Service")
+ 		{	
+		var groupgr=new GlideRecord("service_offering");
+		var serviceArrayElse=[];
+		groupgr.addQuery("parent",serviceOffering);
+		groupgr.addQuery("service_classification",classification);
+		groupgr.addQuery("operational_status","1");
+		groupgr.addQuery("used_for","!=","Catalog Only");
+		//group.addQuery("life_cycle_stage_status","In Use");
+		groupgr.query();
+		while(groupgr.next())
+		{
+				serviceArrayElse.push(groupgr.sys_id.toString());
+		}
+		return serviceArrayElse;
+		}
+	},
+
+
+    type: 'TaskCiServiceFilter'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-06-02 20:31:14</sys_created_on>
+        <sys_id>5ca13ba5c3a28e504de0d0cf05013166</sys_id>
+        <sys_mod_count>54</sys_mod_count>
+        <sys_name>TaskCiServiceFilter</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_5ca13ba5c3a28e504de0d0cf05013166</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2025-03-17 14:20:05</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>5ca13ba5c3a28e504de0d0cf05013166</id>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2025-02-07 05:25:40</sys_created_on>
+        <sys_id>34df7f7dc327d2102c03deee050131f7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2025-02-07 05:25:40</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

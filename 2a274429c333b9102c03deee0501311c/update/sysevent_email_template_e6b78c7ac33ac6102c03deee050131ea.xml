@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_email_template">
+    <sysevent_email_template action="INSERT_OR_UPDATE">
+        <collection>change_request</collection>
+        <email_layout display_value="Global.Layout.Testdesign">66b87f19c33e0a104de0d0cf05013185</email_layout>
+        <message/>
+        <message_html><![CDATA[<p><link href="https://fonts.googleapis.com/css?family=Source+Sans&amp;display=swap" rel="stylesheet" /></p>
+<style>        
+        .container {
+            width: 650px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #0057B8;
+            color: #FFFFFF;
+            padding: 32px;
+            border-radius: 24px 24px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header img {
+            height: 40px;
+        }
+        .header h1 {            
+          	font-size: 24;
+            font-family:Source Sans;
+            color: #FFFFFF;
+            margin: 32px 0 32px 20px;
+        }
+        .content {
+            padding: 20px;
+            font-size: 16px;
+          	font-family:Source Sans;
+          	color: #000000;
+          	
+        }
+        .content p {
+            margin: 20px 0;
+          	font-size: 16px;
+            font-family:Source Sans;
+          
+        }
+        .info {
+            margin: 20px 0;
+
+        }
+        .info h2 {
+            font-size: 24px;            
+          	font-family:Source Sans;
+            color: #0057B8;
+            margin: 0 0 32px 20px;
+
+        }
+        .info .item {
+            margin: 5px 0;
+
+        }
+        .info .item span {
+            font-weight: bold;
+        }
+  		.tablespec {
+  			border-style: none;
+  			border-collapse: collapse;
+          	width: 100%; 
+          	height: 92.3334px; 
+            font-size: 16px;            
+          	font-family:Source Sans;
+          	margin: 20px;
+  		}
+  		.tblrowspec {
+  			height: 15.3889px;
+          	
+  		} 
+    	.tblcolspecLabel {
+  			width: 31.2992%; 
+          	height: 15.3889px;
+          	font-weight: bold;
+  		}
+      	.tblcolspecVal{
+  			width: 68.8377%; 
+          	height: 15.3889px;
+  		}
+        .button-container {
+            text-align: left;
+            margin: 32px 0 32px 20px;
+        }
+        .button-container a {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+          	text-align: left;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .hint {
+            padding: 20px;
+            font-size: 16px;
+          	font-family:Source Sans;
+          	color: #000000;
+          	
+        }
+        .hint p {
+            margin: 32px 0 40px 0;
+          	font-size: 16px;
+            font-family:Source Sans;
+          
+        }  		 
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: left;
+            border-radius: 0 0 8px 8px;
+            font-size: 14px;
+        }
+</style>
+<div class="container">
+<div class="header">
+<h1>${mail_script:notify.global.BodySubject}</h1>
+<img title="AutoBahnLogoWhite.png" src="sys_attachment.do?sys_id=a295c69ac3b20e104de0d0cf050131e3" alt="AutoBahnLogoWhite.png" width="159" height="43" /></div>
+<div class="content">
+<p>${mail_script:notify.global.salutation}</p>
+<p>${mail_script:notify.global.BodyMessages}</p>
+</div>
+<hr size="7" />
+<div class="info">
+<h2>Wichtigste Infos</h2>
+<div class="item">
+<table class="tablespec">
+<tbody>
+<tr class="tblrowspec">
+<td class="tblcolspecLabel">Aktueller Status:</td>
+<td class="tblcolspecVal">${mail_script:notify.global.taskState}</td>
+</tr>
+<tr class="tblrowspec">
+<td class="tblcolspecLabel">Kurzbeschreibung:&nbsp;</td>
+<td class="tblcolspecVal">${short_description}</td>
+</tr>
+<tr class="tblrowspec">
+<td class="tblcolspecLabel">Beschreibung:</td>
+<td class="tblcolspecVal">${description}</td>
+</tr>
+<tr>
+<td><strong>Configuration Item:</strong></td>
+<td>${cmdb_ci}</td>
+</tr>
+<tr class="tblrowspec">
+<td class="tblcolspecLabel">Ge&ouml;ffnet am:&nbsp;</td>
+<td class="tblcolspecVal">${opened_at}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="button-container">${mail_script:notify.global.PortalLink}</div>
+<div class="button-container">&nbsp;</div>
+<hr size="7" />
+<div class="hint">
+<p>${mail_script:notify.incident.hint}</p>
+<p>${mail_script:notify.global.contact}</p>
+</div>
+<div class="footer">${mail_script:notify.global.footer}</div>
+</div>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Change.External.TestDesign</name>
+        <sms_alternate/>
+        <subject/>
+        <sys_class_name>sysevent_email_template</sys_class_name>
+        <sys_created_by>T100516</sys_created_by>
+        <sys_created_on>2024-06-18 10:57:24</sys_created_on>
+        <sys_id>e6b78c7ac33ac6102c03deee050131ea</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Change.External.TestDesign</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_email_template_e6b78c7ac33ac6102c03deee050131ea</sys_update_name>
+        <sys_updated_by>T100516</sys_updated_by>
+        <sys_updated_on>2024-06-18 11:08:11</sys_updated_on>
+        <sys_version>2</sys_version>
+    </sysevent_email_template>
+</record_update>

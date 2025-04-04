@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" db_object_id="3040597a0da112104f349799ccc9738c" label="Approval" max_length="40" name="sysapproval_approver" type="collection">
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Escalation" max_length="40" name="u_escalation" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Level-2" sequence="1" value="level-2"/>
+                <element inactive_on_update="false" label="Level-1" language="de" sequence="0" value="level-1"/>
+                <element inactive_on_update="false" label="Level-2" language="de" sequence="1" value="level-2"/>
+                <element inactive_on_update="false" label="Level-1" sequence="0" value="level-1"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="index duration" max_length="40" name="u_index_duration" type="integer"/>
+    </element>
+</database>

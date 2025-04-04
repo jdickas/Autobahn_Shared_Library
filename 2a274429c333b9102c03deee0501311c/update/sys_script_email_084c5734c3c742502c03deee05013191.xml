@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>notify.global.PortalLink.Beta</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript(/* GlideRecord */ current, /* TemplatePrinter */ template,
+          /* Optional EmailOutbound */ email, /* Optional GlideRecord */ email_action,
+          /* Optional GlideRecord */ event) {
+
+    // Add your code here
+
+    var strTable = current.sys_class_name;
+	 var portalLink;
+	if(strTable!="sc_task")
+    { portalLink = '<a href="' + gs.getProperty("glide.servlet.uri") + 'esc?id=ticket&table=' + strTable + '&sys_id=' + current.sys_id + '" style="color: white; text-decoration: none; font-size: 16px; font-family:Source Sans Pro, sans-serif; font-weight: bold; text-align: left; background-color: #0057b8">' + '&Ouml;ffnen des Tickets' + '</a>';
+	}
+	else if(strTable== "sc_task") // created for STRY0010909
+
+	{ 
+		strTable="sc_req_item"
+		portalLink = '<a href="' + gs.getProperty("glide.servlet.uri") + 'esc?id=ticket&table=' + strTable + '&sys_id=' + current.request_item.sys_id + '" style="color: white; text-decoration: none; font-size: 16px; font-family:Source Sans Pro, sans-serif; font-weight: bold; text-align: left; background-color: #0057b8">' + '&Ouml;ffnen des Tickets' + '</a>';
+	}
+    template.print(portalLink);
+	
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-06-25 07:33:46</sys_created_on>
+        <sys_id>084c5734c3c742502c03deee05013191</sys_id>
+        <sys_mod_count>30</sys_mod_count>
+        <sys_name>notify.global.PortalLink.Beta</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_084c5734c3c742502c03deee05013191</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-11-20 11:06:09</sys_updated_on>
+    </sys_script_email>
+</record_update>

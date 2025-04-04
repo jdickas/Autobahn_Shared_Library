@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="944697bcc3140a104de0d0cf0501313d" label="Autobahn Category Mapping" max_length="40" name="u_autobahn_category_mapping" type="collection">
+        <element label="Subcategory" max_length="40" name="u_subcategory" type="string"/>
+        <element label="Category" max_length="40" name="u_category" type="string"/>
+    </element>
+</database>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>true</action_insert>
+        <action_update>true</action_update>
+        <active>false</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="Uncategorized" name="Uncategorized">c97d83137f4432005f58108c3ffa917a</category>
+        <collection>kb_knowledge</collection>
+        <condition table="kb_knowledge">valid_toLESSTHANvalid_to@day@before@14^EQ<item endquery="false" field="valid_to" goto="false" newquery="false" operator="LESSTHAN" or="false" value="valid_to@day@before@14"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <content_type>text/html</content_type>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digestable>false</digestable>
+        <enable_dynamic_translation>false</enable_dynamic_translation>
+        <event_name>activate.life.cycle.migration</event_name>
+        <event_parm_1>false</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>engine</generation_type>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<table style="border-collapse: collapse; width: 704pt; height: 335.906px;" border="0" cellspacing="0" cellpadding="0"><colgroup><col style="width: 173px;" /> <col style="width: 189px;" /> <col style="width: 188px;" /> <col style="width: 66px;" /> <col style="width: 65.8125px;" span="3" /> <col style="width: 125px;" /></colgroup>
+<tbody>
+<tr style="height: 20.5312px;">
+<td style="width: 271pt; color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: 0.5pt dashed windowtext; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;" colspan="2">Sehr geehrte Damen und Herren,</td>
+<td style="width: 143pt; color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: 0.5pt dashed windowtext; border-right: none; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; border-top: 0.5pt dashed windowtext; border-right: none; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="width: 49pt; color: black; border-top: 0.5pt dashed windowtext; border-right: none; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="width: 49pt; color: black; border-top: 0.5pt dashed windowtext; border-right: none; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="width: 49pt; color: black; border-top: 0.5pt dashed windowtext; border-right: none; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="width: 94pt; color: black; border-top: 0.5pt dashed windowtext; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 37.3125px;">
+<td style="border-right: 0.5pt dashed black; color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 37.3125px;" colspan="8">der Wissensartikel ${URI_REF} l&auml;uft am ${valid_to} ab, bitte pr&uuml;fen Sie ob der Artikel noch aktuell ist, bei Bedarf aktualisieren und den Prozess neustarten.</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 18.6562px;">
+<td style="color: black; font-size: 10pt; font-weight: bold; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 18.6562px;">Aktueller Status:</td>
+<td style="border-right: 0.5pt dashed black; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-top: none; border-bottom: none; border-left: none; border-image: initial; white-space: nowrap; height: 18.6562px;" colspan="7">${workflow_state}</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; font-weight: bold; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 18.6562px;">
+<td style="color: black; font-size: 10pt; font-weight: bold; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 18.6562px;">Kurzbeschreibung:</td>
+<td style="border-right: 0.5pt dashed black; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-top: none; border-bottom: none; border-left: none; border-image: initial; white-space: nowrap; height: 18.6562px;" colspan="7">${short_description}</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; font-weight: bold; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 18.6562px;">
+<td style="color: black; font-size: 10pt; font-weight: bold; text-align: left; vertical-align: top; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 18.6562px;">IT-Service</td>
+<td style="border-right: 0.5pt dashed black; width: 574pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-top: none; border-bottom: none; border-left: none; border-image: initial; white-space: nowrap; height: 18.6562px;" colspan="7">${u_service}</td>
+</tr>
+<tr style="height: 18.6562px;">
+<td style="color: black; font-size: 10pt; font-weight: bold; text-align: left; vertical-align: top; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 141pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 143pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 94pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+</tr>
+<tr style="height: 18.6562px;">
+<td style="color: black; font-size: 10pt; font-weight: bold; text-align: left; vertical-align: top; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 18.6562px;">Service Offering</td>
+<td style="width: 141pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">${u_service_offering}</td>
+<td style="width: 143pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 49pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+<td style="width: 94pt; color: black; font-size: 10pt; text-align: left; vertical-align: top; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 18.6562px;">&nbsp;</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: 0.5pt solid windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: none; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">Mit freundlichen Gr&uuml;&szlig;en</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border: none; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: none; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+<tr style="height: 20.5312px;">
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt dashed windowtext; border-left: 0.5pt dashed windowtext; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;" colspan="2">Ihr IT-Service Center der Autobahn</td>
+<td style="color: black; font-size: 10pt; text-align: left; vertical-align: middle; border-top: none; border-right: none; border-bottom: 0.5pt dashed windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; font-size: 10pt; border-top: none; border-right: none; border-bottom: 0.5pt dashed windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt dashed windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt dashed windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: none; border-bottom: 0.5pt dashed windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+<td style="color: black; border-top: none; border-right: 0.5pt dashed windowtext; border-bottom: 0.5pt dashed windowtext; border-left: none; padding-top: 1px; padding-right: 1px; padding-left: 1px; font-size: 11pt; font-weight: 400; font-style: normal; font-family: Calibri, sans-serif; vertical-align: bottom; border-image: initial; white-space: nowrap; height: 20.5312px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>KM.Expire.Article_old</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields>sys_created_by,u_service_offering.parent.owned_by,kb_knowledge_base.u_ownergroup</recipient_fields>
+        <recipient_groups>5923dd92c3648e50f1c8deee050131d9</recipient_groups>
+        <recipient_users/>
+        <reply_to>it-service-center@autobahn.de</reply_to>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>${number} - Der Wissensartikel läuft in Kürze ab</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>T100516</sys_created_by>
+        <sys_created_on>2024-07-15 14:34:19</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>974c7bdbc31b86104de0d0cf0501313f</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>KM.Expire.Article_old</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_email_action_974c7bdbc31b86104de0d0cf0501313f</sys_update_name>
+        <sys_updated_by>N100139</sys_updated_by>
+        <sys_updated_on>2025-01-22 15:28:11</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template/>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>

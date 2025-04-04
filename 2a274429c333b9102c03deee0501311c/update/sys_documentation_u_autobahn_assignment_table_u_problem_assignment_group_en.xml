@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="u_problem_assignment_group" label="Problem Assignment Group" language="en" table="u_autobahn_assignment_table">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>u_problem_assignment_group</element>
+            <help/>
+            <hint/>
+            <label>Problem Assignment Group</label>
+            <language>en</language>
+            <name>u_autobahn_assignment_table</name>
+            <plural>Problem Assignment Groups</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>A100409</sys_created_by>
+            <sys_created_on>2024-04-16 09:28:32</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Problem Assignment Group</sys_name>
+            <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+            <sys_update_name>sys_documentation_u_autobahn_assignment_table_u_problem_assignment_group_en</sys_update_name>
+            <sys_updated_by>A100409</sys_updated_by>
+            <sys_updated_on>2024-04-16 09:28:32</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

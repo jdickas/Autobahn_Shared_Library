@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>notify.bodyMsg.Incident.Assigned.ToGroup</key>
+        <language>de</language>
+        <message>das Incident-Ticket {0} wurde Ihnen mit Priorität {1} zugewiesen. Bitte prüfen Sie die Zuständigkeit und leiten Sie die nächsten Schritte ein.{2} Letzte Aktualisierung: {3}{4}</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-01-31 18:07:00</sys_created_on>
+        <sys_id>9815fd82c3084e502c03deee050131e7</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>notify.bodyMsg.Incident.Assigned.ToGroup</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_9815fd82c3084e502c03deee050131e7</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-02-01 16:37:26</sys_updated_on>
+    </sys_ui_message>
+</record_update>

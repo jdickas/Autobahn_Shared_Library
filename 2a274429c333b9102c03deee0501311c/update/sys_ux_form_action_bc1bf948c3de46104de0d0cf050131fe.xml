@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_form_action">
+    <sys_ux_form_action action="INSERT_OR_UPDATE">
+        <action_type>ui_action</action_type>
+        <active>true</active>
+        <declarative_action/>
+        <description/>
+        <name>Create Knowledge</name>
+        <specificity>20</specificity>
+        <sys_class_name>sys_ux_form_action</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-16 09:46:41</sys_created_on>
+        <sys_id>bc1bf948c3de46104de0d0cf050131fe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Knowledge</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ux_form_action_bc1bf948c3de46104de0d0cf050131fe</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-16 09:46:41</sys_updated_on>
+        <table>incident</table>
+        <ui_action/>
+    </sys_ux_form_action>
+    <sys_translated_text action="delete_multiple" query="documentkey=bc1bf948c3de46104de0d0cf050131fe"/>
+</record_update>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true" db_object_id="e908974dc3d61210d511bd73e4013178" extends="dl_matcher" label="Autobahn Assignment Table" max_length="40" name="u_autobahn_assignment_table" type="collection">
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" dependent="u_it_servicegroup" dependent_on_field="u_it_servicegroup" label="Service" max_length="32" name="u_service" read_only="true" reference="cmdb_ci_service" reference_qual="javascript:' operational_status=1^parent='+u_it_servicegroup.getValue();" type="reference" use_dependent_field="true" use_reference_qualifier="advanced"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Channel" max_length="40" name="u_channel" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="External System" sequence="4" value="external_system"/>
+                <element inactive_on_update="false" label="Self-Service Portal" sequence="3" value="self-service"/>
+                <element inactive_on_update="false" label="Email" sequence="1" value="email"/>
+                <element inactive_on_update="false" label="Phone" sequence="2" value="phone"/>
+                <element inactive_on_update="false" label="Monitoring" sequence="5" value="monitoring"/>
+                <element inactive_on_update="false" label="Walk-in" sequence="6" value="walk-in"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Incident Assignment Group" max_length="32" name="u_incident_assignment_group" reference="sys_user_group" type="reference"/>
+        <element label="Location.Parent" max_length="32" name="u_location_parent" type="string_full_utf8"/>
+        <element attributes="edge_encryption_enabled=true,ref_auto_completer=AJAXReferenceChoice" choice="1" label="IT-Servicecluster" max_length="40" name="u_it_servicecluster" read_only="true" reference="cmdb_ci_service" reference_qual="service_classification=IT-Servicecluster^operational_status=1^parentISEMPTY^EQ" reference_qual_condition="service_classification=IT-Servicecluster^operational_status=1^parentISEMPTY^EQ" type="reference">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Problem Assignment Group" max_length="32" name="u_problem_assignment_group" reference="sys_user_group" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" dependent="u_it_servicegroup" dependent_on_field="u_it_servicegroup" label="IT-Servicecategory" max_length="40" name="u_it_servicecategory" reference="cmdb_ci_service" reference_qual="javascript:'parentISNOTEMPTY^operational_status=1^parent='+ current.u_it_servicegroup.getValue()" type="reference" use_dependent_field="true" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true,ref_auto_completer=AJAXReferenceChoice" choice="1" dependent="u_it_servicecluster" dependent_on_field="u_it_servicecluster" label="IT-Servicegroup" max_length="40" name="u_it_servicegroup" read_only="true" reference="cmdb_ci_service" reference_qual="javascript:'parentISNOTEMPTY^operational_status=1^parent='+ current.u_it_servicecluster.getValue()" type="reference" use_dependent_field="true" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element attributes="autocomplete=AJAXReferenceChoice,edge_encryption_enabled=true,encode_utf8=false" choice="1" dependent="u_service" dependent_on_field="u_service" label="Service offering" max_length="32" name="u_service_offering" reference="service_offering" reference_qual="javascript:' operational_status=1^parent='+u_service.getValue();" type="reference" use_dependent_field="true" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Configuration item" max_length="32" name="u_configuration_item" reference="cmdb_ci" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Change Assignment Group" max_length="32" name="u_change_assignment_group" reference="sys_user_group" type="reference"/>
+        <index name="index">
+            <element name="u_change_assignment_group"/>
+        </index>
+        <index name="index2">
+            <element name="u_configuration_item"/>
+        </index>
+        <index name="index3">
+            <element name="u_incident_assignment_group"/>
+        </index>
+        <index name="index4">
+            <element name="u_it_servicecategory"/>
+        </index>
+        <index name="index5">
+            <element name="u_it_servicecluster"/>
+        </index>
+        <index name="index6">
+            <element name="u_it_servicegroup"/>
+        </index>
+        <index name="index7">
+            <element name="u_problem_assignment_group"/>
+        </index>
+        <index name="index8">
+            <element name="u_service"/>
+        </index>
+        <index name="index9">
+            <element name="u_service_offering"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>prototypGenerateCompleteMail</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+		template.print('<p></p>');
+		template.print('<table border="1" style="border-collapse: collapse; width: 100%; border-style: none; height: 455.891px;">');
+		template.print('<tbody>');
+		template.print('<tr style="height: 90.1719px;">');
+		template.print('<td colspan="2" style="width: 99.9521%; height: 90.1719px;">');
+		// template.print('<p>${notification:body}</p>');
+		template.print('<p>' + MsgUtil.getSalutationUser(current.caller_id) + '</p>');
+		template.print('</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 112.688px;">');
+		template.print('<td colspan="2" style="width: 99.9521%; height: 112.688px;">');
+		template.print('<table border="1" style="border-collapse: collapse; width: 100.177%; height: 61.5624px; border-style: none;">');
+		template.print('<tbody>');
+		template.print('<tr style="height: 15.3906px;">');
+		template.print('<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Aktueller Status:&nbsp;</strong></td>');
+		template.print('<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${incident_state}</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 15.3906px;">');
+		template.print('<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Kurzbeschreibung:&nbsp;</strong></td>');
+		template.print('<td style="width: 86.1722%; height: 15.3906px; border-style: none; vertical-align: top;">${short_description}</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 15.3906px;">');
+		template.print('<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Beschreibung:&nbsp;</strong></td>');
+		template.print('<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${description}</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 15.3906px;">');
+		template.print('<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Ge&ouml;ffnet am:&nbsp;</strong></td>');
+		template.print('<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${opened_at}</td>');
+		template.print('</tr>');
+		template.print('</tbody>');
+		template.print('</table>');
+		template.print('</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 91.9531px;">');
+		template.print('<td colspan="2" style="width: 99.9521%; height: 91.9531px;">');
+		template.print('<table border="1" style="border-collapse: collapse; width: 100.078%; border-style: none;">');
+		template.print('<tbody>');
+		template.print('<tr>');
+		template.print('<td style="width: 98.585%; border-style: none;">');
+		template.print('<p><span style="text-decoration: underline;"><strong>Hinweise</strong></span>:</p>');
+		template.print('<p>Um weitere Information zur gemeldeten St&ouml;rung zu erg&auml;nzen, k&ouml;nnen Sie einfach auf diese E-Mail antworten.<br />Bei Fragen zum Ticket-Verlauf oder der Notwendigkeit einer Anpassung der Ticket-Priorit&auml;t, k&ouml;nnen Sie sich telefonisch an das IT Service Center wenden.</p>');
+		template.print('</td>');
+		template.print('</tr>');
+		template.print('</tbody>');
+		template.print('</table>');
+		template.print('</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 84.5156px;">');
+		template.print('<td colspan="2" style="width: 99.9521%; height: 84.5156px;">');
+		template.print('<table border="1" style="border-collapse: collapse; width: 100.078%; border-style: none; height: 46.1718px;">');
+		template.print('<tbody>');
+		template.print('<tr style="height: 15.3906px;">');
+		template.print('<td style="width: 13.8342%; border-style: none; height: 15.3906px;">Telefone:</td>');
+		template.print('<td style="width: 85.6145%; border-style: none; height: 15.3906px;">0800/6273151</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 15.3906px;">');
+		template.print('<td style="width: 14.384%; border-style: none; height: 15.3906px;">E-mail:</td>');
+		template.print('<td style="width: 85.6145%; border-style: none; height: 15.3906px;">IT-Service-Center@Autobahn.de</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 15.3906px;">');
+		template.print('<td style="width: 14.384%; border-style: none; height: 15.3906px;">IT Self-Service Portal:</td>');
+		template.print('<td style="width: 85.6145%; border-style: none; height: 15.3906px;">');
+		template.print('<p></p>');
+		template.print('</td>');
+		template.print('</tr>');
+		template.print('</tbody>');
+		template.print('</table>');
+		template.print('</td>');
+		template.print('</tr>');
+		template.print('<tr style="height: 76.5625px;">');
+		template.print('<td colspan="2" style="width: 99.9521%; height: 76.5625px;">');
+		template.print('<table border="1" style="border-collapse: collapse; width: 100.078%; border-style: none;">');
+		template.print('<tbody>');
+
+		template.print('<tr>');
+		template.print('<td style="width: 98.585%; border-style: none;">');
+		template.print('<p>Mit freundlichen Gr&uuml;&szlig;en</p>');
+		template.print('<p>Ihr IT Service Center der Autobahn</p>');
+		template.print('</td>');
+		template.print('</tr>');
+		
+		template.print('</tbody>');
+		template.print('</table>');
+		template.print('</td>');
+		template.print('</tr>');
+		template.print('</tbody>');
+		template.print('</table>');
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-26 07:19:45</sys_created_on>
+        <sys_id>96f0f110c34c82504de0d0cf050131c3</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>prototypGenerateCompleteMail</sys_name>
+        <sys_package display_value="">92fe5b6fc33275102c03deee05013166</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_96f0f110c34c82504de0d0cf050131c3</sys_update_name>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-01-30 06:15:08</sys_updated_on>
+    </sys_script_email>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18d450cf8080000001</claim_timestamp>
+        <metadata_update_name>sys_script_email_96f0f110c34c82504de0d0cf050131c3</metadata_update_name>
+        <previous_claim_app_version>1.4.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-26 09:14:54</sys_created_on>
+        <sys_id>c55b0a50c3cc82504de0d0cf05013109</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-01-26 09:14:54</sys_updated_on>
+    </sys_claim>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18d450cf8030000001</claim_timestamp>
+        <metadata_update_name>sys_script_email_96f0f110c34c82504de0d0cf050131c3</metadata_update_name>
+        <previous_claim_app_version>1.4.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Incident</previous_claim_name>
+        <previous_claim_scope>92fe5b6fc33275102c03deee05013166</previous_claim_scope>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-26 09:14:54</sys_created_on>
+        <sys_id>895b0a50c3cc82504de0d0cf05013109</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-01-26 09:14:54</sys_updated_on>
+    </sys_claim>
+</record_update>

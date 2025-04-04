@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.GroupUserQueryScriptInclude</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>GroupUserQueryScriptInclude</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var GroupUserQueryScriptInclude = Class.create();
+
+GroupUserQueryScriptInclude.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    getGroupUsersParm: function(group_id) {
+        var id = [];
+        var id_temp = [];
+
+        var gr = new GlideRecord('sys_user_grmember');
+        if(group_id != '') {
+            gr.addEncodedQuery('group=' + group_id);
+        }
+        gr.addEncodedQuery('group.type=2550471ec3e002902c03deee05013186');
+        gr.query();
+
+        while (gr.next()) {
+            var userId = gr.getValue("user");
+            id.push(userId);
+        }
+        // Remove duplicate userIDs 
+        id_temp = id.filter(function(elem, index, array) {
+            return array.indexOf(elem) === index;
+        });
+
+        // check for active + itil ... classic way 
+		id = [];
+		for (var i = 0; i < id_temp.length; i++) {
+			if (this.isUserActive(id_temp[i]) && this.hasITILRole(id_temp[i])) {
+				id.push(id_temp[i]);
+			}
+		}
+		
+        return 'sys_idIN' + id.join(',');
+
+    },
+
+    getGroupUsers: function() {
+        var id = [];
+        var id_temp = [];
+
+        var gr = new GlideRecord('sys_user_grmember');
+        // gr.addActiveQuery(); // obsolete - active does not exist in sys_user_grmember
+        gr.addEncodedQuery('group.type=2550471ec3e002902c03deee05013186^EQ');
+        gr.query();
+        while (gr.next()) {
+            var userId = gr.getValue("user");
+            id.push(userId);
+        }
+        // Remove duplicate userIDs 
+        id_temp = id.filter(function(elem, index, array) {
+            return array.indexOf(elem) === index;
+        });
+
+        // check for active + itil ... classic way 
+		id = [];
+		for (var i = 0; i < id_temp.length; i++) {
+			if (this.isUserActive(id_temp[i]) && this.hasITILRole(id_temp[i])) {
+				id.push(id_temp[i]);
+			}
+		}
+        return 'sys_idIN' + id.join(',');
+    },
+    
+/* previous implementation of getGroupUsers()
+    getGroupUsers: function() {
+        var id = [];
+
+        var gr = new GlideRecord('sys_user_grmember');
+        gr.addActiveQuery();
+        gr.addEncodedQuery('group.type=2550471ec3e002902c03deee05013186^EQ');
+        gr.query();
+
+        while (gr.next()) {
+            var userId = gr.getValue("user");
+            
+            if (this.isUserActive(userId) && this.hasITILRole(userId)) {
+                id.push(userId);
+            }
+        }
+
+        return 'sys_idIN' + id.join(',');
+    },
+*/
+    isUserActive: function(userId) {
+        var user = new GlideRecord('sys_user');
+        if (user.get(userId)) {
+            return user.active;
+        }
+        return false;
+    },
+
+    hasITILRole: function(userId) {
+        var userRoles = new GlideRecord('sys_user_has_role');
+        userRoles.addQuery('user', userId);
+        userRoles.addQuery('role.name', 'itil');
+        userRoles.query();
+
+        return userRoles.hasNext();
+    },
+
+    type: 'GroupUserQueryScriptInclude'
+});
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-02-27 18:18:30</sys_created_on>
+        <sys_id>04aaf8b2c36c42902c03deee050131bb</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>GroupUserQueryScriptInclude</sys_name>
+        <sys_package display_value="">4d424477c3f275102c03deee050131d7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_04aaf8b2c36c42902c03deee050131bb</sys_update_name>
+        <sys_updated_by>J100288</sys_updated_by>
+        <sys_updated_on>2024-11-04 15:43:02</sys_updated_on>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18f52ffdc870000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_04aaf8b2c36c42902c03deee050131bb</metadata_update_name>
+        <previous_claim_app_version>1.11.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-05-07 12:20:50</sys_created_on>
+        <sys_id>db08c0d5c34e06102c03deee050131d8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-05-07 12:20:50</sys_updated_on>
+    </sys_claim>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18f52ffdc800000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_04aaf8b2c36c42902c03deee050131bb</metadata_update_name>
+        <previous_claim_app_version>1.12.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Core</previous_claim_name>
+        <previous_claim_scope>4d424477c3f275102c03deee050131d7</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-05-07 12:20:50</sys_created_on>
+        <sys_id>9f08c0d5c34e06102c03deee050131d8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-05-07 12:20:50</sys_updated_on>
+    </sys_claim>
+</record_update>

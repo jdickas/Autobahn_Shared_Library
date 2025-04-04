@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_email_template">
+    <sysevent_email_template action="INSERT_OR_UPDATE">
+        <collection>sc_task</collection>
+        <email_layout display_value="Global.Layout">45e5c7e9c388ca502c03deee050131c6</email_layout>
+        <message/>
+        <message_html><![CDATA[<!--
+<p><em>${mail_script:mailScriptDelegateSRItemExternalOpen}</em></p>
+//-->
+<style type="text/css">
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  h1.subject {
+    color: #ffffff;
+    padding: 14px;
+    margin: 0px;
+    font-size: 24px;
+    font-family: Source Sans Pro, sans-serif;
+    overflow: hidden;
+    max-height: 160px;
+    max-width: 463px;
+    text-overflow: ellipsis;
+  }
+
+  h2.information {
+    color: #0057b8;
+    margin: 0 0 32px 0;
+    font-size: 24px;
+    font-family: Source Sans Pro, sans-serif;
+  }
+
+  img.block {
+    display: block;
+  }
+
+  .header {
+    width: 100.063%;
+    height: 130px;
+    border-collapse: collapse;
+  }
+
+  .header-border {
+    vertical-align: top;
+    padding: 0px;
+    width: 3.4471%;
+    background-color: #FFF;
+  }
+
+  .header-spacing {
+    width: 23.5552%;
+    background-color: #0057b8;
+  }
+
+  .sp-button {
+    background-color: #0057b8;
+    text-align: center;
+  }
+
+  .footer-spacing {
+    background-color: #e6eef7;
+  }
+</style>
+<table style="margin: 20px auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;" width="711">
+<tbody>
+<tr>
+<td style="width: 711.575px;">
+<p>${mail_script:notify.global.subject}</p>
+<table style="width: 100.063%; height: 190px; border-collapse: collapse;" border="0" width="100.086%" cellspacing="0" cellpadding="0" bgcolor="#FFF">
+<tbody>
+<tr style="background-color: #0057b8;">
+<td class="header-border" valign="top" height="160"><img class="block" style="background: #ffffff;" src="ab_notifications/header_border_left.png" alt="header_border_left.png" width="23" height="190" data-library="false" /></td>
+<td style="width: 69.5165%; background-color: #0057b8;" width="75%">
+<h1 class="subject">${mail_script:notify.global.BodySubject}</h1>
+</td>
+<td class="header-spacing" width="25%"><img title="logo_autobahn.png" src="ab_notifications/logo_autobahn.pngx" alt="Logo_autobahn.png" width="147" height="38" /></td>
+<td class="header-border" valign="top" height="160"><img class="block" style="background: #ffffff;" src="ab_notifications/header_border_right.png" alt="header_border_right.png" width="23" height="190" data-library="false" /></td>
+</tr>
+</tbody>
+</table>
+<table style="margin: 20px auto; font-family: Source Sans Pro, sans-serif; font-size: 16px; color: #000000; padding: 0 20px;" border="0" width="100%" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td>
+<table style="font-family: 'Source Sans Pro', sans-serif; font-size: 16px; color: #000000; height: 120.8px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr style="height: 54.4px; margin: 20px 0px;">
+<td style="height: 54.4px;">
+<p>${mail_script:notify.global.salutation}</p>
+</td>
+</tr>
+<tr style="height: 66.4px;">
+<td style="height: 66.4px;">
+<p>${mail_script:notify.global.BodyMessages}</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<img style="cursor: none;" title="hr-line.png" src="ab_notifications/hr-line.pngx" alt="" width="98%" height="3" data-library="false" />
+<table style="margin: 20px auto; padding: 0px 20px; height: 220.4px;" border="0" width="100%" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr style="height: 210.4px;">
+<td style="height: 210.4px;">
+<h2 class="information">Wichtigste Infos</h2>
+<table style="font-family: 'Source Sans Pro', sans-serif; font-size: 16px; height: 89.6px;" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr style="height: 22.4px;">
+<td style="width: 31.2357%; font-weight: bold; height: 22.4px;">Aktueller Status:</td>
+<td style="width: 68.7834%; height: 22.4px;">${mail_script:notify.global.taskState}</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="width: 31.2357%; font-weight: bold; height: 22.4px;">Kurzbeschreibung:</td>
+<td style="width: 68.7834%; height: 22.4px;">${short_description}</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="width: 31.2357%; font-weight: bold; height: 22.4px;">Beschreibung:</td>
+<td style="width: 68.7834%; height: 22.4px;">${description}</td>
+</tr>
+<tr>
+<td style="width: 31.2357%; font-weight: bold;">Beantragt von:</td>
+<td style="width: 68.7834%;">${request_item.opened_by}</td>
+</tr>
+<tr>
+<td style="width: 31.2357%; font-weight: bold;">Beantragt f&uuml;r:</td>
+<td style="width: 68.7834%;">${request_item.requested_for}</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="width: 31.2357%; font-weight: bold; height: 22.4px;">Ge&ouml;ffnet am:</td>
+<td style="width: 68.7834%; height: 22.4px;">${opened_at}</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="margin-left: 20px; border-collapse: collapse; width: 35%; height: 37px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; padding: 0px; width: 1.4962%;"><img class="block" title="button_sp_left.png" src="ab_notifications/button_sp_left.pngx" alt="button_sp_left.png" width="6" height="37" data-library="false" /></td>
+<td class="sp-button" style="width: 96.0739%;">${mail_script:notify.global.PortalLink.Internal}</td>
+<td style="vertical-align: top; padding: 0px; width: 2.60683%;"><img class="block" title="button_sp_right.png" src="ab_notifications/button_sp_right.pngx" alt="button_sp_right.png" width="6" height="37" data-library="false" /></td>
+</tr>
+</tbody>
+</table>
+<br />
+<table style="border-collapse: collapse; width: 100.313%; height: 90px; font-size: 16px; font-family: Source Sans Pro, sans-serif;" border="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 1.35318%; padding: 0px;"><img class="block" title="footer_border_left.png" src="ab_notifications/footer_border_left.pngx" alt="footer_border_left.png" width="16" height="90" data-library="false" /></td>
+<td class="footer-spacing" style="width: 100%;">
+<p>${mail_script:notify.global.footer}</p>
+</td>
+<td style="vertical-align: top; width: 4.87359%; padding: 0px;"><img class="block" title="footer_border_right.png" src="ab_notifications/footer_border_right.pngx" alt="footer_border_right.png" width="16" height="90" data-library="false" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>SRM.Internal.SCTask</name>
+        <sms_alternate/>
+        <subject/>
+        <sys_class_name>sysevent_email_template</sys_class_name>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-07-26 10:08:22</sys_created_on>
+        <sys_id>3ae867fec3af86504de0d0cf05013142</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>SRM.Internal.SCTask</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_email_template_3ae867fec3af86504de0d0cf05013142</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-11-08 12:37:16</sys_updated_on>
+        <sys_version>2</sys_version>
+    </sysevent_email_template>
+</record_update>

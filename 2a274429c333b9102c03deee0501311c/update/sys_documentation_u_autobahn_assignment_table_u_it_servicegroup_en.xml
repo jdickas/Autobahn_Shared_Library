@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="u_it_servicegroup" label="IT-Servicegroup" language="en" table="u_autobahn_assignment_table">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>u_it_servicegroup</element>
+            <help/>
+            <hint/>
+            <label>IT-Servicegroup</label>
+            <language>en</language>
+            <name>u_autobahn_assignment_table</name>
+            <plural>IT-Servicegroups</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>A100409</sys_created_by>
+            <sys_created_on>2024-04-16 11:33:16</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>IT-Servicegroup</sys_name>
+            <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+            <sys_update_name>sys_documentation_u_autobahn_assignment_table_u_it_servicegroup_en</sys_update_name>
+            <sys_updated_by>A100409</sys_updated_by>
+            <sys_updated_on>2024-04-16 11:33:16</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

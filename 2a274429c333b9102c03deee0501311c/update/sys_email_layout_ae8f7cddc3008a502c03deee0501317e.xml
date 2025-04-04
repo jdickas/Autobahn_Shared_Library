@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_email_layout">
+    <sys_email_layout action="INSERT_OR_UPDATE">
+        <advanced>false</advanced>
+        <advanced_layout/>
+        <description/>
+        <layout><![CDATA[<style>
+      body {
+          font-family: 'Palatino Linotype', sans-serif; /* Ändern Sie 'Arial' zu Ihrer gewünschten Schriftart */
+          color: #333; /* Ändern Sie '#333' zu Ihrer gewünschten Textfarbe */
+      }
+
+      h1 {
+          color: #007BFF; /* Ändern Sie '#007BFF' zu Ihrer gewünschten Farbe für Überschriften */
+      }
+
+      p {
+          font-size: 16px; /* Ändern Sie die Schriftgröße nach Bedarf */
+      }
+  </style>
+<p><span style="font-size: 14pt; color: #e03e2d;"><strong>START: Email Layout</strong></span></p>
+<p><img src="/sys_attachment.do?sys_id=b3820a94c38c82504de0d0cf05013121" title="Autobahn-Large.svg" width="345" height="100" alt="" data-library="false" /></p>
+<p>${notification:body}</p>
+<p><span style="font-size: 14pt; color: #e03e2d;"><strong>END: Email Layout</strong></span></p>]]></layout>
+        <name>Prototyp.Global.Layout</name>
+        <sys_class_name>sys_email_layout</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-29 06:17:42</sys_created_on>
+        <sys_id>ae8f7cddc3008a502c03deee0501317e</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Prototyp.Global.Layout</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_email_layout_ae8f7cddc3008a502c03deee0501317e</sys_update_name>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-01-30 06:03:52</sys_updated_on>
+    </sys_email_layout>
+</record_update>

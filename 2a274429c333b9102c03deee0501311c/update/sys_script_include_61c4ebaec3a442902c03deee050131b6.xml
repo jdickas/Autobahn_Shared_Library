@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.AssignmentGroupFilter</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AssignmentGroupFilter</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AssignmentGroupFilter = Class.create();
+AssignmentGroupFilter.prototype = {
+
+    initialize: function() {},
+
+    refineAssignmentGroup: function(assigned_to) {
+        var groupsArray = [];
+
+        if (gs.nil(assigned_to)) {
+            var groups = new GlideRecord("sys_user_group");
+            groups.addActiveQuery();
+            groups.addEncodedQuery('typeLIKE2550471ec3e002902c03deee05013186');
+            groups.query();
+
+            if (groups.hasNext()) {
+                while (groups.next()) {
+                    groupsArray.push(groups.getUniqueValue());
+                }
+            }
+        } else {
+            var grpMember = new GlideRecord("sys_user_grmember");
+            grpMember.addQuery('user', assigned_to);
+            grpMember.addEncodedQuery('group.typeLIKE2550471ec3e002902c03deee05013186');
+            grpMember.query();
+
+            if (grpMember.hasNext()) {
+                while (grpMember.next()) {
+                    groupsArray.push(grpMember.group.toString());
+                }
+            }
+        }
+
+        return "parent!=699c4885c3cf421053aad0cf0501314a^sys_idIN" + groupsArray.join(',');
+		//return "sys_idIN" + groupsArray.join(',');
+    },
+
+    type: "AssignmentGroupFilter",
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-02-27 12:04:14</sys_created_on>
+        <sys_id>61c4ebaec3a442902c03deee050131b6</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>AssignmentGroupFilter</sys_name>
+        <sys_package display_value="">4d424477c3f275102c03deee050131d7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_61c4ebaec3a442902c03deee050131b6</sys_update_name>
+        <sys_updated_by>N100139</sys_updated_by>
+        <sys_updated_on>2025-02-12 08:30:45</sys_updated_on>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18f5300f8640000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_61c4ebaec3a442902c03deee050131b6</metadata_update_name>
+        <previous_claim_app_version>1.11.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-05-07 12:22:03</sys_created_on>
+        <sys_id>c9588019c34e06102c03deee05013186</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-05-07 12:22:03</sys_updated_on>
+    </sys_claim>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18f5300f8610000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_61c4ebaec3a442902c03deee050131b6</metadata_update_name>
+        <previous_claim_app_version>1.12.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Core</previous_claim_name>
+        <previous_claim_scope>4d424477c3f275102c03deee050131d7</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-05-07 12:22:03</sys_created_on>
+        <sys_id>8d588019c34e06102c03deee05013186</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-05-07 12:22:03</sys_updated_on>
+    </sys_claim>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>61c4ebaec3a442902c03deee050131b6</id>
+        <sys_created_by>N100139</sys_created_by>
+        <sys_created_on>2025-02-12 07:17:43</sys_created_on>
+        <sys_id>fa694ee7c3a79a104de0d0cf050131b9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>N100139</sys_updated_by>
+        <sys_updated_on>2025-02-12 07:17:43</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

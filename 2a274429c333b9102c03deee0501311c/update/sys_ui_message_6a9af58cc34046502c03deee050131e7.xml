@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>notify.global.Salutation.Default</key>
+        <language>de</language>
+        <message>Sehr geehrte(r) Frau/Herr&#13;
+</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-01-25 13:23:20</sys_created_on>
+        <sys_id>6a9af58cc34046502c03deee050131e7</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>notify.global.Salutation.Default</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_6a9af58cc34046502c03deee050131e7</sys_update_name>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-01-30 06:06:02</sys_updated_on>
+    </sys_ui_message>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18d58f97f140000001</claim_timestamp>
+        <metadata_update_name>sys_ui_message_6a9af58cc34046502c03deee050131e7</metadata_update_name>
+        <previous_claim_app_version>1.5.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-30 06:06:02</sys_created_on>
+        <sys_id>65768aa9c388c6504de0d0cf050131e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100391</sys_updated_by>
+        <sys_updated_on>2024-01-30 06:06:02</sys_updated_on>
+    </sys_claim>
+</record_update>

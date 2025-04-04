@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="kb_article_template_definition">
+    <kb_article_template_definition action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <article_template display_value="">edc146d4532310109dc8ddeeff7b1204</article_template>
+        <collapsible/>
+        <column_label>Service Offering</column_label>
+        <column_type>string</column_type>
+        <field_style/>
+        <heading_style/>
+        <mandatory>false</mandatory>
+        <order/>
+        <preview_text/>
+        <sys_class_name>kb_article_template_definition</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-21 14:20:30</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>4699e831c3da0e104de0d0cf05013151</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Offering</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>kb_article_template_definition_4699e831c3da0e104de0d0cf05013151</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-21 14:20:30</sys_updated_on>
+        <table_column>u_kb_service_offering</table_column>
+    </kb_article_template_definition>
+</record_update>

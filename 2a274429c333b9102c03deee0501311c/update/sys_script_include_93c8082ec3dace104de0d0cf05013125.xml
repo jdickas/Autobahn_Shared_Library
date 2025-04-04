@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.AssignmentTransformMapUtils</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>AssignmentTransformMapUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var AssignmentTransformMapUtils = Class.create();
+AssignmentTransformMapUtils.prototype = {
+    initialize: function() {
+    },
+
+ getServiceCluster:function(serviceCluster) {
+	var grcmdb = new GlideRecord("cmdb_ci_service");
+	grcmdb.addQuery("name",serviceCluster);
+	grcmdb.addQuery("service_classification","IT-Servicecluster");
+	grcmdb.query();
+	var answer='';
+	while( grcmdb.next()){
+
+		answer= grcmdb.sys_id;
+    }
+	return answer;
+ },
+ getServiceGroup: function(serviceCluster,serviceGroup) {
+	var grcmdb = new GlideRecord("cmdb_ci_service");
+	grcmdb.addQuery("name",serviceGroup);
+	grcmdb.addQuery("parent",serviceCluster);
+	grcmdb.addQuery("service_classification","IT-Servicegroup");
+	grcmdb.query();
+	var answer='';
+	while (grcmdb.next())
+	{
+		answer=grcmdb.sys_id;
+	return answer;
+	}
+	
+
+ },
+ getServiceCategory:function(serviceGroup,serviceCategory)
+ {
+	var grcmdb = new GlideRecord("cmdb_ci_service");
+	
+	grcmdb.addQuery("name",serviceCategory);
+	grcmdb.addQuery("parent",serviceGroup);
+	//grcmdb.addQuery("service_classification","IT-Servicecategory");
+	grcmdb.query();
+	var answer='';
+	while (grcmdb.next())
+	{
+		answer=grcmdb.sys_id;
+	
+	}
+	return answer;
+
+ },
+ 
+ getService: function(serviceCategory,service)
+ {
+	var grcmdb = new GlideRecord("cmdb_ci_service");
+	grcmdb.addQuery("name",service);
+	grcmdb.addQuery("parent",serviceCategory);
+	grcmdb.addQuery("service_classification","Shared Service");
+	grcmdb.query();
+	var answer='';
+	while (grcmdb.next())
+	{
+		answer=grcmdb.sys_id;
+	
+	}
+	return answer;
+
+
+ },
+  getServiceOffering: function(service,serviceOffering)
+ {var grcmdb = new GlideRecord("cmdb_ci_service");
+	
+	grcmdb.addQuery("name",serviceOffering);
+	grcmdb.addQuery("parent",service);
+	grcmdb.addQuery("service_classification","Business Service");
+	grcmdb.query();
+	var answer='';
+	while (grcmdb.next())
+	{
+		answer=grcmdb.sys_id;
+	
+	}
+	return answer;
+
+
+ },
+    type: 'AssignmentTransformMapUtils'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-23 19:52:39</sys_created_on>
+        <sys_id>93c8082ec3dace104de0d0cf05013125</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>AssignmentTransformMapUtils</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_93c8082ec3dace104de0d0cf05013125</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-24 10:39:56</sys_updated_on>
+    </sys_script_include>
+</record_update>

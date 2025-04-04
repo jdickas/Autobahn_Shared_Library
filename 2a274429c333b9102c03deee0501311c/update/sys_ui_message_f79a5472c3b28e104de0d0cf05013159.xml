@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>notify.incident.hint</key>
+        <language>de</language>
+        <message>Um weitere Information zur gemeldeten Störung zu ergänzen, können Sie einfach auf diese E-Mail antworten.&#13;
+Bei Fragen zum Ticket-Verlauf oder der Notwendigkeit einer Anpassung der Ticket-Priorität, können Sie sich telefonisch an das IT Service Center wenden.							&#13;
+							&#13;
+</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-06-18 12:19:57</sys_created_on>
+        <sys_id>f79a5472c3b28e104de0d0cf05013159</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>notify.incident.hint</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_f79a5472c3b28e104de0d0cf05013159</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-06-18 12:20:40</sys_updated_on>
+    </sys_ui_message>
+</record_update>

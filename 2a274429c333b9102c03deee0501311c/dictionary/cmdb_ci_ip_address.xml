@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" db_object_id="705e09b60d6112104f349799ccc97300" extends="cmdb_ci" label="IP Address" max_length="40" name="cmdb_ci_ip_address" type="collection">
+        <element label="Subnet" max_length="40" name="u_subnet" type="string"/>
+    </element>
+</database>

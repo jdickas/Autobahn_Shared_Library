@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="all_tables. text_index_translations=true,all_tables.text_index_translations=true,attachment_index=true,document_viewer_audit=all,global_search_config_handler=KnowledgeArticle,synch_attachments=true,text_index_attachment_displayed=true,text_index_enable_idf=true,text_index_filter_junk=false,use_document_viewer=true" audit="true" db_object_id="b9b89dfe0d2512104f349799ccc97365" extends="kb_knowledge" label="Known Error article" max_length="40" name="kb_template_known_error_article" text_index="true" type="collection">
+        <element label="Service Offering" max_length="500" name="u_kb_service_offering" text_index="true" type="string"/>
+    </element>
+</database>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sys_email</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="sys_email">recipientsISNOTEMPTY^EQ<item endquery="false" field="recipients" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Get Delegates from Recipients</name>
+        <order>10</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+
+    // Add your code here
+    var recipientSysIDArr = [];
+    var recipients = current.recipients;
+    var recipientsArr = recipients.split(',');
+
+    gs.info('[Get Delegates from Recipients] recipients: ' + current.recipients + ' of ' + current.instance.number);
+    gs.info('[Get Delegates from Recipients] directs: ' + current.direct);
+    gs.info('[Get Delegates from Recipients] recipientsArr: ' + recipientsArr.toString());
+
+
+    for (var i = 0; i < recipientsArr.length; i++) {
+        var userGR = new GlideRecord('sys_user');
+        userGR.addQuery('email', recipientsArr[i]);
+        userGR.query();
+
+        if (userGR.next()) {
+            recipientSysIDArr.push(userGR.sys_id);
+        }
+
+    }
+    gs.info('[Get Delegates from Recipients] recipientsArr: ' + recipientSysIDArr.toString());
+
+
+    var ccRecipients = [];
+
+
+
+    var adressee = new GlideRecord('sys_user');
+    var adresseeGroup = new GlideRecord('sys_user_group');
+
+    for (var to = 0; to < recipientSysIDArr.length; to++) {
+        if (adressee.get(recipientSysIDArr[to])) {
+            var usersDel = new global.AutobahnUtil();
+            var usersDelegates = usersDel.getDelegates(recipientSysIDArr[to]);
+            //gs.info(usersDelegates.length)
+            for (var i = 0; i < usersDelegates.length; i++) {
+                //gs.info('Delegate ' + usersDelegates[i]);
+                ccRecipients.push(usersDelegates[i])
+            }
+
+        } else if (adresseeGroup.get(recipientSysIDArr[to]) && (!adresseeGroup.email)) {
+            var usersDel1 = new global.AutobahnUtil();
+            var adrOfGroup = new global.AutobahnUtil();
+            var adresseesOfGroup = adrOfGroup.getGroupMembers(recipientSysIDArr[to]);
+            //gs.info(adresseesOfGroup.length)
+            for (var i = 0; i < adresseesOfGroup.length; i++) {
+                var groupsMemDelegates = usersDel1.getDelegates(adresseesOfGroup[i]);
+                //gs.info(groupsMemDelegates.length + ' ::: ' + adresseesOfGroup[i])
+                for (var o = 0; o < groupsMemDelegates.length; o++) {
+                    //gs.info('delegate of ' + adresseesOfGroup[i] +": " + groupsMemDelegates[o])
+                    ccRecipients.push(groupsMemDelegates[o])
+                }
+            }
+
+        }
+
+    }
+
+    gs.info('[Get Delegates from Recipients] cc recipients:  ' + ccRecipients.toString());
+
+	// remove directs from ccrecipients
+    var ccNewRecArr = ccRecipients.filter(function(item) {
+		//gs.info('[Get Delegates from Recipients] Entferne ' + item + ' from ' + recipientsArr.includes(item.toString()));
+        return !recipientsArr.includes(item.toString()) ;
+    });
+
+	// remove duplicates from cc new recipients
+	var ccNewRecEndArr = ccNewRecArr.filter(function(item, pos) {
+		return ccNewRecArr.indexOf(item) === pos;
+	});
+
+	gs.info('[Get Delegates from Recipients] cc new recipients:  ' + ccNewRecEndArr.toString());
+
+    //recipients = recipients + ',' + ccRecipients.toString();
+	recipients = recipients + ',' + ccNewRecEndArr.toString();
+    current.recipients = recipients;
+    //current.copied = ccRecipients.toString();
+	current.copied = ccNewRecEndArr.toString();
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>J100246</sys_created_by>
+        <sys_created_on>2024-10-10 12:00:44</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>cafa5bdfc3c51a104de0d0cf050131ae</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>Get Delegates from Recipients</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_cafa5bdfc3c51a104de0d0cf050131ae</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2024-10-11 12:32:16</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=cafa5bdfc3c51a104de0d0cf050131ae"/>
+</record_update>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.ProblemResponsibleUserQuery</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>ProblemResponsibleUserQuery</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var ProblemResponsibleUserQuery = Class.create();
+
+ProblemResponsibleUserQuery.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    getGroupUsers: function() {
+        var id = [];
+
+        var gr = new GlideRecord('sys_user_grmember');
+        gr.addActiveQuery();
+        gr.addEncodedQuery('group.type=ead2d145c33d82504de0d0cf05013144^EQ');
+        gr.query();
+
+        while (gr.next()) {
+            var userId = gr.getValue("user");
+
+            if (this.isUserActive(userId) && this.hasITILRole(userId)) {
+                id.push(userId);
+            }
+        }
+
+        return 'sys_idIN' + id.join(',');
+    },
+
+    isUserActive: function(userId) {
+        var user = new GlideRecord('sys_user');
+        if (user.get(userId)) {
+            return user.active;
+        }
+        return false;
+    },
+
+    hasITILRole: function(userId) {
+        var userRoles = new GlideRecord('sys_user_has_role');
+        userRoles.addQuery('user', userId);
+        userRoles.addQuery('role.name', 'itil');
+        userRoles.query();
+
+        return userRoles.hasNext();
+    },
+
+    type: 'ProblemResponsibleUserQuery'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-04-24 13:45:33</sys_created_on>
+        <sys_id>fe2d1101c37d82504de0d0cf05013167</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>ProblemResponsibleUserQuery</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_fe2d1101c37d82504de0d0cf05013167</sys_update_name>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-04-25 12:33:26</sys_updated_on>
+    </sys_script_include>
+</record_update>

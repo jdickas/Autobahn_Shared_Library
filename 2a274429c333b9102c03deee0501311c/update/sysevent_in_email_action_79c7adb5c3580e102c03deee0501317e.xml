@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_in_email_action">
+    <sysevent_in_email_action action="INSERT_OR_UPDATE">
+        <action>record_action</action>
+        <active>true</active>
+        <assignment_operator/>
+        <condition_script/>
+        <description>This inbound email action behaves the same as Update Incident, but additionally will reopen a closed incident if the email subject contains "please reopen". In reopening the incident, the incident state will be set to "2" and "The caller did not feel that this issue was resolved" will be added to the incident as a work note.</description>
+        <event_name>email.read</event_name>
+        <filter_condition/>
+        <from/>
+        <name>Update Incident (BP)</name>
+        <order>100</order>
+        <reply_email/>
+        <required_roles/>
+        <script><![CDATA[gs.include('validators');
+
+if (current.getTableName() == "incident") {
+	
+	var gr = current;
+	
+	if (email.subject.toLowerCase().indexOf("wiederöffnen") >= 0)
+		gr = new Incident().reopen(gr, email) || gr;
+	
+	gr.comments = "reply from: " + email.origemail + "\n\n" + email.body_text;
+	
+	if (gs.hasRole("itil")) {
+		if (email.body.assign != undefined)
+			gr.assigned_to = email.body.assign;
+		
+		if (email.body.priority != undefined && isNumeric(email.body.priority))
+			gr.priority = email.body.priority;
+	}
+	
+	if (gr.canWrite())
+		gr.update();
+}]]></script>
+        <stop_processing>false</stop_processing>
+        <sys_class_name>sysevent_in_email_action</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-02-12 08:46:10</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>79c7adb5c3580e102c03deee0501317e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Update Incident (BP)</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_in_email_action_79c7adb5c3580e102c03deee0501317e</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-02-12 08:46:10</sys_updated_on>
+        <table>incident</table>
+        <template/>
+        <type>reply</type>
+    </sysevent_in_email_action>
+</record_update>

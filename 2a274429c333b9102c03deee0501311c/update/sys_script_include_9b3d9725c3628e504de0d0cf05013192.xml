@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.InteractionCiServiceFilter</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>InteractionCiServiceFilter</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var InteractionCiServiceFilter = Class.create();
+InteractionCiServiceFilter.prototype = {
+    initialize: function() {},
+
+    collectSOffering: function(current) {
+        var serOffArray = [];
+        var sOffer = current.u_business_service.getValue();
+        //return nothing if the business_service value is empty
+        if (JSUtil.nil(sOffer)) {
+            if (JSUtil.nil(current.u_it_servicecluster.getValue())) {
+                return;
+            }
+        } else {
+            var query = 'operational_status=1^parent=' + current.u_business_service.getValue();
+            var selectSOffer = new GlideRecord('service_offering');
+            selectSOffer.addEncodedQuery(query);
+            selectSOffer.query();
+            if (selectSOffer.hasNext()) {
+                while (selectSOffer.next()) {
+                    serOffArray.push(selectSOffer.getUniqueValue());
+                }
+            }
+        }
+        // return offering where service is the parent we use IN for lists        
+        return 'sys_idIN' + serOffArray.join(',');
+    },
+
+
+    collectSOWithoutCategory: function(current) {
+        var serOffArray = [];
+        var bService = current.u_business_service.getValue();
+        //return nothing if the business_service value is empty
+        if (JSUtil.nil(bService)) {
+            if (JSUtil.nil(current.u_it_servicecluster.getValue())) {
+                //return;
+                var queryX = 'install_status!=100^used_for!=Catalog Only^operational_status=1';
+                var selectSOfferX = new GlideRecord('service_offering');
+                selectSOfferX.addEncodedQuery(queryX);
+                selectSOfferX.query();
+                if (selectSOfferX.hasNext()) {
+                    while (selectSOfferX.next()) {
+                        serOffArray.push(selectSOfferX.getUniqueValue());
+                    }
+                }
+            }
+        } else {
+            var query = 'install_status!=100^used_for!=Catalog Only^operational_status=1^parent=' + current.u_business_service.getValue();
+            var selectSOffer = new GlideRecord('service_offering');
+            selectSOffer.addEncodedQuery(query);
+            selectSOffer.query();
+            if (selectSOffer.hasNext()) {
+                while (selectSOffer.next()) {
+                    serOffArray.push(selectSOffer.getUniqueValue());
+                }
+            }
+        }
+        // return offering where srvice is the parent we use IN for lists        
+        return 'sys_idIN' + serOffArray.join(',');
+    },
+
+
+    collectBusinessService: function(current) {
+        var serArray = [];
+        var sgp = current.u_it_servicegroup.getValue();
+        //return nothing if the u_it_servicegroup value is empty
+        if (JSUtil.nil(sgp)) {
+            //bypass
+        } else {
+            var query = 'parent=' + current.u_it_servicegroup.getValue();
+            var selectSer = new GlideRecord('cmdb_ci_service');
+            selectSer.addEncodedQuery(query);
+            selectSer.query();
+            if (selectSer.hasNext()) {
+                while (selectSer.next()) {
+                    serArray.push(selectSer.getUniqueValue());
+                }
+            }
+        }
+        // return services where servicegroup is the parent we use IN for lists
+        return 'sys_idIN' + serArray.join(',');
+    },
+
+
+    type: 'InteractionCiServiceFilter'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-06-02 19:14:32</sys_created_on>
+        <sys_id>9b3d9725c3628e504de0d0cf05013192</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>InteractionCiServiceFilter</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_9b3d9725c3628e504de0d0cf05013192</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2025-03-19 08:14:40</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>9b3d9725c3628e504de0d0cf05013192</id>
+        <sys_created_by>J100246</sys_created_by>
+        <sys_created_on>2025-03-19 08:14:40</sys_created_on>
+        <sys_id>9a16eeb6c35c26104de0d0cf05013136</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2025-03-19 08:14:40</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

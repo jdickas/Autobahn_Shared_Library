@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <format>png</format>
+        <height>3</height>
+        <image>4c4e3f68c3881a104de0d0cf050131e7</image>
+        <name>ab_notifications/hr-line.png</name>
+        <size_bytes>956</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:26:33</sys_created_on>
+        <sys_id>532e3f68c3881a104de0d0cf05013154</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>ab_notifications/hr-line.png</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>db_image_532e3f68c3881a104de0d0cf05013154</sys_update_name>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-13 08:26:37</sys_updated_on>
+        <thumbnail/>
+        <width>655</width>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#e6eef7</average_image_color>
+        <chunk_size_bytes>700000</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>image</file_name>
+        <hash>f6650199048f4b819286149dc264da305adf2e7d2aa9277ea277792d6592677d</hash>
+        <image_height>3</image_height>
+        <image_width>655</image_width>
+        <size_bytes>956</size_bytes>
+        <size_compressed>615</size_compressed>
+        <state>available</state>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:26:37</sys_created_on>
+        <sys_id>4c4e3f68c3881a104de0d0cf050131e7</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-13 08:26:37</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>532e3f68c3881a104de0d0cf05013154</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAA/w==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="4c4e3f68c3881a104de0d0cf050131e7">4c4e3f68c3881a104de0d0cf050131e7</sys_attachment>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:26:37</sys_created_on>
+        <sys_id>8c4e3f68c3881a104de0d0cf050131e7</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>fVO/b9NAFHbK0lbqgJhASJxcfkqN7+z8ILZiqiROaCQcRWmkZuzFviRWap85X4gTqRKwICYm/gAWtiIKIwNdGZFg4W9A6s4C57QJCCm9wX7v6fvefffuu5fNxsON9WvrkiRt1HesliStvBLxpdUV8T28wd6K31Ve7fBd2uNjzIhUcmmXgLqP+6RFsDt5/IUUBeG21+7wjv3IcKiv4ASjxH4oJau4HYfYGRIOuqTvBaZ8+umzDDzXlPdyNrLDChl4O1NGdqeNtjMdOrorbz8AxdgQDXzCMYj9gyAyYlOe9TVEnJShDGYQPjTlM1EduwkqlBGgK2raQUgD93UF53E+o+cLeAtoSMtClIEon1ZVI6cZKAfOlyw2ZG7PaFm18+1EZsoDzkMDwvF4rIwzCmV9qOq6DpEGNS0tEOloEnAcp4Noc97BIpHDvJB7NABJjrt0xE1Znp/CDxdtg+h8UmJmMMYhVBUE/wHa9sVQ31+gI94ivYvRUXsSEtgiER0xR9xdbzMhh0aFEcwpa1N6MB9kc0A5jQY0BFpO0cHdPS9w6Ti6NyPYtlEPIo4Dh9QtUxYVxfNcI48y+VpOtbJZq6yq1Vo5i8rlQqaCMrVCxdKsOdeizsgnAZ9z3b/c6lJuYoczNmHeE+LWGPXB7MyGt1xLebmWM667XEtlKRcKMfC/m56XhH2ScGFdkSzMTwLheCasfbR2RRHPYqtuldrxj5/f36QktHry/vj3qdU9vv6sdPPOt+yHXynpxeGadHKUevr68r70Ea58Ld5ipeQ91asN6115//kfnD8K5bwDAAA=</data>
+        <length>808</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="4c4e3f68c3881a104de0d0cf050131e7">4c4e3f68c3881a104de0d0cf050131e7</sys_attachment>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-13 08:26:37</sys_created_on>
+        <sys_id>004e3f68c3881a104de0d0cf050131e8</sys_id>
+    </sys_attachment_doc>
+</record_update>

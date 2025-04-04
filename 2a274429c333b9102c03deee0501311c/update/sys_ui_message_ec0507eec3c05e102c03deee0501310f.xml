@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>notify.Subject.Problem.Closed.ToPrbCandidateCaller</key>
+        <language>de</language>
+        <message>{0} - wurde geschlossen - {1}</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-08-19 09:24:23</sys_created_on>
+        <sys_id>ec0507eec3c05e102c03deee0501310f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>notify.Subject.Problem.Closed.ToPrbCandidateCaller</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_ec0507eec3c05e102c03deee0501310f</sys_update_name>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-08-19 09:24:41</sys_updated_on>
+    </sys_ui_message>
+</record_update>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_in_email_action">
+    <sysevent_in_email_action action="INSERT_OR_UPDATE">
+        <action>record_action</action>
+        <active>true</active>
+        <assignment_operator/>
+        <condition_script/>
+        <description>This inbound email action is triggered when an email is sent to ServiceNow and:&#13;
+&#13;
+1. The email is a reply.&#13;
+2. The email being replied to was sent by ServiceNow due to creation or update of an Approval Request.&#13;
+&#13;
+This inbound email action can update the state field of an Approval Request, if the subject of the email contains either "approve" or "reject", or if the state is set within the body of the email.&#13;
+&#13;
+In addition to being able to explicitly set the value of the state field, the whole email is added to the Approval Request as a comment.&#13;
+&#13;
+Example reply email: this reply will update comments for the Approval Request with "This seems fine.", and set the state to "approved". &#13;
+&#13;
+-----&#13;
+&#13;
+From: 	Fred Luddy &lt;fred.luddy@example.com&gt;&#13;
+Subject: 	Re: Approval request has been assigned to you&#13;
+Date: 	June 11, 2013 3:10:54 PM PDT&#13;
+To: 	        ServiceNow&#13;
+&#13;
+This seems fine.&#13;
+&#13;
+state: approved&#13;
+&#13;
+On Jun 11, 2013, at 3:08 PM, IT Service Desk wrote:&#13;
+&#13;
+Ref:MSG0000107&#13;
+&#13;
+----- </description>
+        <event_name>email.read</event_name>
+        <filter_condition/>
+        <from/>
+        <name>Update Approval Request-change</name>
+        <order>100</order>
+        <reply_email/>
+        <required_roles/>
+        <script><![CDATA[/*global current, email, gs, GlideController, GlideRecord*/
+/*eslint-disable eqeqeq*/
+processApprovalEmail();
+
+function processApprovalEmail() {
+	"use strict";
+	var errorMsg = "";
+	var msgArray = [];
+
+	if (current.getTableName() != "sysapproval_approver")
+		return;
+
+	var displayValue = getApprovalDisplayValue(current);
+
+	if (!validUser()) {
+		gs.log(getFailurePreamble() + "Sender email does not match approval assignee.");
+		msgArray.push(displayValue);
+		msgArray.push(current.approver.getDisplayValue());
+		msgArray.push(current.approver.email);
+		errorMsg = gs.getMessage("approvalInvalidUser", msgArray);
+		createEmailEvent(errorMsg);
+		return;
+	}
+
+	if (current.state == 'cancelled') {
+		gs.log(getFailurePreamble() + "The approval has been canceled.");
+		msgArray.push(displayValue);
+		errorMsg = gs.getMessage("approvalCancelled", msgArray);
+		createEmailEvent(errorMsg);
+		return;
+	}
+
+	//Added for 'No Longer Required' approval state
+	if (current.state == 'not_required') {
+		gs.log(getFailurePreamble() + "The approval is no longer required.");
+		msgArray.push(displayValue);
+		errorMsg = gs.getMessage("approvalNotRequired", msgArray);
+		createEmailEvent(errorMsg);
+		return;
+	}
+
+	if (email.body.state != undefined)
+		current.state = email.body.state;
+
+	if (email.subject.indexOf("approve") >= 0)
+		current.state = "approved";
+
+	if (email.subject.indexOf("reject") >= 0)
+		current.state = "rejected";
+
+	if (current.state != "approved" && current.state != "rejected") {
+		gs.log(getFailurePreamble() + "The subject is malformed. The approver probably did not click the approve or reject button on the email.");
+		msgArray.push(displayValue);
+		errorMsg = gs.getMessage("approvalFailed", msgArray);
+		createEmailEvent(errorMsg);
+		return;
+	}
+
+	current.comments = "reply from: " + email.from + "\n\n" + email.body_text;
+	var controller = new GlideController();
+	controller.putGlobal("approvalSource", "email");
+	current.update();
+	controller.removeGlobal("approvalSource");
+
+	function validUser() {
+		return new ApprovalDelegationUtil().isMyApproval(current);
+	}
+
+	function createEmailEvent(msg) {
+		gs.eventQueue("approval.email.errorMsg", current, email.from, msg);
+	}
+
+	function getFailurePreamble() {
+		return 'Approval email from ' + email.from + ' for task "' + displayValue + '" assigned to "' + current.approver.getDisplayValue()
+				+ '" failed because: ';
+	}
+
+	function getApprovalDisplayValue(approval) {
+		if (!gs.nil(approval.sysapproval))
+			return approval.getDisplayValue();
+		else {
+			var target = new GlideRecord(approval.source_table);
+			if (target.get(approval.document_id))
+				return target.getDisplayValue();
+		}
+		gs.warn("Target for sysapproval_approver:" + approval.getUniqueValue() + " not found. Target=" + approval.source_table + ":" + approval.document_id);
+		return "Unknown";
+	}
+
+}
+]]></script>
+        <stop_processing>true</stop_processing>
+        <sys_class_name>sysevent_in_email_action</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-02-15 17:44:37</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>66cf3abac3d042502c03deee050131e4</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Update Approval Request-change</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_in_email_action_66cf3abac3d042502c03deee050131e4</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-02-15 17:44:48</sys_updated_on>
+        <table>sysapproval_approver</table>
+        <template/>
+        <type>reply</type>
+    </sysevent_in_email_action>
+</record_update>

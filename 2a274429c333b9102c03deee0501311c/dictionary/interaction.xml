@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" db_object_id="73a6d9b60d2512104f349799ccc97368" label="Interaction" max_length="40" name="interaction" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Phone Number" max_length="40" name="u_phone_number" type="string"/>
+    </element>
+</database>

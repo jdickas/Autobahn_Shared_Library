@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="u_it_servicecategory" label="IT-Servicecategory" language="en" table="task">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>u_it_servicecategory</element>
+            <help/>
+            <hint/>
+            <label>IT-Servicecategory</label>
+            <language>en</language>
+            <name>task</name>
+            <plural>IT-Servicecategories</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>A100410</sys_created_by>
+            <sys_created_on>2024-03-12 08:52:21</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>IT-Servicecategory</sys_name>
+            <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+            <sys_update_name>sys_documentation_task_u_it_servicecategory_en</sys_update_name>
+            <sys_updated_by>A100410</sys_updated_by>
+            <sys_updated_on>2024-03-12 08:52:21</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

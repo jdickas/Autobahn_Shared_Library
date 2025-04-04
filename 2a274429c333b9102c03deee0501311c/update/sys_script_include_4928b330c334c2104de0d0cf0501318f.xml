@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.ServiceOfferingReferenceQualifier</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>ServiceOfferingReferenceQualifier</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var ServiceOfferingReferenceQualifier = Class.create();
+
+ServiceOfferingReferenceQualifier.prototype = {
+
+    initialize: function() {},
+
+    getReferenceQualifier: function(u_it_servicecategory) {
+        if (gs.nil(u_it_servicecategory)) {
+            var referenceQualifier = '';
+            
+            var cmdbCiService = new GlideRecord('cmdb_ci_service');
+            cmdbCiService.addActiveQuery();
+            cmdbCiService.addQuery('parent', u_it_servicecategory);
+            cmdbCiService.query();
+
+            while (cmdbCiService.next()) {
+                var serviceOffering = new GlideRecord('service_offering');
+                serviceOffering.addQuery('parent', cmdbCiService.sys_id); // Use sys_id of the cmdb_ci_service record
+                serviceOffering.query();
+
+                while (serviceOffering.next()) {
+                    if (referenceQualifier !== '') {
+                        referenceQualifier += '^OR'; // Adding OR condition for multiple service offerings
+                    }
+                    referenceQualifier += 'parent=' + serviceOffering.sys_id;
+                }
+            }
+
+            return referenceQualifier || 'parent=EMPTY'; // Return the generated referenceQualifier or a default one
+        }
+
+        return 'parent=EMPTY'; // or whatever default qualifier you want
+    },
+
+    type: 'ServiceOfferingReferenceQualifier'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-05 13:15:36</sys_created_on>
+        <sys_id>4928b330c334c2104de0d0cf0501318f</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>ServiceOfferingReferenceQualifier</sys_name>
+        <sys_package display_value="">4d424477c3f275102c03deee050131d7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_4928b330c334c2104de0d0cf0501318f</sys_update_name>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-05-07 12:21:50</sys_updated_on>
+    </sys_script_include>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18f5300c4ca0000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_4928b330c334c2104de0d0cf0501318f</metadata_update_name>
+        <previous_claim_app_version>1.11.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-05-07 12:21:50</sys_created_on>
+        <sys_id>b1480cd5c34e06102c03deee05013147</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-05-07 12:21:50</sys_updated_on>
+    </sys_claim>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18f5300c4c60000001</claim_timestamp>
+        <metadata_update_name>sys_script_include_4928b330c334c2104de0d0cf0501318f</metadata_update_name>
+        <previous_claim_app_version>1.12.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Core</previous_claim_name>
+        <previous_claim_scope>4d424477c3f275102c03deee050131d7</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-05-07 12:21:50</sys_created_on>
+        <sys_id>75480cd5c34e06102c03deee05013147</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-05-07 12:21:50</sys_updated_on>
+    </sys_claim>
+</record_update>

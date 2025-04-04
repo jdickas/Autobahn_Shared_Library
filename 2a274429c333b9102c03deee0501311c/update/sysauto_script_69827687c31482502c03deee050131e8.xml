@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 06:00:00</entered_time>
+        <max_drift/>
+        <name>ReqItem Remind Notification</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as/>
+        <run_as_tz>Europe/Berlin</run_as_tz>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period>1970-01-01 00:10:00</run_period>
+        <run_start>2024-02-16 11:25:08</run_start>
+        <run_time>1970-01-01 05:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[remindItemApprover();
+function remindItemApprover(){
+	var myLog = new Logger(Logger.INC, 'SchedScriptEx', 'ReqItem Remind Notification'); 
+	//var strquery = 'sysapprovalSTARTSWITHRITM^state=requested';
+	var strquery = 'sysapproval.numberSTARTSWITHRITM^state=requested^sysapproval.state=-5'; 
+	var basedOnschedule  = global.NotificationConst.APPROVAL_NOTIFICATION();
+	myLog.debug('basedOnschedule: ' + basedOnschedule);    
+    var arrDelays = [7,15,17,24]; // RESET to 7,15,17,24 after testing!
+    var nowDat = new GlideDate();
+    var grApprov = new GlideRecord('sysapproval_approver');
+    grApprov.addEncodedQuery(strquery);
+    grApprov.query();
+    while(grApprov.next()){
+        var creatDat = new GlideDateTime(grApprov.sys_created_on);
+        var createdDate = creatDat.getDate();
+        var schDelay = calcDurationSchedule(createdDate, nowDat, grApprov.approver, grApprov.sysapproval.getDisplayValue()); 
+		
+		var delay = parseInt(schDelay);
+		myLog.debug('delay: ' + delay);      
+        if((arrDelays.indexOf(delay) != -1)){
+			grApprov.u_index_duration = parseInt(delay);
+			grApprov.update(); 
+			//myLog.debug('new index duration: ' + grApprov.u_index_duration);
+		}	
+    }   
+}
+function calcDurationSchedule(start, end, user, ritm){   
+  var usr = new GlideRecord('sys_user');
+  usr.addQuery('sys_id', user);
+  usr.query();
+  if(usr.next()){
+    var sched = new GlideSchedule();
+	var notsched = new GlideRecord('cmn_schedule');
+	notsched.addQuery('sys_id', global.NotificationConst.APPROVAL_NOTIFICATION());
+	notsched.query();
+	if(notsched.next()){		
+		var schedId = notsched.sys_id.toString();
+		//gs.info('sched: ' + notsched.sys_id.toString());
+    	sched.load(schedId, usr.time_zone); //approval notification (24x5)   
+    	 var durat = sched.duration(start, end);
+		//gs.info('duration: ' + durat.getDurationValue());
+		var dayDuration = durat.getDayPart();
+     	return dayDuration;
+	}
+  } 
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-02-16 11:27:44</sys_created_on>
+        <sys_id>69827687c31482502c03deee050131e8</sys_id>
+        <sys_mod_count>58</sys_mod_count>
+        <sys_name>ReqItem Remind Notification</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysauto_script_69827687c31482502c03deee050131e8</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-04-15 09:55:42</sys_updated_on>
+        <time_zone>Europe/Berlin</time_zone>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

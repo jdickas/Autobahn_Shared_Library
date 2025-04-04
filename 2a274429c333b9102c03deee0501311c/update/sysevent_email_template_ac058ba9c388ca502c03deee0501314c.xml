@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_email_template">
+    <sysevent_email_template action="INSERT_OR_UPDATE">
+        <collection/>
+        <email_layout display_value="Global.Layout">45e5c7e9c388ca502c03deee050131c6</email_layout>
+        <message/>
+        <message_html><![CDATA[<p><em>${mail_script:mailScriptDelegate}</em></p>
+<p>${mail_script:notify.global.subject}</p>
+<table style="border-collapse: collapse; width: 100%; border-style: none; height: 455.891px;" border="1">
+<tbody>
+<tr style="height: 90.1719px;">
+<td style="width: 99.9521%; height: 90.1719px;" colspan="2">
+<p>${mail_script:notify.global.salutation}</p>
+<p>${mail_script:notify.global.BodyMessages}</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr style="height: 112.688px;">
+<td style="width: 99.9521%; height: 112.688px;" colspan="2">
+<table style="border-collapse: collapse; width: 100.177%; height: 61.5624px; border-style: none;" border="1">
+<tbody>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Aktueller Status:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${mail_script:notify.global.taskState}</td>
+</tr>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Kurzbeschreibung:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none; vertical-align: top;">${short_description}</td>
+</tr>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Beschreibung:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${description}</td>
+</tr>
+<tr style="height: 15.3906px;">
+<td style="width: 13.8219%; height: 15.3906px; border-style: none;"><strong>Ge&ouml;ffnet am:&nbsp;</strong></td>
+<td style="width: 86.1722%; height: 15.3906px; border-style: none;">${opened_at}</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="height: 91.9531px;">
+<td style="width: 99.9521%; height: 91.9531px;" colspan="2">
+<table style="border-collapse: collapse; width: 100.078%; border-style: none;" border="1">
+<tbody>
+<tr>
+<td style="width: 98.585%; border-style: none;">
+<p>${mail_script:notify.incident.hint}</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="height: 84.5156px;">
+<td style="width: 99.9521%; height: 84.5156px;" colspan="2">
+<table style="border-collapse: collapse; width: 100.172%; border-style: none; height: 40.7812px;" border="1">
+<tbody>
+<tr style="height: 15.3906px;">
+<td style="width: 99.997%; border-style: none; height: 15.3906px;">${mail_script:notify.global.contact}</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="height: 76.5625px;">
+<td style="width: 99.9521%; height: 76.5625px;" colspan="2">${mail_script:notify.global.footer}</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Incident.External.OldDesign</name>
+        <sms_alternate/>
+        <subject/>
+        <sys_class_name>sysevent_email_template</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-01-30 10:39:19</sys_created_on>
+        <sys_id>ac058ba9c388ca502c03deee0501314c</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>Incident.External.OldDesign</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_email_template_ac058ba9c388ca502c03deee0501314c</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-06-19 09:42:48</sys_updated_on>
+        <sys_version>2</sys_version>
+    </sysevent_email_template>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18d59fef5040000001</claim_timestamp>
+        <metadata_update_name>sysevent_email_template_ac058ba9c388ca502c03deee0501314c</metadata_update_name>
+        <previous_claim_app_version>1.5.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-01-30 10:51:37</sys_created_on>
+        <sys_id>38d7cb6dc388ca502c03deee050131ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-01-30 10:51:37</sys_updated_on>
+    </sys_claim>
+</record_update>

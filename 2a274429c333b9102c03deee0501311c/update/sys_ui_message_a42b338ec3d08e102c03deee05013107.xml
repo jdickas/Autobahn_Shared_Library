@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>notify.bodyMsg.SRItem.Completed</key>
+        <language>de</language>
+        <message>die Anforderung mit der Ticket-Nr. {0} wurde mit dem Status {1} abgeschlossen. {2}Lösung:{3} {4}</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-02-13 14:08:26</sys_created_on>
+        <sys_id>a42b338ec3d08e102c03deee05013107</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>notify.bodyMsg.SRItem.Completed</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_a42b338ec3d08e102c03deee05013107</sys_update_name>
+        <sys_updated_by>C100219</sys_updated_by>
+        <sys_updated_on>2024-09-04 11:31:56</sys_updated_on>
+    </sys_ui_message>
+</record_update>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>true</conditional>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <max_drift/>
+        <name>Update REQ with pending RITMs</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2024-04-28 17:09:35</run_start>
+        <run_time>1969-12-31 23:00:00</run_time>
+        <run_type>on_demand</run_type>
+        <script><![CDATA[var valueApproval = '';
+var valueReqState = '';
+
+var ritmsysId = 'a3419fa6c33982902c03deee05013161';
+//var ritmsysId = 'cdbd47a5c3f18e502c03deee050131d6';
+var reqSysId = '1f41dba6c33982902c03deee05013143';
+
+valueApproval = new global.ServiceRequestUtil().correctApprovalforREQ(ritmsysId, reqSysId);
+valueReqState = new global.ServiceRequestUtil().correctStateforREQ(ritmsysId, reqSysId);
+
+var reqOpen = false;
+reqOpen = new global.ServiceRequestUtil().areOtherRITMSactive(ritmsysId, reqSysId);
+
+if (reqOpen) {
+	new global.ServiceRequestUtil().keepOpenServiceRequests(ritmsysId, valueApproval, valueReqState);
+}
+
+gs.info('Req muss aktiv bleiben = ' + reqOpen);]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>J100246</sys_created_by>
+        <sys_created_on>2024-04-28 17:11:47</sys_created_on>
+        <sys_id>c9d33216c3bdc6504de0d0cf0501319f</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Update REQ with pending RITMs</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysauto_script_c9d33216c3bdc6504de0d0cf0501319f</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2024-04-29 13:57:59</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

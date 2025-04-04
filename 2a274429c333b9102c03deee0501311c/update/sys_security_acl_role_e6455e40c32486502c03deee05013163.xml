@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-02-19 11:51:20</sys_created_on>
+        <sys_id>e6455e40c32486502c03deee05013163</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>u_autobahn_category_mapping.public</sys_name>
+        <sys_package display_value="">4d424477c3f275102c03deee050131d7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_security_acl display_value="u_autobahn_category_mapping">e2455e40c32486502c03deee05013160</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_e6455e40c32486502c03deee05013163</sys_update_name>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-03-06 09:38:32</sys_updated_on>
+        <sys_user_role display_value="public" name="public">b0593b350a0a0aa7001d689e4542dc28</sys_user_role>
+    </sys_security_acl_role>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18e1320fa5d0000001</claim_timestamp>
+        <metadata_update_name>sys_security_acl_role_e6455e40c32486502c03deee05013163</metadata_update_name>
+        <previous_claim_app_version>1.10.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-06 09:38:32</sys_created_on>
+        <sys_id>515098d9c33406104de0d0cf0501317d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-03-06 09:38:32</sys_updated_on>
+    </sys_claim>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>18e1320fa5a0000001</claim_timestamp>
+        <metadata_update_name>sys_security_acl_role_e6455e40c32486502c03deee05013163</metadata_update_name>
+        <previous_claim_app_version>1.10.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Core</previous_claim_name>
+        <previous_claim_scope>4d424477c3f275102c03deee050131d7</previous_claim_scope>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-06 09:38:32</sys_created_on>
+        <sys_id>155098d9c33406104de0d0cf0501317d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-03-06 09:38:32</sys_updated_on>
+    </sys_claim>
+</record_update>

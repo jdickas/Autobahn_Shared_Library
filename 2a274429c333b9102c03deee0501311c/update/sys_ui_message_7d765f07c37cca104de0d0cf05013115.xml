@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code>$event.stopPropagation();c.openModalReopen()</code>
+        <commented_message/>
+        <key>Reopen.</key>
+        <language>de</language>
+        <message>Wiedereröffnen</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>A100410</sys_created_by>
+        <sys_created_on>2024-03-12 10:33:46</sys_created_on>
+        <sys_id>7d765f07c37cca104de0d0cf05013115</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Reopen.</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_7d765f07c37cca104de0d0cf05013115</sys_update_name>
+        <sys_updated_by>A100410</sys_updated_by>
+        <sys_updated_on>2024-03-12 10:56:36</sys_updated_on>
+    </sys_ui_message>
+</record_update>

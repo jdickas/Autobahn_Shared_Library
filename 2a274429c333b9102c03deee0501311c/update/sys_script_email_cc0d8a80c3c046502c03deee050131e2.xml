@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>notify.global.subject</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+
+    var notificationId = email_action.sys_id;
+    var EmailSubject;
+    var util = new I18nUtils();
+    util.setLanguage('de');
+    var subjectarray = [];
+
+    if (notificationId == global.NotificationConst.NOTI_INCIDENT_CREATED()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Created.ToCaller', subjectarray);
+
+
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_COMMENTEDTOGROUPASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Commented.ToGroup&Assignee', subjectarray);
+        //email.setSubject(EmailSubject);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_COMMENTEDTOCALLER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Commented.ToCaller', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_ASSIGNEDTOGROUP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Assigned.ToGroup', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_PENDINGTIMEREXPIRETOGROUPASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.PendingTimerExpire.ToGroup&Assignee', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_REOPENEDTOCALLER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Reopened.ToCaller', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_REOPENEDTOGROUP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Reopened.ToGroup', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_RESOLVEDTOCALLER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Resolved.ToCaller', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_UPDATETOWATCHLIST()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.Update.ToWatchlist', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_3_STRIKE_1TOCALLER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.3-Strike-1.ToCaller', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_3_STRIKE_2TOCALLER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Incident.3-Strike-2.ToCaller', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_STORY_ASSIGNEDTOGROUP()) {
+        //subjectarray.push(current.sprint.getDisplayValue());
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.theme.getDisplayValue());
+        EmailSubject = gs.getMessage('notify.Subject.Story.Assigned.ToGroup', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_STORY_ASSIGNEDTOTESTER()) {
+        //subjectarray.push(current.sprint.getDisplayValue());
+        subjectarray.push(current.number);
+        subjectarray.push(current.theme.getDisplayValue());
+        EmailSubject = gs.getMessage('notify.Subject.Story.Assigned.ToTester', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_ASSIGNED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Assigned.ToAssigneeSAPERP', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_INCIDENT_UPDATED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Updated.ToAssigneeSAPERP', subjectarray);
+    }
+
+    //Problem Subjects configuration begins here
+    else if (notificationId == global.NotificationConst.NOTI_PROBLEM_ASSIGNEDTOGROUP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.Assigned.ToGroup', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_UPDATEDTOWATCHLIST()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.Updated.ToWatchlist', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_CREATEDTOPRBCANDIDATECALLER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.Created.ToPrbCandidateCaller', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_CREATEDTOGROUPS()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.Created.OutsideIncident', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_UPDATEDTOREVIEWERGROUP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.Updated.ToReviewerGroup', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_STATEUPDATEDTOREVIEWERGROUP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.StateUpdated.ToReviewerGroup', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_RESOLVEDTOPRBCANDIDATECALLER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.Resolved.ToPrbCandidateCaller', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_CLOSEDTOREVIEWERGROUP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Problem.Closed.ToPrbCandidateCaller', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_ASSIGNED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Assigned.ToAssigneeSAPERP', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PROBLEM_UPDATED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Updated.ToAssigneeSAPERP', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_PRBTASK_ASSIGNED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Assigned.ToAssigneeSAPERP', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_PRBTASK_UPDATED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Updated.ToAssigneeSAPERP', subjectarray);
+
+
+        //Problem Subjects configuration ends here
+        // Change Subject starts here
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_CREATED_NOTIFYREQUESTOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.Created.NotifyRequestor', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_APPROVALCREATED_APPROVER()) {
+        subjectarray.push(current.document_id.number);
+        subjectarray.push(current.document_id.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.ApprovalCreated.Approver', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_ASSIGNED_TOASSIGNMENTGRP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.Assigned.ToAssignmentGrp', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_APPROVED_TOASSIGNMENTGRP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.Approved.ToAssignmentGrp', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_CANCELLED_TOREQUESTER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.Cancelled.ToRequester', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_COMPLETE_TOREQUESTER()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.Complete.ToRequester', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_REJECTED_TOASSIGNEDTO()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.Rejected.ToAssignedto', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_UPDATE_TOWATCHLIST()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.Update.ToWatchlist', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_END_AUTOCLOSE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.End.Autoclose', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_END_REACHED()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Change.End.Reached', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_ASSIGNED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Assigned.ToAssigneeSAPERP', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHANGE_UPDATED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Updated.ToAssigneeSAPERP', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_ASSIGNED_TOASSIGNMNTGRP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.change_request.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.ChgTask.Assigned.ToAssignmntGrp', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_ASSIGNED_TOASSIGNEDTO()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.ChgTask.Assigned.ToAssignedto', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_READY_TOASSIGNMNTGRP()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.ChgTask.Ready.ToAssignmntGrp', subjectarray);
+
+    } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_ASSIGNED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Assigned.ToAssigneeSAPERP', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_CHGTASK_UPDATED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Updated.ToAssigneeSAPERP', subjectarray);
+
+        // Change and Change Task subject ends here
+
+        // SRM subjects begins here
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_CREATED_TOOPENEDBY()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.Created', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_CREATED_TOREQUESTEDFOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.Created', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_APPROVED_TOOPENEDBY()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SR_Item.Approved', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_APPROVED_TOREQUESTEDFOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SR_Item.Approved', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_AUTOREJECTED_TOREQUESTEDFOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.AutoRejected', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRTASK_ASSIGNED_TOASSIGNMENTGRP()) {
+        subjectarray.push(current.request_item.getDisplayValue());
+        subjectarray.push(current.number);
+        subjectarray.push(current.assignment_group.getDisplayValue());
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRTask.Assigned.ToAssignmentGrp', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRAPPROVAL_REQUESTED_TOAPPROVER()) {
+        subjectarray.push(current.sysapproval.getDisplayValue());
+        subjectarray.push(current.sysapproval.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRApproval.Requested.ToApprover', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRAPPROVAL_REMINDER_TOAPPROVER()) {
+        subjectarray.push(current.sysapproval.getDisplayValue());
+        subjectarray.push(current.sysapproval.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRApproval.Reminder.ToApprover', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRTASK_REMINDER_TOASSIGNEE()) {
+        subjectarray.push(current.request_item.getDisplayValue());
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRTask.Reminder', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRTASK_REMINDER_TOASSIGNMENTGRP()) {
+        subjectarray.push(current.request_item.getDisplayValue());
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRTask.Reminder', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_REJECTED_TOOPENEDBY()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.Rejected', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_REJECTED_TOREQUESTEDFOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.Rejected', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_COMPLETED_TOOPENEDBY()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.Completed', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_COMPLETED_TOREQUESTEDFOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.Completed', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRITEM_COMMENTED_TOREQUESTEDFOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+        EmailSubject = gs.getMessage('notify.Subject.SRItem.Commented.ToRequestedFor', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRTASK_COMMENTED_TOREQUESTEDFOR()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.cat_item.name);
+		subjectarray.push(current.parent.number);
+        EmailSubject = gs.getMessage('notify.Subject.SRTask.Commented.ToRequestedFor', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_SRTASK_ASSIGNED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Assigned.ToAssigneeSAPERP', subjectarray);
+    }  else if (notificationId == global.NotificationConst.NOTI_SRTASK_UPDATED_TOASSIGNEE()) {
+        subjectarray.push(current.number);
+        subjectarray.push(current.short_description);
+        EmailSubject = gs.getMessage('notify.Subject.Updated.ToAssigneeSAPERP', subjectarray);
+	}
+		// for STRY0010909
+		else if(notificationId==global.NotificationConst.NOTI_SRTASK_ONHOLD_AWAITINGCALLER_TOREQUESTEDFOR())
+		{
+			
+			subjectarray.push(current.request_item.number);
+			subjectarray.push(current.number);
+			subjectarray.push(current.request_item.cat_item.name);
+			EmailSubject=gs.getMessage('notifiy.Subject.OnHold.AwaitingCaller.ToRequestedFor',subjectarray);
+
+		}
+        //SRM subjects ends here
+
+        // Knowledge subjects begins here
+
+    else if (notificationId == global.NotificationConst.NOTI_KB_REJECTED_FOR_PUBLISH()) {
+        subjectarray.push(current.number);
+        EmailSubject = gs.getMessage('notify.Subject.KM.Rejected', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_KB_APPROVED_FOR_PUBLISH()) {
+        subjectarray.push(current.number);
+        EmailSubject = gs.getMessage('notify.Subject.KM.Approved', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_KB_ARTICLE_EXPIRY_WARNING()) {
+        subjectarray.push(current.number);
+        EmailSubject = gs.getMessage('notify.Subject.KM.ExpiryWarning', subjectarray);
+    } else if (notificationId == global.NotificationConst.NOTI_KB_APPROVAL_REQUESTED_TOAPPROVER()) {
+        subjectarray.push(current.document_id.number);
+        EmailSubject = gs.getMessage('notify.Subject.KMApproval.Requested.ToApprover', subjectarray);
+    }
+
+
+    // Knowledge subjects ends here
+    else {
+        EmailSubject = "Subject creation through Script in Progress";
+
+    }
+    email.setSubject(EmailSubject);
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-25 14:43:43</sys_created_on>
+        <sys_id>cc0d8a80c3c046502c03deee050131e2</sys_id>
+        <sys_mod_count>103</sys_mod_count>
+        <sys_name>notify.global.subject</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_email_cc0d8a80c3c046502c03deee050131e2</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-11-19 10:08:41</sys_updated_on>
+    </sys_script_email>
+</record_update>

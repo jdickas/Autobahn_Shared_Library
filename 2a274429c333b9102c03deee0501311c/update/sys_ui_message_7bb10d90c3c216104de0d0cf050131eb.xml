@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>notify.bodyMsg.SCTask.OnHold.AwaitingCaller.ToRequestedFor</key>
+        <language>de</language>
+        <message>für die Umsetzung Ihrer Anforderung, benötigen wir weitere Informationen von Ihnen.{0}&#13;
+Bitte antworten Sie direkt auf diese E-Mail.{1}Grund des Anhaltens:{2}{3}</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-11-19 10:10:59</sys_created_on>
+        <sys_id>7bb10d90c3c216104de0d0cf050131eb</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>notify.bodyMsg.SCTask.OnHold.AwaitingCaller.ToRequestedFor</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_ui_message_7bb10d90c3c216104de0d0cf050131eb</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-11-21 11:07:40</sys_updated_on>
+    </sys_ui_message>
+    <sys_claim action="INSERT_OR_UPDATE">
+        <claim_owner_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</claim_owner_scope>
+        <claim_timestamp>19343e7951b0000001</claim_timestamp>
+        <metadata_update_name>sys_ui_message_7bb10d90c3c216104de0d0cf050131eb</metadata_update_name>
+        <previous_claim_app_version>1.11.0</previous_claim_app_version>
+        <previous_claim_name>Autobahn Shared Library </previous_claim_name>
+        <previous_claim_scope>2a274429c333b9102c03deee0501311c</previous_claim_scope>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-11-19 10:11:10</sys_created_on>
+        <sys_id>baf185d0c3c216104de0d0cf05013132</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-11-19 10:11:10</sys_updated_on>
+    </sys_claim>
+</record_update>

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.ServiceRequestUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>ServiceRequestUtil</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var ServiceRequestUtil = Class.create();
+ServiceRequestUtil.prototype = {
+    initialize: function() {},
+
+    checkApprovalClosed: function(ritmSysid) {
+        var grapproval = new GlideRecord("sysapproval_approver");
+        var count = 0; // Move count outside the while loop
+        grapproval.addQuery("document_id", ritmSysid);
+        grapproval.query();
+
+        while (grapproval.next()) {
+            if ((grapproval.state == "approved") || (grapproval.state == "not_required")) {
+                count = 1;
+            }
+        }
+
+        return count;
+    },
+
+    checkCatalogTaskOnHold: function(ritmSysid) {
+        var grcatalogtask = new GlideRecord("sc_task");
+        grcatalogtask.addQuery("request_item", ritmSysid);
+        grcatalogtask.query();
+        var count = 0;
+        while (grcatalogtask.next()) {
+            if (grcatalogtask.state == 111) {
+                count = 1;
+            }
+
+
+        }
+        return count;
+    },
+
+    checkCatalogTaskClosed: function(ritmSysid) {
+        var grcatalogtask = new GlideRecord("sc_task");
+        grcatalogtask.addQuery("request_item", ritmSysid);
+        grcatalogtask.query();
+        var count = 0;
+        var countIncomplete = 0;
+        var countSkipped = 0;
+        var taskcount = grcatalogtask.getRowCount();
+        while (grcatalogtask.next()) {
+            if (grcatalogtask.state == 3) {
+                count = count + 1;
+            } else if (grcatalogtask.state == 4) {
+                countIncomplete = countIncomplete + 1;
+            } else if (grcatalogtask.state == 7) {
+                countSkipped = countSkipped + 1;
+            } else {
+                count = 0;
+            }
+        }
+        if (taskcount == count) {
+            var grRITM = new GlideRecord("sc_req_item");
+            grRITM.addQuery("sys_id", ritmSysid);
+            grRITM.query();
+            if (grRITM.next()) {
+                grRITM.state = 3;
+                grRITM.stage = 'completed';
+                grRITM.update();
+            }
+        } else {
+            var grcatalogtaskinactive = new GlideRecord("sc_task");
+            grcatalogtaskinactive.addQuery("request_item", ritmSysid);
+            grcatalogtaskinactive.addQuery("active", "false");
+            grcatalogtaskinactive.query();
+
+            var taskcountinactive = grcatalogtaskinactive.getRowCount();
+            if ((taskcountinactive == taskcount) && (countIncomplete > 0)) {
+                var grRITMrec = new GlideRecord("sc_req_item");
+                grRITMrec.addQuery("sys_id", ritmSysid);
+                grRITMrec.query();
+                if (grRITMrec.next()) {
+                    grRITMrec.state = 4;
+                    grRITMrec.stage = 'completed';
+                    grRITMrec.update();
+                }
+
+            } else if ((taskcountinactive == taskcount) && (countSkipped > 0)) {
+                var grRITMrec = new GlideRecord("sc_req_item");
+                grRITMrec.addQuery("sys_id", ritmSysid);
+                grRITMrec.query();
+                if (grRITMrec.next()) {
+                    grRITMrec.state = 7;
+                    grRITMrec.stage = 'completed';
+                    grRITMrec.update();
+                }
+            }
+        }
+
+
+    },
+
+    checkCatalogTaskClosedIncomplete: function(ritmSysid) {
+        var grcatalogtask = new GlideRecord("sc_task");
+        grcatalogtask.addQuery("request_item", ritmSysid);
+        grcatalogtask.query();
+        var count = 0;
+        while (grcatalogtask.next()) {
+            if (grcatalogtask.state == 4) {
+                count = 1;
+            }
+
+
+        }
+        return count;
+    },
+
+    checkCatalogTaskClosedSkipped: function(ritmSysid) {
+        var grcatalogtask = new GlideRecord("sc_task");
+        grcatalogtask.addQuery("request_item", ritmSysid);
+        grcatalogtask.query();
+        var count = 0;
+        while (grcatalogtask.next()) {
+            if (grcatalogtask.state == 7) {
+                count = 1;
+            }
+
+
+        }
+        return count;
+    },
+
+    setRITMOnHold: function(ritmSysid, holdreason) {
+        var grRitm = new GlideRecord("sc_req_item");
+        grRitm.addQuery("sys_id", ritmSysid);
+        grRitm.query();
+        while (grRitm.next()) {
+			/*
+            grRitm.state = "111";
+            grRitm.u_on_hold_reason = holdreason;
+            grRitm.update();
+            */
+
+            var grcatalogtask = new GlideRecord("sc_task");
+            //grcatalogtask.addQuery("request_item", ritmSysid);
+            //grcatalogtask.addQuery("state", "111");
+			grcatalogtask.addEncodedQuery('active=true^request_item=' + ritmSysid + '^state=111');
+			grcatalogtask.orderByDesc('u_pending_timer');
+            grcatalogtask.query();
+            var taskcount = grcatalogtask.getRowCount();
+            if (taskcount == 0) {
+                grRitm.state = "111";
+				grRitm.u_on_hold_reason = holdreason;
+                grRitm.update();
+            }
+			if (taskcount > 0) {
+				if (grcatalogtask.next()) {
+					grRitm.state = grcatalogtask.state;
+					grRitm.u_on_hold_reason = grcatalogtask.u_on_hold_reason;
+					grRitm.update();
+				}
+			}
+
+        }
+    },
+
+    setRITMOnClosedIncomplete: function(ritmSysid) {
+        var grRitm = new GlideRecord("sc_req_item");
+        grRitm.addQuery("sys_id", ritmSysid);
+        grRitm.query();
+        while (grRitm.next()) {
+            grRitm.state = "4";
+            grRITM.stage = 'completed';
+            grRitm.update();
+        }
+    },
+
+    setRITMOnClosedSkipped: function(ritmSysid) {
+        var grRitm = new GlideRecord("sc_req_item");
+        grRitm.addQuery("sys_id", ritmSysid);
+        grRitm.query();
+        while (grRitm.next()) {
+            grRitm.state = "7";
+            grRITM.stage = 'completed';
+            grRitm.update();
+        }
+    },
+
+    closeCatalogTasks: function(ritmSysid) {
+        var loggedInUsersGroups = global.GroupUtil.getLoggedInUsersGroups();
+        var grRitm = new GlideRecord("sc_task");
+        grRitm.addQuery("request_item", ritmSysid);
+        grRitm.addEncodedQuery('active=true^stateIN-5,1,111,2');
+        grRitm.query();
+        while (grRitm.next()) {
+            grRitm.state = "8";
+            grRitm.u_attention_required = false;
+            if (grRitm.assigned_to == '') {
+                grRitm.assigned_to = gs.getUserID();
+            }
+            if (grRitm.assignment_group == '') {
+                grRitm.assignment_group = loggedInUsersGroups[0];
+            }
+            grRitm.update();
+        }
+    },
+
+    closeServiceRequests: function(ritmSysid, reqApproval, reqRequestState) {
+
+        var myLog = new Logger(Logger.DEF, 'ServiceRequestUtil', 'closeServiceRequests');
+        myLog.debug('RITM = ' + ritmSysid);
+
+        var newState = reqRequestState;
+        var newApproval = reqApproval;
+        var newActive = false;
+
+        var RitmGR = new GlideRecord('sc_req_item');
+        RitmGR.get(ritmSysid);
+
+        var reqSysId = RitmGR.request;
+        var ReqGR = new GlideRecord('sc_request');
+        ReqGR.get(reqSysId);
+
+        myLog.debug(ReqGR.number + ': Active = ' + ReqGR.active);
+        myLog.debug(ReqGR.number + ': Approval = ' + ReqGR.approval);
+        myLog.debug(ReqGR.number + ': Request State = ' + ReqGR.request_state);
+        myLog.debug(ReqGR.number + ': New Value Active = ' + newActive);
+        myLog.debug(ReqGR.number + ': New Value Approval = ' + reqApproval);
+        myLog.debug(ReqGR.number + ': New Value Request State = ' + reqRequestState);
+		
+		var otherRITMSactive = new global.ServiceRequestUtil().areOtherRITMSactive(ritmSysid, reqSysId);
+
+        //if (!otherRITMSactive) {
+			myLog.debug(ReqGR.number + ': Others are not active!');
+
+            ReqGR.active = newActive;
+            ReqGR.approval = reqApproval;
+            ReqGR.request_state = reqRequestState;
+            ReqGR.setWorkflow(false);
+            ReqGR.update();
+            ReqGR.setWorkflow(true);
+
+        /*
+		} else {
+			myLog.debug(ReqGR.number + ': Others are active!');
+
+            //ReqGR.active = true;
+            ReqGR.approval = ReqGR.approval;
+            ReqGR.request_state = ReqGR.request_state;
+            ReqGR.setWorkflow(false);
+            ReqGR.update();
+            ReqGR.setWorkflow(true);			
+		}
+		*/
+
+    },
+
+    keepOpenServiceRequests: function(ritmSysid, reqApproval, reqRequestState) {
+
+        var myLog = new Logger(Logger.DEF, 'ServiceRequestUtil', 'keepOpenServiceRequests');
+        myLog.debug('RITM = ' + ritmSysid);
+
+        var newState = reqRequestState;
+        var newApproval = reqApproval;
+        var newActive = true;
+
+        var RitmGR = new GlideRecord('sc_req_item');
+        RitmGR.get(ritmSysid);
+
+        var reqSysId = RitmGR.request;
+        var ReqGR = new GlideRecord('sc_request');
+        ReqGR.get(reqSysId);
+
+        myLog.debug(ReqGR.number + ': Active = ' + ReqGR.active);
+        myLog.debug(ReqGR.number + ': Approval = ' + ReqGR.approval);
+        myLog.debug(ReqGR.number + ': Request State = ' + ReqGR.request_state);
+        myLog.debug(ReqGR.number + ': New Value Active = ' + newActive);
+        myLog.debug(ReqGR.number + ': New Value Approval = ' + reqApproval);
+        myLog.debug(ReqGR.number + ': New Value Request State = ' + reqRequestState);
+		
+		var otherRITMSactive = new global.ServiceRequestUtil().areOtherRITMSactive(ritmSysid, reqSysId);
+
+        //if (!otherRITMSactive) {
+			myLog.debug(ReqGR.number + ': Others are active!');
+
+            ReqGR.active = newActive;
+            ReqGR.approval = reqApproval;
+            ReqGR.request_state = reqRequestState;
+            ReqGR.setWorkflow(false);
+            ReqGR.update();
+            ReqGR.setWorkflow(true);
+
+        /*
+		} else {
+			myLog.debug(ReqGR.number + ': Others are active!');
+
+            //ReqGR.active = true;
+            ReqGR.approval = ReqGR.approval;
+            ReqGR.request_state = ReqGR.request_state;
+            ReqGR.setWorkflow(false);
+            ReqGR.update();
+            ReqGR.setWorkflow(true);			
+		}
+		*/
+
+    },	
+
+    closeApprovals: function(ritmSysid) {
+        var grRitm = new GlideRecord("sysapproval_approver");
+        grRitm.addQuery("sysapproval", ritmSysid);
+        grRitm.query();
+        while (grRitm.next()) {
+            if ((grRitm.state != 'approved') && (grRitm.state != 'rejected') && (grRitm.state != 'cancelled')) {
+                grRitm.state = "not_required";
+                //gs.info('sc_task Number: ' + grRitm.approver.name + ' to update');
+            }
+            grRitm.update();
+            //gs.info('sc_task Number: ' + grRitm.approver.name);
+        }
+    },
+
+    closeGroupApprovals: function(ritmSysid) {
+        var grRitm = new GlideRecord("sysapproval_group");
+        grRitm.addQuery("parent", ritmSysid);
+        grRitm.query();
+        while (grRitm.next()) {
+            if ((grRitm.approval != 'approved') && (grRitm.approval != 'rejected') && (grRitm.approval != 'cancelled')) {
+                grRitm.approval = "not_required";
+                //gs.info('sc_task Number: ' + grRitm.number + ' to update');
+            }
+            grRitm.update();
+            //gs.info('sc_task Number: ' + grRitm.number);
+        }
+    },
+
+    catalogTaskonHoldChangesWIP: function(ritmSysid) {
+        var grRitm = new GlideRecord("sc_req_item");
+        grRitm.addQuery("sys_id", ritmSysid);
+        grRitm.query();
+        while (grRitm.next()) {
+            var grcatalogtask = new GlideRecord("sc_task");
+            //grcatalogtask.addQuery("request_item", ritmSysid);
+            //grcatalogtask.addQuery("state", "111");
+			grcatalogtask.addEncodedQuery('active=true^request_item=' + ritmSysid + '^state=111');
+			grcatalogtask.orderByDesc('u_pending_timer');
+            grcatalogtask.query();
+            var taskcount = grcatalogtask.getRowCount();
+            if (taskcount == 0) {
+                grRitm.state = "2";
+				grRitm.u_on_hold_reason = '';
+                grRitm.update();
+            }
+			if (taskcount > 0) {
+				if (grcatalogtask.next()) {
+					grRitm.state = grcatalogtask.state;
+					grRitm.u_on_hold_reason = grcatalogtask.u_on_hold_reason;
+					grRitm.update();
+				}
+			}
+        }
+    },
+
+    catalogTaskSkippedOrClosedIncomplete: function(ritmSysid, scState) {
+        var grcatalogtask = new GlideRecord("sc_task");
+        grcatalogtask.addQuery("request_item", ritmSysid);
+        grcatalogtask.query();
+        var count = 0;
+        var taskcount = grcatalogtask.getRowCount();
+        while (grcatalogtask.next()) {
+            if (grcatalogtask.active == false) {
+                count = count + 1;
+            } else {
+                count = 0;
+            }
+        }
+
+        if (taskcount == count) {
+            var grRITM = new GlideRecord("sc_req_item");
+            grRITM.addQuery("sys_id", ritmSysid);
+            grRITM.query();
+            if (grRITM.next()) {
+                grRITM.state = scState;
+                grRITM.stage = 'completed';
+                grRITM.update();
+            }
+        }
+
+
+
+    },
+
+    areOtherRITMSactive: function(ritmSysId, parReq) {
+        var reqOpen = false;
+
+        var ritmGR = new GlideRecord('sc_req_item');
+        ritmGR.addQuery('request', parReq);
+        ritmGR.addEncodedQuery('sys_id!=' + ritmSysId);
+        ritmGR.addActiveQuery();
+        ritmGR.query();
+
+        if (ritmGR.next()) {
+
+            reqOpen = true;
+			gs.info('RITM: ' + ritmGR.number);
+			gs.info('RITM activ:' + ritmGR.active);
+			
+        }
+
+        return reqOpen;
+    },
+
+    correctStateforREQ: function(ritmSysId, parReq) {
+        var correctState = 'in_process';
+
+        var ritmGR = new GlideRecord('sc_req_item');
+        ritmGR.addQuery('request', parReq);
+        ritmGR.addEncodedQuery('sys_id!=' + ritmSysId);
+        ritmGR.addActiveQuery();
+        ritmGR.query();
+
+        while (ritmGR.next()) {
+
+            if (ritmGR.state == -5) {
+				correctState = 'requested';
+				return correctState;
+			}
+
+			gs.info('RITM: ' + ritmGR.number);
+			gs.info('RITM activ:' + ritmGR.active);
+			
+        }
+
+        return correctState;
+    },	
+
+    correctApprovalforREQ: function(ritmSysId, parReq) {
+        var correctApproval = 'approved';
+
+        var ritmGR = new GlideRecord('sc_req_item');
+        ritmGR.addQuery('request', parReq);
+        ritmGR.addEncodedQuery('sys_id!=' + ritmSysId);
+        ritmGR.addActiveQuery();
+        ritmGR.query();
+
+        while (ritmGR.next()) {
+
+            if (ritmGR.approval == 'requested') {
+				correctApproval = 'requested';
+				return correctApproval;
+			}
+			else if (ritmGR.approval == 'rejected') {
+				correctApproval = 'requested';
+			}
+			gs.info('RITM: ' + ritmGR.number);
+			gs.info('RITM activ:' + ritmGR.active);
+			
+        }
+
+        return correctApproval;
+    },	
+
+    type: 'ServiceRequestUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-02-27 18:50:50</sys_created_on>
+        <sys_id>5bd04d7ac36c42902c03deee050131f4</sys_id>
+        <sys_mod_count>79</sys_mod_count>
+        <sys_name>ServiceRequestUtil</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_5bd04d7ac36c42902c03deee050131f4</sys_update_name>
+        <sys_updated_by>J100246</sys_updated_by>
+        <sys_updated_on>2024-05-14 11:40:26</sys_updated_on>
+    </sys_script_include>
+</record_update>

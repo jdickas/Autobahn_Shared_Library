@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.MsgUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Utilities for sys_ui_messages</description>
+        <mobile_callable>false</mobile_callable>
+        <name>MsgUtil</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var MsgUtil = (function() {
+
+
+    /** SNDOC
+     * @name getMessageValue
+     * @description Search for entry in the Messages table
+     * @@param {String} [msgKey] - key of the entry to look for
+     * @param {String} [language] - language specification of the entry
+     * @return {String} - returns the message from the corresponding entry
+     */
+    function getMsg(msgKey, arrMsg) {
+        var msgRecord = new GlideRecord("sys_ui_message");
+        msgRecord.addQuery('key', msgKey);
+        msgRecord.addQuery('language', 'de');
+        msgRecord.query();
+        if (msgRecord.next()) {
+            var strMsg = gs.getMessage(msgKey, arrMsg);
+            return strMsg;
+            //return msgRecord.getValue('message');
+        } else {
+            return msgKey + ' not Found';
+        }
+    }
+
+    function getSalutationUser(user) {
+        if (user) {
+            var recName = user.name;
+            if (recName.getTableName() == 'sys_user_group') {
+                return (MsgUtil.getMsg('notify.global.Salutation.Group') + user.name + ',');
+            } else if (user == "TeamIT") {
+                return (MsgUtil.getMsg('notify.Problem.Salutation.TeamIT'));
+            } else if (user == "Reviewer") {
+                return (MsgUtil.getMsg('notify.Problem.Salutation.Reviewer'));
+            } else if (!user) {
+                return (MsgUtil.getMsg('notify.global.Salutation.Watchlist'));
+            } else if (user.includes('@')) { //
+                return (MsgUtil.getMsg('notify.global.Salutation.Watchlist'));
+            } else {
+
+                if (user.gender == "Female")
+                    return (MsgUtil.getMsg('notify.global.Salutation.Female') + user.last_name + ',');
+                else if (user.gender == "Male")
+                    return (MsgUtil.getMsg('notify.global.Salutation.Male') + user.last_name + ',');
+                else
+                    return (MsgUtil.getMsg('notify.global.Salutation.Default') + user.last_name + ',');
+            }
+        } else
+            return (MsgUtil.getMsg('notify.global.Salutation.General'));
+    }
+
+    function getLatestComment(tablename, recordsysid) {
+        var rec = new GlideRecord('sys_journal_field');
+        rec.addQuery('name', tablename);
+        rec.addQuery('element', 'comments');
+        rec.addQuery('element_id', recordsysid);
+        rec.orderByDesc('sys_created_on');
+        rec.query();
+
+        if (rec.next()) {
+            var latestComment = rec.value;
+            return latestComment;
+        } else {
+            return null;
+        }
+    }
+
+    function getLatestWorknote(tablename, recordsysid) {
+
+        var rec = new GlideRecord('sys_journal_field');
+        rec.addQuery('name', tablename);
+        rec.addQuery('element', 'work_notes');
+        rec.addQuery('element_id', recordsysid);
+        rec.orderByDesc('sys_created_on');
+        rec.query();
+        var latestWorknote;
+        if (rec.next()) {
+            latestWorknote = rec.value;
+
+            return latestWorknote;
+        } else {
+            return null;
+        }
+
+    }
+
+    function getPendingTimer(tablename, recordsysid) {
+        var myLog = new Logger(Logger.DEF, 'HistoryUtil', 'getPendingTimer');
+        /** 
+        var rec = new GlideRecord('sys_audit');
+        rec.addQuery('tablename', tablename);
+        rec.addQuery('documentkey', recordsysid);
+        rec.addQuery('fieldname', 'u_pending_timer');
+        rec.orderByDesc('record_checkpoint');
+        rec.query();
+        if (rec.next()) {			
+            var pendingtimervalue = rec.oldvalue;			
+            return pendingtimervalue;
+        } else {
+            return null;
+        }
+		*/
+        var recOutput = '';
+        var histLine = '';
+        var grRecord = new GlideRecord("task");
+        grRecord.addQuery('sys_id', recordsysid);
+        grRecord.query();
+        if (grRecord.next()) {
+            recOutput = grRecord.getValue('sys_id');
+            myLog.debug("number = " + grRecord.number.getDisplayValue());
+            var grSet = new GlideRecord('sys_history_set');
+            grSet.addQuery('id', recOutput);
+            grSet.query();
+            if (grSet.next()) {
+                myLog.debug("ID = " + grSet.id.getDisplayValue());
+                histLine = grSet.getValue('sys_id');
+                var grLine = new GlideRecord('sys_history_line');
+                grLine.addQuery('set', histLine);
+                grLine.addQuery('field', 'u_pending_timer');
+                grLine.orderByDesc('update_time');
+                grLine.query();
+                if (grLine.next()) {
+                    myLog.debug('pendingtimer Old: ' + grLine.old + ' ,and Old_value: ' + grLine.old_value);
+                    var pendingtimervalue = grLine.old;
+                    return pendingtimervalue;
+                } else {
+                    return;
+                }
+            } else {
+                return;
+            }
+        } else {
+            return;
+        }
+    }
+
+
+    function getInstanceName() {
+        var instancelink = gs.getProperty("glide.servlet.uri");
+        var match = instancelink.match(/https:\/\/([^\.]+)\.service-now\.com/);
+
+        if (match && match.length > 1) {
+            var currentinstance = match[1];
+        }
+        //var sendemailaddress = "mailto:autobahndev@service-now.com?subject=";
+        return currentinstance;
+    }
+
+    function getUserInfo(recordid) {
+        var grUser = new GlideRecord('sys_user');
+        grUser.addQuery('sys_id', recordid);
+        grUser.query();
+        if (grUser.next()) {
+            return grUser;
+        } else {
+            return null;
+        }
+    }
+
+    function getElementForRequest(recordid) {
+        var srcTable = 'sysapproval_approver';
+        var approvalRec = new GlideRecord(srcTable);
+        approvalRec.addQuery('document_id', recordid);
+        approvalRec.query();
+        if (approvalRec.next()) {
+            var approvComment = MsgUtil.getLatestComment(srcTable, approvalRec.sys_id);
+            if (JSUtil.notNil(approvComment)) {
+                return approvComment;
+            } else {
+                return ' ';
+            }
+        }
+
+    }
+
+    function getElementForKnowledge(recordid) {
+        var srcTable = 'sysapproval_approver';
+        var approvalKB = new GlideRecord(srcTable);
+        approvalKB.addQuery('document_id', recordid);
+        approvalKB.query();
+        if (approvalKB.next()) {
+            var approvComment = MsgUtil.getLatestComment(srcTable, approvalKB.sys_id);
+            if (JSUtil.notNil(approvComment)) {
+                return approvComment;
+            } else {
+                return ' ';
+            }
+        }
+
+    }
+
+    function getProblemCandidate(recordid) {
+        var relIncidentCaller = {};
+        var prbCan = new GlideRecord('incident');
+        prbCan.addQuery('problem_id', recordid);
+        prbCan.query();
+        if (prbCan.next()) {
+            relIncidentCaller = prbCan;
+            return relIncidentCaller;
+        } else {
+            return null;
+        }
+    }
+
+    function getShowVar(question, cati) {
+        var varQst = new GlideRecord('item_option_new');
+        varQst.addQuery('name', question);
+        varQst.query();
+        while (varQst.next()) {
+            var notifHint = varQst.u_visible_on_notification;
+            if (varQst.variable_set.nil() && varQst.cat_item == cati) {
+                if (varQst.cat_item.u_vset_visible_on_notification) {
+                    return notifHint;
+                } else {
+                    this.getShowVarSet(varQst.variable_set, cati);
+                }
+            } else if (!varQst.variable_set.nil()) {
+
+                var varSet = new GlideRecord('io_set_item');
+                varSet.addQuery('sc_cat_item', cati);
+                varSet.addQuery('variable_set', varQst.variable_set);
+                varSet.query();
+                if (varSet.next()) {
+                    var notifHintVarset = varSet.u_visible_on_notification;
+                    return notifHintVarset;
+                }
+
+            }
+        }
+    }
+
+    function getShowVarSet(question, cati) {
+        var varb = new GlideRecord('item_option_new_set');
+        varb = varQst.variable_set;
+        var varSet = new GlideRecord('io_set_item');
+        varSet.addQuery('sc_cat_item', cati);
+        varSet.addQuery('variable_set', varb);
+        varSet.query();
+        if (varSet.next()) {
+            var notifHintVarset = varSet.u_visible_on_notification;
+            return notifHintVarset;
+        }
+    }
+
+
+    return {
+        'getMsg': getMsg,
+        'getSalutationUser': getSalutationUser,
+        'getLatestComment': getLatestComment,
+        'getUserInfo': getUserInfo,
+        'getProblemCandidate': getProblemCandidate,
+        'getPendingTimer': getPendingTimer,
+        'getInstanceName': getInstanceName,
+        'getElementForRequest': getElementForRequest,
+        'getElementForKnowledge': getElementForKnowledge,
+        'getLatestWorknote': getLatestWorknote,
+        'getShowVar': getShowVar,
+        'getShowVarSet': getShowVarSet
+    };
+})();]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100391</sys_created_by>
+        <sys_created_on>2024-01-25 14:49:58</sys_created_on>
+        <sys_id>ef6e0644c3c046502c03deee050131ec</sys_id>
+        <sys_mod_count>65</sys_mod_count>
+        <sys_name>MsgUtil</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_ef6e0644c3c046502c03deee050131ec</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2025-03-14 11:37:20</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>ef6e0644c3c046502c03deee050131ec</id>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2025-02-16 15:36:06</sys_created_on>
+        <sys_id>1ed1ecc1c33fde102c03deee05013108</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2025-02-16 15:36:06</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

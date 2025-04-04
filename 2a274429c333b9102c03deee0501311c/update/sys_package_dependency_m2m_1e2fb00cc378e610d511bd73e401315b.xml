@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="Task table schema" source="com.glide.task">eccc817a0d2112104f349799ccc973aa</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>C100185</sys_created_by>
+        <sys_created_on>2024-06-19 10:39:09</sys_created_on>
+        <sys_id>1e2fb00cc378e610d511bd73e401315b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_updated_by>C100185</sys_updated_by>
+        <sys_updated_on>2024-06-19 10:39:09</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

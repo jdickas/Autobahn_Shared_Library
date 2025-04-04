@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="all_tables.detail_row=short_description,all_tables.display_color=priority,all_tables.live_feed=true,all_tables.text_index_translations=true,extension_model=hierarchy,hasListeners=true,kagami_csindex_enabled=true,largeTable=true,reference_index_include=active" db_object_id="a8cc817a0d2112104f349799ccc973ad" label="Task" max_length="40" name="task" text_index="true" type="collection">
+        <element active="false" attributes="edge_encryption_enabled=true,encode_utf8=false" choice="1" dependent="u_it_servicegroup" dependent_on_field="u_it_servicegroup" label="IT-Servicecategory" max_length="32" name="u_it_servicecategory" reference="cmdb_ci_service" reference_qual="javascript:'parentISNOTEMPTY^operational_status=1^parent='+ current.u_it_servicegroup.getValue()" type="reference" use_dependent_field="true" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Customer Reference" max_length="255" name="u_customer_reference" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" choice="1" dependent="u_it_servicecluster" dependent_on_field="u_it_servicecluster" label="Servicegroup" max_length="32" name="u_it_servicegroup" reference="cmdb_ci_service" reference_qual="javascript:new TaskCiServiceFilter().getServiceGroupToptoBottom(current.u_it_servicecluster);" type="reference" use_dependent_field="true" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="External Ticketnumber" max_length="40" name="u_supplier_ticket_number" read_only="true" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Supplier" max_length="40" name="u_supplier" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false,ref_auto_completer=AJAXReferenceChoice" choice="1" label="Servicecluster" max_length="32" name="u_it_servicecluster" reference="cmdb_ci_service" reference_qual="javascript:new TaskCiServiceFilter().getServiceClusterToptoBottom();" type="reference" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <index name="index">
+            <element name="u_it_servicecategory"/>
+            <element name="active"/>
+        </index>
+        <index name="index2">
+            <element name="u_it_servicecluster"/>
+            <element name="active"/>
+        </index>
+        <index name="index3">
+            <element name="u_it_servicegroup"/>
+            <element name="active"/>
+        </index>
+    </element>
+</database>

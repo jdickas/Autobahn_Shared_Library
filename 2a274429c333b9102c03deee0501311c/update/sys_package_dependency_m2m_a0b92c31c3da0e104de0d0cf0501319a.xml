@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="">5912d358c35a0a102c03deee050131c3</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-05-21 14:20:30</sys_created_on>
+        <sys_id>a0b92c31c3da0e104de0d0cf0501319a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2024-05-21 14:20:30</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

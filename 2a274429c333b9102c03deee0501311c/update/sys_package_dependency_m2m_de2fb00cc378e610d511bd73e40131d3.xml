@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="Approval Engine" source="com.snc.approvals">7840597a0da112104f349799ccc97389</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-02-23 07:16:04</sys_created_on>
+        <sys_id>de2fb00cc378e610d511bd73e40131d3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-02-23 07:16:04</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

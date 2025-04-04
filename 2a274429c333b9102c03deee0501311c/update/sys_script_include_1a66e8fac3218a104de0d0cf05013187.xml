@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>false</active>
+        <api_name>global.AssignmentUtilsOld</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Created to fetch the assignment group from Autobahn Assignment Table and update Assignment group field of </description>
+        <mobile_callable>false</mobile_callable>
+        <name>AssignmentUtilsOld</name>
+        <sandbox_callable>true</sandbox_callable>
+        <script><![CDATA[var AssignmentUtilsOld = Class.create();
+AssignmentUtilsOld.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    getGroupInfo: function() {
+        var recordSysId;
+        var tableName = this.getParameter('sysparm_tableName');
+        var channel = this.getParameter('sysparm_channel');
+        var serviceCluster = this.getParameter('sysparm_serviceCluster');
+        var serviceGroup = this.getParameter('sysparm_serviceGroup');
+       // var serviceCategory = this.getParameter('sysparm_serviceCategory');
+        var service = this.getParameter('sysparm_service');
+        var serviceOffering = this.getParameter('sysparm_serviceOffering');
+        var configurationItem = this.getParameter('sysparm_configurationItem');
+		var callerId=this.getParameter('sysparm_callerID');
+		var locationParent= this._getLocation(callerId);
+
+
+        var assignmentGroup;
+        var myLog = new Logger(Logger.DEF, 'AssignmentUtilsOld', 'getGroupInfo');
+        myLog.debug('serviceCluster value sent' + serviceCluster);
+		myLog.debug('channel value sent' + channel);
+		var checkChannelArray= this._checkArray(channel.toString(),"channel");
+		var checkServiceClusterArray = this._checkArray(serviceCluster, "serviceCluster");
+		var checkServiceGroupArray = this._checkArray(serviceGroup, "serviceGroup");
+		//var checkServiceCategoryArray = this._checkArray(serviceCategory,"serviceCategory");
+		var checkServiceArray = this._checkArray(service,"service");
+		var checkServiceOfferingArray = this._checkArray(serviceOffering,"serviceOffering");
+		var checkConfigurationItemArray = this._checkArray(configurationItem,"configurationItem");
+		var checkLocationArray=this._checkArray(locationParent,"location");
+			myLog.debug("channel value returnfrom  the function"+checkChannelArray);
+		if(checkChannelArray!= "1")
+		channel='';
+		if(checkServiceClusterArray!=="1")
+		serviceCluster='';
+		if(checkServiceGroupArray!=="1")
+		serviceGroup='';
+		//if(checkServiceCategoryArray!=="1")
+		//serviceCategory='';
+		if(checkServiceArray!=="1")
+		service='';
+		if(checkServiceOfferingArray!=="1")
+		serviceOffering ='';
+		if(checkConfigurationItemArray!=="1")
+		configurationItem ='';   
+	   if(checkLocationArray!=="1")
+		locationParent =''; 
+	   
+	    var grAssignmentRule = new GlideRecord("u_autobahn_assignment_table");
+        var sum = 0;
+		var count=0;
+
+        grAssignmentRule.addActiveQuery();
+        grAssignmentRule.orderBy("order");
+        grAssignmentRule.query();
+        while (grAssignmentRule.next()) {
+             count = 0;
+			if(tableName=="incident"){
+            if (grAssignmentRule.u_channel == channel || ((JSUtil.nil(grAssignmentRule.u_channel)))){
+                count++;
+				if(grAssignmentRule.u_channel == channel)
+				count = count+3;
+				else
+				count++;
+                myLog.debug("Channel is " + channel);
+
+                if ((grAssignmentRule.u_it_servicecluster == serviceCluster) || ((JSUtil.nil(grAssignmentRule.u_it_servicecluster)) && (JSUtil.nil(serviceCluster))) ) {
+                    count++;
+                    if ((grAssignmentRule.u_it_servicegroup == serviceGroup) || ((JSUtil.nil(grAssignmentRule.u_it_servicegroup)) && (JSUtil.nil(serviceGroup)))){
+                        count++;
+                        //if ((grAssignmentRule.u_it_servicecategory == serviceCategory) || ((JSUtil.nil(grAssignmentRule.u_it_servicecategory)) && (JSUtil.nil(serviceCategory)))){
+                            //count++;
+                            if ((grAssignmentRule.u_service == service) || ((JSUtil.nil(grAssignmentRule.u_service)) && (JSUtil.nil(service)))){
+                                count++;
+                                if ((grAssignmentRule.u_service_offering == serviceOffering) ||  ((JSUtil.nil(grAssignmentRule.u_service_offering)) && (JSUtil.nil(serviceOffering)))){
+                                    count++;
+									if ((grAssignmentRule.u_location_parent == locationParent) || ((JSUtil.nil(grAssignmentRule.u_location_parent)) && (JSUtil.nil(locationParent)))){
+                                        count++;
+                                    	if ((grAssignmentRule.u_configuration_item == configurationItem) || ((JSUtil.nil(grAssignmentRule.u_configuration_item)) && (JSUtil.nil(configurationItem)))){
+                                        	count++;
+										
+                                    	}
+                                    }
+
+                                }
+                            }
+                        //}
+                    }
+                }
+            }
+			}
+			else if(tableName=="change_request" || tableName =="problem")
+			{
+				if ((grAssignmentRule.u_it_servicecluster == serviceCluster) || ((JSUtil.nil(grAssignmentRule.u_it_servicecluster)) && (JSUtil.nil(serviceCluster))) ) {
+                    count++;
+                    if ((grAssignmentRule.u_it_servicegroup == serviceGroup) || ((JSUtil.nil(grAssignmentRule.u_it_servicegroup)) && (JSUtil.nil(serviceGroup)))){
+                        count++;
+                        //if ((grAssignmentRule.u_it_servicecategory == serviceCategory) || ((JSUtil.nil(grAssignmentRule.u_it_servicecategory)) && (JSUtil.nil(serviceCategory)))){
+                            //count++;
+                            if ((grAssignmentRule.u_service == service) || ((JSUtil.nil(grAssignmentRule.u_service)) && (JSUtil.nil(service)))){
+                                count++;
+                                if ((grAssignmentRule.u_service_offering == serviceOffering) ||  ((JSUtil.nil(grAssignmentRule.u_service_offering)) && (JSUtil.nil(serviceOffering)))){
+                                    count++;
+                                    if ((grAssignmentRule.u_configuration_item == configurationItem) || ((JSUtil.nil(grAssignmentRule.u_configuration_item)) && (JSUtil.nil(configurationItem)))){
+                                        count++;
+                                    }
+                                }
+                            }
+                        //}
+                    }
+                }
+
+              
+            }
+
+            if(count>sum) {
+                sum = count;
+                recordSysId = grAssignmentRule.sys_id;
+                myLog.debug("sum is " + sum);
+                myLog.debug("count is " + count);
+				myLog.debug(" Record found is "+recordSysId);
+                assignmentGroup = this._getTaskAssignmentGroup(recordSysId,tableName);
+				myLog.debug("sysid sent is " + recordSysId +" " +tableName);
+            }
+        }
+
+        
+        return assignmentGroup;
+    },
+
+    _getTaskAssignmentGroup: function(sysId,tableNameTask) {
+        var grAssignmentTable = new GlideRecord("u_autobahn_assignment_table");
+        var answer;
+        grAssignmentTable.addQuery("sys_id", sysId);
+        grAssignmentTable.query();
+
+        if (grAssignmentTable.next()) {
+            if (tableNameTask =="incident") {
+                answer = grAssignmentTable.u_incident_assignment_group;
+                var myLog = new Logger(Logger.DEF, 'AssignmentUtilsOld', 'getAssignmentGroup');
+                myLog.debug("answer is " + answer.getDisplayValue() +"sys id of the record is "+sysId);
+            }
+			else if (tableNameTask =="problem") {
+                answer = grAssignmentTable.u_problem_assignment_group;
+                var myLog = new Logger(Logger.DEF, 'AssignmentUtilsOld', 'getAssignmentGroup');
+                myLog.debug("answer is " + answer.getDisplayValue() +"sys id of the record is "+sysId);
+            }
+			else if (tableNameTask =="change_request") {
+                answer = grAssignmentTable.u_change_assignment_group;
+                var myLog = new Logger(Logger.DEF, 'AssignmentUtilsOld', 'getAssignmentGroup');
+                myLog.debug("answer is " + answer.getDisplayValue() +"sys id of the record is "+sysId);
+            }
+        }
+
+        return answer;
+    },
+	_checkArray:function(taskinput,fieldName){
+		var channelArray=[];
+		var serviceClusterArray=[];
+		var serviceGroupArray=[];
+		var serviceCategoryArray=[];
+		var serviceArray=[];
+		var serviceofferingArray=[];
+		var configurationItemArray=[];
+		var callerLocationArray=[];
+		var grAssignmentTableFieldArray = new GlideRecord("u_autobahn_assignment_table");
+		grAssignmentTableFieldArray.query();
+		while (grAssignmentTableFieldArray.next()) {
+			var channelValue= grAssignmentTableFieldArray.u_channel.toString();
+    		var serviceClusterValue = grAssignmentTableFieldArray.u_it_servicecluster.toString(); 
+			var serviceGroupValue = grAssignmentTableFieldArray.u_it_servicegroup.toString();
+			//var serviceCategoryValue = grAssignmentTableFieldArray.u_it_servicecategory.toString();
+			var serviceValue = grAssignmentTableFieldArray.u_service.toString();
+			var serviceOfferingValue =grAssignmentTableFieldArray.u_service_offering.toString();
+			var configurationItemValue = grAssignmentTableFieldArray.u_configuration_item.toString();
+			var callerLocationValue=grAssignmentTableFieldArray.u_location_parent.toString();
+
+			if (channelValue != '') {
+    		channelArray.push('"'+channelValue.toString()+'"');
+			}
+			if (serviceClusterValue != '') {
+    		serviceClusterArray.push('"' + serviceClusterValue.toString() + '"');
+			}
+
+			if (serviceGroupValue != '') {
+    		serviceGroupArray.push('"' + serviceGroupValue.toString() + '"');
+			}
+/*
+			if (serviceCategoryValue != '') {
+   		 	serviceCategoryArray.push('"' + serviceCategoryValue.toString() +'"');
+			}
+			*/
+
+			if (serviceValue != '') {
+    		serviceArray.push('"' + serviceValue.toString() + '"');
+			}
+
+			if (serviceOfferingValue != '') {
+    		serviceofferingArray.push('"' + serviceOfferingValue.toString() + '"');
+			}
+
+			if (configurationItemValue != '') {
+    		configurationItemArray.push('"' + configurationItemValue.toString() + '"');
+			}
+			if (callerLocationValue != '') {
+    		callerLocationArray.push('"' + callerLocationValue.toString() + '"');
+			}
+
+			
+		}
+		var myLogArray = new Logger(Logger.DEF, 'AssignmentUtilsOld', 'checkArray');
+		myLogArray.debug("Channel array is"+channelArray);
+		
+		taskinput= '"'+taskinput+'"';
+		myLogArray.debug("fieldName is "+fieldName +"task input is " +taskinput);
+			if (fieldName == "channel" && channelArray.indexOf(taskinput)!== -1) {
+				var answervalue ="1";
+				myLogArray.debug(" channel is sent or not" +answervalue);
+       			return answervalue;
+    			}
+			else if (fieldName == "serviceCluster" && serviceClusterArray.indexOf(taskinput) !== -1) {
+       			return "1";
+    			}
+    		else if (fieldName == "serviceGroup" && serviceGroupArray.indexOf(taskinput) !== -1) {
+       			return "1";
+   				}
+   			/*else if (fieldName == "serviceCategory" && serviceCategoryArray.indexOf(taskinput) !== -1) {
+        		return "1";
+    			}
+				*/
+    		else if (fieldName == "service" && serviceArray.indexOf(taskinput) !== -1) {
+        		return "1";
+    			}
+    		else if (fieldName == "serviceOffering" && serviceofferingArray.indexOf(taskinput) !== -1) {
+       			return "1";
+    			}
+    		else if (fieldName == "configurationItem" && configurationItemArray.indexOf(taskinput) !== -1) {
+       			return "1";
+    			}
+			else if (fieldName == "location" && configurationItemArray.indexOf(taskinput) !== -1) {
+       			
+				myLogArray.debug("task input is " +taskinput);
+				return "1";
+    			}
+			else
+			{	return 0;
+			}
+	},
+
+	_getLocation:function(callerId){
+	
+	grUser=new GlideRecord("sys_user");
+	grUser.get(callerId);
+	var location=grUser.location.parent.getDisplayValue();
+
+	return location;
+	},
+
+
+    type: 'AssignmentUtilsOld'
+});
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2024-04-17 10:22:00</sys_created_on>
+        <sys_id>1a66e8fac3218a104de0d0cf05013187</sys_id>
+        <sys_mod_count>61</sys_mod_count>
+        <sys_name>AssignmentUtilsOld</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sys_script_include_1a66e8fac3218a104de0d0cf05013187</sys_update_name>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2025-01-16 08:24:54</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>1a66e8fac3218a104de0d0cf05013187</id>
+        <sys_created_by>A100409</sys_created_by>
+        <sys_created_on>2025-01-14 16:34:48</sys_created_on>
+        <sys_id>10d236dac34352102c03deee0501312f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>A100409</sys_updated_by>
+        <sys_updated_on>2025-01-14 16:34:48</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

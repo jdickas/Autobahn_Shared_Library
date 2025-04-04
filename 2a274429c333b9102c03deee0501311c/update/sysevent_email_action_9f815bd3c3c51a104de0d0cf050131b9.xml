@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>true</action_insert>
+        <action_update>true</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="Uncategorized" name="Uncategorized">c97d83137f4432005f58108c3ffa917a</category>
+        <collection>incident</collection>
+        <condition table="incident">assignment_group.typeLIKE2550471ec3e002902c03deee05013186^assignment_group.nameSTARTSWITHSAP^ORassignment_group.nameSTARTSWITHERP^assigned_toISNOTEMPTY^assigned_toVALCHANGES^EQ<item endquery="false" field="assignment_group.type" goto="false" newquery="false" operator="LIKE" or="false" value="2550471ec3e002902c03deee05013186"/>
+            <item endquery="false" field="assignment_group.name" goto="false" newquery="false" operator="STARTSWITH" or="false" value="SAP"/>
+            <item endquery="false" field="assignment_group.name" goto="false" newquery="false" operator="STARTSWITH" or="true" value="ERP"/>
+            <item endquery="false" field="assigned_to" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="false" field="assigned_to" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <content_type>text/html</content_type>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digestable>false</digestable>
+        <enable_dynamic_translation>false</enable_dynamic_translation>
+        <event_name>NoReopened.Incident.Commented</event_name>
+        <event_parm_1>false</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>true</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>engine</generation_type>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html/>
+        <message_list/>
+        <message_text/>
+        <name>Incident.Assigned.ToAssigneeSAPERP</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields>assigned_to</recipient_fields>
+        <recipient_groups/>
+        <recipient_users/>
+        <reply_to>it-service-center@autobahn.de</reply_to>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject/>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-10-10 11:17:25</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9f815bd3c3c51a104de0d0cf050131b9</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>Incident.Assigned.ToAssigneeSAPERP</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysevent_email_action_9f815bd3c3c51a104de0d0cf050131b9</sys_update_name>
+        <sys_updated_by>N100139</sys_updated_by>
+        <sys_updated_on>2025-01-22 15:28:36</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template display_value="Incident.Internal.SAPERP">22e29757c3c51a104de0d0cf05013192</template>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>

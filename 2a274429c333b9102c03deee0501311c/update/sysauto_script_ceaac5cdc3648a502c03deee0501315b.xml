@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 06:00:00</entered_time>
+        <max_drift/>
+        <name>ScTask Remind Notification</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2024-02-22 08:59:11</run_start>
+        <run_time>1970-01-01 05:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[var myLog = new Logger(Logger.INC, 'SchedScriptEx', 'ScTask Remind Notification');
+var strquery = 'request_itemISNOTEMPTY^state=-5^ORstate=2';
+var nowDat = new GlideDate();
+var grSctask = new GlideRecord('sc_task');
+grSctask.addEncodedQuery(strquery);
+grSctask.query();
+while (grSctask.next()) {
+    var updatedDat = new GlideDateTime(grSctask.sys_updated_on);
+    var updatedDate = updatedDat.getDate();
+    var schDelay = calcDurationSchedule(updatedDate, nowDat);	    
+	var delay = parseInt(schDelay);
+    myLog.debug('delay: ' + delay);
+    if (delay > 0 && delay % 2 == 0) {
+        gs.eventQueue('sc_task.reminderNotification', grSctask);
+    } else {
+        myLog.debug('No task to remind on yet!');
+    }
+}
+
+function calcDurationSchedule(start, end) {     
+    var sched = new GlideSchedule();
+	var notsched = new GlideRecord('cmn_schedule');
+    notsched.addQuery('sys_id', global.NotificationConst.APPROVAL_NOTIFICATION());
+    notsched.query();
+    if (notsched.next()) {
+        var schedId = notsched.sys_id.toString();
+        sched.load(schedId); //approval notification (24x5)   
+        var durat = sched.duration(start, end);
+        //gs.info('duration: ' + durat.getDurationValue());       
+		var dayDuration = durat.getDayPart();
+     	return dayDuration;
+    }
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>J100251</sys_created_by>
+        <sys_created_on>2024-02-22 09:02:27</sys_created_on>
+        <sys_id>ceaac5cdc3648a502c03deee0501315b</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>ScTask Remind Notification</sys_name>
+        <sys_package display_value="Autobahn Shared Library " source="2a274429c333b9102c03deee0501311c">2a274429c333b9102c03deee0501311c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Autobahn Shared Library ">2a274429c333b9102c03deee0501311c</sys_scope>
+        <sys_update_name>sysauto_script_ceaac5cdc3648a502c03deee0501315b</sys_update_name>
+        <sys_updated_by>J100251</sys_updated_by>
+        <sys_updated_on>2024-03-15 13:57:34</sys_updated_on>
+        <time_zone>Europe/Berlin</time_zone>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
